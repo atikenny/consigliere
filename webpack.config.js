@@ -2,6 +2,10 @@ const path = require('path');
 
 const exclude = /node_modules/;
 
+const paths = {
+    components: path.resolve(__dirname, '/app/client/components')
+};
+
 module.exports = {
     devtool: 'source-map',
     entry: './app/client/main.jsx',
@@ -10,6 +14,9 @@ module.exports = {
         path: path.resolve(__dirname, 'app/public')
     },
     resolve: {
+        alias: {
+            components: paths.components
+        },
         extensions: ['.js', '.jsx']
     },
     module: {

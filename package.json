@@ -4,7 +4,7 @@
   "description": "Financial Consigliere",
   "main": "app/server/main.js",
   "scripts": {
-    "start": "node app/server/main.js",
+    "start": "nodemon app/server/main.js",
     "test": "jest",
     "build": "./node_modules/webpack/bin/webpack.js --watch"
   },
@@ -34,6 +34,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "file-loader": "^0.11.2",
-    "webpack": "^2.7.0"
+    "nodemon": "^1.11.0",
+    "webpack": "^3.4.1"
   }
 }
