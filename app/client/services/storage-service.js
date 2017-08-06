@@ -6,7 +6,7 @@ export const storeTransactions = (transactions) => {
     localStorage.setItem(STORAGE_KEYS.TRANSACTIONS, JSON.stringify(transactions));
 };
 
-export const loadTransactions = () => {
+const loadTransactions = () => {
     try {
         const savedTransactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.TRANSACTIONS));
 
@@ -14,4 +14,12 @@ export const loadTransactions = () => {
     } catch (error) {
         return undefined;
     }
+};
+
+export const loadState = () => {
+    const transactions = loadTransactions();
+
+    return {
+        transactions
+    };
 };
