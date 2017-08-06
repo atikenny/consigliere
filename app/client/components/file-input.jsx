@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { parseCSV } from '../services/parser-service';
+import {
+    parseCSV,
+    mapEntries,
+    mapTransactions
+} from '../services/parser-service';
+import { storeTransactions } from '../services/storage-service';
 
 const readFile = (event) => {
     const input = event.target;
@@ -10,6 +15,9 @@ const readFile = (event) => {
     fileReader.onload = () => {
         const text = fileReader.result;
         const parsedCSV = parseCSV(text);
+        const mappedTransactions = mapTransactions(formats.LLOYDS, parsedCSV);
+
+        storeTransactions(mappedTransactions);
     };
 
     fileReader.readAsText(input.files[0]);
