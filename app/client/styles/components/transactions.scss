@@ -10,15 +10,15 @@
     li {
         padding: 0;
         margin: 0;
+
+        > * {
+            padding: $gutter-size;
+        }
     }
 
     .transaction-item {
         .row {
             display: flex;
-        }
-
-        > div {
-            padding: $gutter-size;
         }
 
         .description {

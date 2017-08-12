@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon"], [class*=" icon"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
     speak: none;
@@ -24,54 +24,74 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-price-tags:before {
+.icon.price-tags:before {
     content: "\e936";
 }
 
-.icon-coin-dollar:before {
+.icon.coin-dollar:before {
     content: "\e93b";
 }
 
-.icon-coin-euro:before {
+.icon.coin-euro:before {
     content: "\e93c";
 }
 
-.icon-coin-pound:before {
+.icon.coin-pound:before {
     content: "\e93d";
 }
 
-.icon-coin-yen:before {
+.icon.coin-yen:before {
     content: "\e93e";
 }
 
-.icon-credit-card:before {
+.icon.credit-card:before {
     content: "\e93f";
 }
 
-.icon-calendar:before {
+.icon.calendar:before {
     content: "\e953";
 }
 
-.icon-undo:before {
+.icon.upload:before {
+    content: "\e961";
+}
+
+.icon.undo:before {
     content: "\e965";
 }
 
-.icon-redo:before {
+.icon.redo:before {
     content: "\e966";
 }
 
-.icon-search:before {
+.icon.search:before {
     content: "\e986";
 }
 
-.icon-cog:before {
+.icon.cog:before {
     content: "\e994";
 }
 
-.icon-menu:before {
+.icon.menu:before {
     content: "\e9bd";
 }
 
-.icon-star-full:before {
+.icon.star-full:before {
     content: "\e9d9";
+}
+
+.icon.plus:before {
+    content: "\ea0a";
+}
+
+.icon.minus:before {
+    content: "\ea0b";
+}
+
+.icon.cross:before {
+    content: "\ea0f";
+}
+
+.icon.checkmark:before {
+    content: "\ea10";
 }
