@@ -1,5 +1,3 @@
 export const formatDate = (dateString) => {
-    const date = new Date(dateString).toDateString();
-
-    return `${date}`;
+    return new Date(dateString).toDateString();
 };
