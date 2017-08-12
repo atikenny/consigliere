@@ -17,7 +17,7 @@ module.exports = {
         alias: {
             components: paths.components
         },
-        extensions: ['.js', '.jsx', '.scss']
+        extensions: ['.js', '.jsx', '.scss', '.html']
     },
     module: {
         rules: [
@@ -40,6 +40,12 @@ module.exports = {
                         name: '[name].[ext]'
                     }
                 }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use: [
+                    'file-loader'
+                ]
             },
             {
                 test: /\.scss?$/,

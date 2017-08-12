@@ -1,3 +1,6 @@
+@import '../common/colors';
+@import '../common/variables';
+
 .transactions-container {
     ul {
         padding: 0;
@@ -7,5 +10,27 @@
     li {
         padding: 0;
         margin: 0;
+    }
+
+    .transaction-item {
+        .row {
+            display: flex;
+        }
+
+        > div {
+            padding: $gutter-size;
+        }
+
+        .description {
+            flex: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .date {
+            color: $brand-text--light;
+            text-align: right;
+        }
     }
 }

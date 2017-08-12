@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import TransactionItem from './transaction-item';
 import '../styles/components/transactions';
 
 const Transactions = ({ transactions }) => (
-    <div className="transaction-container">
+    <div className="transactions-container">
         <ul>
             {transactions.map((transaction, index) => (
                 <li key={index}>
@@ -23,3 +24,11 @@ const mapState = ({ transactions }) => {
 };
 
 export default connect(mapState)(Transactions);
+
+Transactions.defaultProps = {
+    transactions: []
+};
+
+Transactions.propTypes = {
+    transactions: PropTypes.array
+};

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import './index.html';
+import './index';
+import './styles/main';
 
 import appReducers from './reducers';
 import Consigliere from './components/consigliere';

@@ -1,9 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const TransactionItem = ({ date }) => (
+import { formatDate } from '../services/date-service';
+
+const TransactionItem = ({ amount, currency, date, description }) => (
     <div className="transaction-item">
-        <div className="date">{new Date(date).toDateString()}</div>
+        <div className="row">
+            <div className="description">{description}</div>
+            <div className="date">{formatDate(date)}</div>
+        </div>
+        <div className="row">
+            <div className="amount">{`${currency} ${amount}`}</div>
+        </div>
     </div>
 );
 
-export default TransactionItem;
+const mapState = ({ currency }) => {
+    return {
+        currency
+    };
+};
+
+export default connect(mapState)(TransactionItem);
+
+TransactionItem.defaultProps = {
+    description: ''
+};
+
+TransactionItem.propTypes = {
+    amount: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string
+};
