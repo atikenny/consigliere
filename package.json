@@ -51,8 +51,12 @@
     "webpack": "^3.5.4"
   },
   "jest": {
+    "rootDir": "./app",
     "transform": {
-      "^.+\\.js$": "babel-jest"
+      "^.+\\.(js|jsx)$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(eot|otf|webp|svg|ttf|woff|woff2|scss|css|html)$": "<rootDir>/test-mocks/file-mock.js"
     },
     "moduleFileExtensions": [
       "js",
@@ -60,6 +64,16 @@
     ],
     "moduleDirectories": [
       "node_modules"
-    ]
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "public/coverage",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/public/**",
+      "!**/test-mocks/**",
+      "!**/server/**"
+    ],
+    "mapCoverage": true
   }
 }
