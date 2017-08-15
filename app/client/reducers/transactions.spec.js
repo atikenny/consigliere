@@ -13,5 +13,6 @@ describe('transactions reducer', () => {
         };
 
         expect(transactions(initialState, action)).toEqual(['transactions']);
+        expect(transactions(initialState, action)).not.toBe(action.transactions);
     });
 });
