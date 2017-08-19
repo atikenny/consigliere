@@ -9,7 +9,6 @@ describe('IconButton compoennt', () => {
         const iconButton = shallow(<IconButton type={iconType} />);
         const button = iconButton.find('button.icon.button');
 
-        expect(button.length).toEqual(1);
         expect(button.hasClass(iconType)).toBe(true);
     });
 
@@ -19,5 +18,13 @@ describe('IconButton compoennt', () => {
         const button = iconButton.find('button.icon.button');
 
         expect(button.text()).toEqual(iconText);
+    });
+
+    test('has a button with the provided onClick handler', () => {
+        const onClick = () => {};
+        const iconButton = shallow(<IconButton type="" onClick={onClick} />);
+        const button = iconButton.find('button.icon.button');
+
+        expect(button.props().onClick).toEqual(onClick);
     });
 });

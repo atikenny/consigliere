@@ -57,7 +57,7 @@ export const formats = {
 };
 
 export const mapTransactions = (format, transactions) => {
-    return transactions.map(transaction => {
+    return transactions.map((transaction, index) => {
         const dateString = transaction[format.dateKey];
         const date = format.getDate(dateString);
         const debitAmount = transaction[format.debitAmountKey];
@@ -65,8 +65,10 @@ export const mapTransactions = (format, transactions) => {
         const amount = parseFloat(debitAmount || creditAmount);
         const transactionType = format.transactionTypeMap[transaction[format.typeKey]];
         const description = transaction[format.descriptionKey];
+        const id = index;
 
         return {
+            id,
             date,
             amount,
             transactionType,

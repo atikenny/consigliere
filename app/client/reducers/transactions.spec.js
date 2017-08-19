@@ -1,3 +1,5 @@
+import deepFreeze from 'deep-freeze';
+
 import transactions from './transactions';
 
 describe('transactions reducer', () => {
@@ -12,7 +14,27 @@ describe('transactions reducer', () => {
             transactions: ['transactions']
         };
 
+        deepFreeze(initialState);
+
         expect(transactions(initialState, action)).toEqual(['transactions']);
-        expect(transactions(initialState, action)).not.toBe(action.transactions);
+    });
+
+    test('handles transactions add label action', () => {
+        const initialState = [
+            { id: 'id' },
+            { id: 'no action' }
+        ];
+        const action = {
+            type: 'ADD_LABEL',
+            id: 'id',
+            label: 'label'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual([
+            { id: 'id', labels: ['label'] },
+            { id: 'no action' }
+        ]);
     });
 });

@@ -54,12 +54,14 @@ describe('parser-service', () => {
 
             expect(mapTransactions(lloydsFormat, transactions)).toEqual([
                 {
+                    id: 0,
                     amount: 12.34,
                     date: new Date('2017-02-01'),
                     transactionType: 'debit',
                     description: 'debit transaction description'
                 },
                 {
+                    id: 1,
                     amount: 1234,
                     date: new Date('2018-12-31'),
                     transactionType: 'credit',

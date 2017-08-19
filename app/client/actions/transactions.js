@@ -4,3 +4,12 @@ export const load = (transactions) => {
         transactions
     };
 };
+
+export const addLabel = (id, label) => {
+    return {
+        type: 'ADD_LABEL',
+        id,
+        label
+    };
+};
+
