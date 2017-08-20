@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import '../styles/components/transactions';
@@ -22,13 +21,7 @@ const Transactions = ({ transactions }) => (
     </div>
 );
 
-const mapState = ({ transactions }) => {
-    return {
-        transactions
-    };
-};
-
-export default connect(mapState)(Transactions);
+export default Transactions;
 
 Transactions.defaultProps = {
     transactions: []

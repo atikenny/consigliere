@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { formatDate } from '../services/date-service';
@@ -16,13 +15,7 @@ const TransactionItem = ({ amount, currency, date, description }) => (
     </div>
 );
 
-const mapState = ({ currency }) => {
-    return {
-        currency
-    };
-};
-
-export default connect(mapState)(TransactionItem);
+export default TransactionItem;
 
 TransactionItem.defaultProps = {
     description: ''

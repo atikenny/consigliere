@@ -77,8 +77,10 @@
       "!**/node_modules/**",
       "!**/public/**",
       "!**/test-mocks/**",
-      "!**/server/**"
+      "!**/server/**",
+      "!**/containers/**"
     ],
+    "coverageReporters": ["lcov"],
     "mapCoverage": true
   }
 }

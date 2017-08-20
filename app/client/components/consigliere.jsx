@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FileInput from './file-input';
-import Transactions from './transactions';
+import Transactions from '../containers/transactions';
 
 const Consigliere = () => (
     <div id="consigliere">
