@@ -1,11 +1,19 @@
+const hasLabel = (label, labels) => {
+    return labels.some(_label => _label === label);
+};
+
 const item = (state, action) => {
     switch (action.type) {
         case 'ADD_LABEL':
+            const labels = state.labels || [];
+
             if (state.id !== action.id) {
                 return state;
             }
 
-            const labels = state.labels || [];
+            if (hasLabel(state.newLabelValue, labels)) {
+                return state;
+            }
 
             return Object.assign({}, state, {
                 labels: labels.concat(state.newLabelValue)
