@@ -26,11 +26,12 @@ const Labels = ({ labels, transactionId, onClick }) => (
 export default Labels;
 
 Labels.defaultProps = {
-    labels: []
+    labels: [],
+    onClick: () => {}
 };
 
 Labels.propTypes = {
     labels: PropTypes.array,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     transactionId: PropTypes.number.isRequired
 };

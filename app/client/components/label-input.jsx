@@ -16,6 +16,10 @@ const LabelInput = ({ onChange, transactionId }) => (
 
 export default LabelInput;
 
+LabelInput.defaultProps = {
+    onChange: () => {}
+};
+
 LabelInput.propTypes = {
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func
 };

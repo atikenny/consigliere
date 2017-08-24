@@ -10,6 +10,7 @@ describe('Transactions component', () => {
         return ({ withLabels } = {}) => {
             const newIndex = index++;
             const mockTransaction = {
+                id: newIndex,
                 amount: newIndex,
                 currency: `currency${newIndex}`,
                 date: `date${newIndex}`
@@ -66,5 +67,6 @@ describe('Transactions component', () => {
 
         expect(labelsContainers.length).toBe(transactionsProp.length);
         expect(labelsContainers.at(1).prop('labels')).toBe(transactionMock2.labels);
+        expect(labelsContainers.at(1).prop('transactionId')).toBe(transactionMock2.id);
     });
 });
