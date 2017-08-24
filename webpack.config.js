@@ -8,7 +8,7 @@ const paths = {
 
 module.exports = {
     devtool: 'source-map',
-    entry: './app/client/main.jsx',
+    entry: './app/client/index.js',
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'app/public')

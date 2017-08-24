@@ -9,22 +9,24 @@ import Labels from './labels';
 
 const Transactions = ({ transactions }) => (
     <div className="transactions-container">
-        <ul>
-            {transactions.map((transaction, index) => (
-                <li key={index}>
-                    <TransactionItem {...transaction} />
-                    <TransactionFooter />
-                    <Labels labels={transaction.labels} />
-                </li>
-            ))}
-        </ul>
+        {transactions && (
+            <ul>
+                {transactions.map((transaction, index) => (
+                    <li key={index}>
+                        <TransactionItem {...transaction} />
+                        <TransactionFooter />
+                        <Labels labels={transaction.labels} />
+                    </li>
+                ))}
+            </ul>
+        )}
     </div>
 );
 
 export default Transactions;
 
 Transactions.defaultProps = {
-    transactions: []
+    transactions: undefined
 };
 
 Transactions.propTypes = {

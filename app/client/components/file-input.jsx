@@ -5,8 +5,8 @@ import {
     mapEntries,
     mapTransactions,
     formats
-} from '../services/parser-service';
-import { storeTransactions } from '../services/storage-service';
+} from 'services/parser-service';
+import { storeTransactions } from 'services/storage-service';
 
 const readFile = (event) => {
     const input = event.target;

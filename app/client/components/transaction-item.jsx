@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatDate } from '../services/date-service';
+import { formatDate } from 'services/date-service';
 
 const TransactionItem = ({ amount, currency, date, description }) => (
     <div className="transaction-item">

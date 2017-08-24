@@ -1,3 +1,26 @@
 {
-    "presets": ["es2015", "react"]
+    "presets": ["es2015", "react"],
+    "plugins": [
+        [
+            "module-alias",
+            [
+                {
+                    "src": "./app/client",
+                    "expose": "client"
+                },
+                {
+                    "src": "./app/client/styles",
+                    "expose": "styles"
+                },
+                {
+                    "src": "./app/client/components",
+                    "expose": "components"
+                },
+                {
+                    "src": "./app/client/services",
+                    "expose": "services"
+                }
+            ]
+        ]
+    ]
 }
