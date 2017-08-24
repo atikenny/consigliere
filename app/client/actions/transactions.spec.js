@@ -1,6 +1,7 @@
 import {
     addLabel,
-    load
+    load,
+    deleteLabel
 } from './transactions';
 
 describe('transactions', () => {
@@ -19,6 +20,17 @@ describe('transactions', () => {
         expect(addLabel(id)).toEqual({
             type: 'ADD_LABEL',
             id
+        })
+    });
+
+    test('delete label returns action object', () => {
+        const transactionId = 'transactionId';
+        const label = 'label';
+
+        expect(deleteLabel(transactionId, label)).toEqual({
+            type: 'DELETE_LABEL',
+            transactionId,
+            label
         })
     });
 });

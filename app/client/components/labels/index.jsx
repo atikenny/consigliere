@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles/components/labels';
+import 'styles/components/labels';
 
-import LabelItem from './label-item';
-import IconButton from './icon-button';
-import LabelInput from 'containers/label-input';
+import LabelItem from 'containers/labels/label-item';
+import IconButton from 'components/icon-button';
+import LabelInput from 'containers/labels/label-input';
 
 const Labels = ({ labels, transactionId, onClick }) => (
     <div className="labels-container">
         <ul className="labels">
             {labels.map((label, index) => 
                 <li key={index}>
-                    <LabelItem name={label} />
+                    <LabelItem
+                        name={label}
+                        transactionId={transactionId} />
                 </li>
             )}
         </ul>

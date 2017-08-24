@@ -12,6 +12,14 @@ export const addLabel = (id) => {
     };
 };
 
+export const deleteLabel = (transactionId, label) => {
+    return {
+        type: 'DELETE_LABEL',
+        transactionId,
+        label
+    };
+};
+
 export const setNewLabelValue = (id, value) => {
     return {
         type: 'SET_NEW_LABEL_VALUE',

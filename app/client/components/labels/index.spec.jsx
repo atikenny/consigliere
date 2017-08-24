@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Labels from './labels';
+import Labels from './index';
 
 describe('Labels component', () => {
     const render = ({

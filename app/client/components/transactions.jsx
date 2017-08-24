@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles/components/transactions';
+import 'styles/components/transactions';
 
 import TransactionItem from 'containers/transaction-item';
 import TransactionFooter from './transaction-footer';
