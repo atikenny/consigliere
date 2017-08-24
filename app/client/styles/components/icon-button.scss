@@ -1,10 +1,15 @@
 @import '../common/colors';
 @import '../common/variables';
 
-.icon.button {
+.button {
     padding: $gutter-size / 2 $gutter-size;
     border: 0 none;
     background: none;
+
+    .text {
+        font-size: 1.3em;
+        padding-left: $gutter-size;
+    }
 
     .bordered {
         border: 1px solid $brand-text;

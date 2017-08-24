@@ -21,10 +21,11 @@ const Labels = ({ labels, transactionId, onClick }) => (
             </ul>
         )}
         <div className="add-label-container">
+            <LabelInput transactionId={transactionId} />
             <IconButton
                 type="plus"
-                onClick={onClick} />
-            <LabelInput transactionId={transactionId} />
+                onClick={onClick}
+                text="ADD" />
         </div>
     </div>
 );

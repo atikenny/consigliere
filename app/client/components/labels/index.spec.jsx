@@ -25,7 +25,7 @@ describe('Labels component', () => {
     });
 
     test('has a list', () => {
-        const labels = render();
+        const labels = render({ labels: [] });
         const list = labels.find('.labels');
 
         expect(list.length).toBe(1);

@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import '../styles/components/icon-button';
 
 const IconButton = ({ onClick, text, type }) => (
-    <button
-        className={`icon button ${type}`}
-        onClick={onClick}>{text}</button>
+    <button className="button" onClick={onClick}>
+        <span className={`icon ${type}`} />
+        {text && (
+            <span className="text">
+                {text}
+            </span>
+        )}
+    </button>
 );
 
 export default IconButton;
