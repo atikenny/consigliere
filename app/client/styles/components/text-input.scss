@@ -1,0 +1,7 @@
+@import '../common/colors';
+@import '../common/variables';
+
+input[type="text"] {
+    border: 1px solid $inactive-color--lighter;
+    padding: $gutter-size;
+}

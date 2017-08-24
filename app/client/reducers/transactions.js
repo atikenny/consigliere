@@ -15,6 +15,10 @@ const item = (state, action) => {
                 return state;
             }
 
+            if (!state.newLabelValue) {
+                return state;
+            }
+
             return Object.assign({}, state, {
                 labels: labels.concat(state.newLabelValue)
             });

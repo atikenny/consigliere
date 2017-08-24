@@ -1,6 +1,30 @@
+@import '../common/colors';
 @import '../common/variables';
 
 .labels-container {
-    display: flex;
     padding: $gutter-size;
+
+    .labels {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .label {
+        border: 1px solid $brand-color;
+        border-radius: 4px;
+        margin: 0 $gutter-size $gutter-size 0;
+        display: flex;
+
+        .name {
+            padding: $gutter-size 0 $gutter-size $gutter-size;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .add-label-container {
+        display: flex;
+    }
 }

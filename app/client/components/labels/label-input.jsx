@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import 'styles/input';
+import 'styles/components/text-input';
 
 const LabelInput = ({ onChange, transactionId }) => (
     <div className="input-container">

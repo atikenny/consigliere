@@ -9,26 +9,30 @@ import LabelInput from 'containers/labels/label-input';
 
 const Labels = ({ labels, transactionId, onClick }) => (
     <div className="labels-container">
-        <ul className="labels">
-            {labels.map((label, index) => 
-                <li key={index}>
-                    <LabelItem
-                        name={label}
-                        transactionId={transactionId} />
-                </li>
-            )}
-        </ul>
-        <IconButton
-            type="plus"
-            onClick={onClick} />
-        <LabelInput transactionId={transactionId} />
+        {labels && (
+            <ul className="labels">
+                {labels.map((label, index) => 
+                    <li key={index}>
+                        <LabelItem
+                            name={label}
+                            transactionId={transactionId} />
+                    </li>
+                )}
+            </ul>
+        )}
+        <div className="add-label-container">
+            <IconButton
+                type="plus"
+                onClick={onClick} />
+            <LabelInput transactionId={transactionId} />
+        </div>
     </div>
 );
 
 export default Labels;
 
 Labels.defaultProps = {
-    labels: [],
+    labels: undefined,
     onClick: () => {}
 };
 
