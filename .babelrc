@@ -1,5 +1,5 @@
 {
-    "presets": ["es2015", "react"],
+    "presets": ["es2015", "react", "stage-3"],
     "plugins": [
         [
             "module-alias",
@@ -15,6 +15,10 @@
                 {
                     "src": "./app/client/components",
                     "expose": "components"
+                },
+                {
+                    "src": "./app/client/containers",
+                    "expose": "containers"
                 },
                 {
                     "src": "./app/client/services",
