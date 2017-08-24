@@ -1,3 +1,3 @@
-import init from './components/main';
+import init from 'components/main';
 
 init();

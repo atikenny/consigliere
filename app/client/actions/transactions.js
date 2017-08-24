@@ -13,3 +13,10 @@ export const addLabel = (id, label) => {
     };
 };
 
+export const setNewLabelValue = (id, value) => {
+    return {
+        type: 'SET_NEW_LABEL_VALUE',
+        id,
+        value
+    };
+};

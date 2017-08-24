@@ -5,17 +5,21 @@ import '../styles/components/labels';
 
 import LabelItem from './label-item';
 import IconButton from './icon-button';
+import LabelInput from 'containers/label-input';
 
-const Labels = ({ labels }) => (
+const Labels = ({ labels, transactionId, onClick }) => (
     <div className="labels-container">
         <ul className="labels">
             {labels.map((label, index) => 
-            <li key={index}>
-                <LabelItem {...label} />
-            </li>
+                <li key={index}>
+                    <LabelItem name={label} />
+                </li>
             )}
         </ul>
-        <IconButton type="plus" />
+        <IconButton
+            type="plus"
+            onClick={onClick} />
+        <LabelInput transactionId={transactionId} />
     </div>
 );
 
@@ -26,5 +30,7 @@ Labels.defaultProps = {
 };
 
 Labels.propTypes = {
-    labels: PropTypes.array
+    labels: PropTypes.array,
+    onClick: PropTypes.func.isRequired,
+    transactionId: PropTypes.number.isRequired
 };

@@ -5,7 +5,7 @@ import '../styles/components/transactions';
 
 import TransactionItem from 'containers/transaction-item';
 import TransactionFooter from './transaction-footer';
-import Labels from './labels';
+import Labels from 'containers/labels';
 
 const Transactions = ({ transactions }) => (
     <div className="transactions-container">
@@ -15,7 +15,10 @@ const Transactions = ({ transactions }) => (
                     <li key={index}>
                         <TransactionItem {...transaction} />
                         <TransactionFooter />
-                        <Labels labels={transaction.labels} />
+                        <Labels
+                            labels={transaction.labels}
+                            newLabelValue={transaction.newLabelValue}
+                            transactionId={transaction.id} />
                     </li>
                 ))}
             </ul>

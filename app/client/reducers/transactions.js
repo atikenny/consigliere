@@ -10,6 +10,14 @@ const item = (state, action) => {
             return Object.assign({}, state, {
                 labels: labels.concat(action.label)
             });
+        case 'SET_NEW_LABEL_VALUE':
+            if (state.id !== action.id) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                newLabelValue: action.value
+            });
     }
 };
 
@@ -18,6 +26,8 @@ const transactions = (state = [], action) => {
         case 'LOAD_TRANSACTIONS':
             return action.transactions.slice();
         case 'ADD_LABEL':
+            return state.map(transaction => item(transaction, action));
+        case 'SET_NEW_LABEL_VALUE':
             return state.map(transaction => item(transaction, action));
         default:
             return state;
