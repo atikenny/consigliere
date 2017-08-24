@@ -5,11 +5,10 @@ export const load = (transactions) => {
     };
 };
 
-export const addLabel = (id, label) => {
+export const addLabel = (id) => {
     return {
         type: 'ADD_LABEL',
-        id,
-        label
+        id
     };
 };
 

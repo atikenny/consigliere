@@ -8,7 +8,7 @@ const item = (state, action) => {
             const labels = state.labels || [];
 
             return Object.assign({}, state, {
-                labels: labels.concat(action.label)
+                labels: labels.concat(state.newLabelValue)
             });
         case 'SET_NEW_LABEL_VALUE':
             if (state.id !== action.id) {

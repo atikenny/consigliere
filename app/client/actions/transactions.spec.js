@@ -15,12 +15,10 @@ describe('transactions', () => {
 
     test('add label returns action object', () => {
         const id = 'id';
-        const label = 'label';
 
-        expect(addLabel(id, label)).toEqual({
+        expect(addLabel(id)).toEqual({
             type: 'ADD_LABEL',
-            id,
-            label
+            id
         })
     });
 });

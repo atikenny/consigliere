@@ -21,19 +21,18 @@ describe('transactions reducer', () => {
 
     test('handles transactions add label action', () => {
         const initialState = [
-            { id: 'id' },
+            { id: 'id', newLabelValue: 'new label' },
             { id: 'no action' }
         ];
         const action = {
             type: 'ADD_LABEL',
-            id: 'id',
-            label: 'label'
+            id: 'id'
         };
 
         deepFreeze(initialState);
 
         expect(transactions(initialState, action)).toEqual([
-            { id: 'id', labels: ['label'] },
+            { id: 'id', labels: ['new label'], newLabelValue: 'new label' },
             { id: 'no action' }
         ]);
     });

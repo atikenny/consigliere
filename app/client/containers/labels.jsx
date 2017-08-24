@@ -7,7 +7,7 @@ import Labels from 'components/labels';
 const mapDispatch = (dispatch, ownProps) => {
     return {
         onClick: () => {
-            dispatch(addLabel(ownProps.transactionId, ownProps.newLabelValue));
+            dispatch(addLabel(ownProps.transactionId));
         }
     };
 };
