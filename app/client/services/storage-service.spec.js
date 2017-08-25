@@ -1,4 +1,8 @@
-import { storeTransactions, loadState } from './storage-service';
+import {
+    storeTransactions,
+    loadState,
+    initAutoSave
+} from './storage-service';
 
 describe('storage-service', () => {
     test('storeTransactions method stores data as stringified JSON', () => {
@@ -45,5 +49,36 @@ describe('storage-service', () => {
 
         // THEN
         expect(state).toEqual({});
+    });
+
+    test('initAutoSave', () => {
+        const mockSetItem = jest.fn();
+        global.localStorage = {
+            setItem: mockSetItem
+        };
+        let triggerPublish;
+        const mockState = { transactions: 'transactions' };
+        const subscribeSpy = jest.fn((handler) => {
+            triggerPublish = handler;
+        });
+        const store = {
+            subscribe: subscribeSpy,
+            getState: () => mockState
+        };
+
+        // WHEN
+        initAutoSave(store);
+
+        // THEN
+        expect(subscribeSpy.mock.calls.length).toBe(1);
+
+        // WHEN
+        triggerPublish();
+
+        // THEN
+        expect(mockSetItem.mock.calls[0]).toEqual([
+            'CONSIGLIERE.TRANSACTIONS',
+            JSON.stringify(mockState.transactions)
+        ]);
     });
 });
