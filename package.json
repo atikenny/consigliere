@@ -7,7 +7,7 @@
     "start": "nodemon app/server/main.js",
     "test": "NODE_ENV=testing jest",
     "build": "./node_modules/webpack/bin/webpack.js",
-    "coveralls": "npm run test && cat ./app/public/coverage/lcov.info | coveralls",
+    "coveralls": "cat ./app/public/coverage/lcov.info | coveralls",
     "dev-build": "npm run build -- --watch",
     "dev-test": "npm test -- --watch"
   },
