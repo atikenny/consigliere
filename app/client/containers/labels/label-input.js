@@ -1,13 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setNewLabelValue } from 'actions/transactions';
+import {
+    addLabel,
+    setNewLabelValue
+} from 'actions/transactions';
 import LabelInput from 'components/labels/label-input';
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
+    const id = ownProps.transactionId;
+
     return {
-        onChange: ({ id, value }) => {
+        onChange: (value) => {
             dispatch(setNewLabelValue(id, value));
+        },
+        onEnter: () => {
+            dispatch(addLabel(id));
         }
     };
 };

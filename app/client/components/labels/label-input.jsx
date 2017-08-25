@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import 'styles/components/text-input';
+import { onSpecificKey } from 'services/keyboard-service';
 
-const LabelInput = ({ onChange, transactionId }) => (
+const LabelInput = ({ onChange, onEnter, transactionId }) => (
     <div className="input-container">
         <input
             type="text"
             placeholder="enter label..."
+            onKeyDown={onSpecificKey('Enter', onEnter)}
             onChange={(event) => {
-                onChange({
-                    id: transactionId,
-                    value: event.target.value
-                })
+                onChange(event.target.value);
             }} />
     </div>
 );
@@ -20,5 +19,7 @@ const LabelInput = ({ onChange, transactionId }) => (
 export default LabelInput;
 
 LabelInput.propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onEnter: PropTypes.func,
+    transactionId: PropTypes.number
 };

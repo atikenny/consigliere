@@ -28,9 +28,6 @@ describe('LabelInput component', () => {
 
         input.simulate('change', { target: { value: 'value' } });
 
-        expect(onChange.mock.calls[0]).toEqual([{
-            id: transactionId,
-            value: 'value'
-        }]);
+        expect(onChange.mock.calls[0]).toEqual(['value']);
     });
 });
