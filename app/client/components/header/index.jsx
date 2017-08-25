@@ -2,7 +2,7 @@ import React from 'react';
 
 import 'styles/components/header';
 import IconButton from 'components/icon-button';
-import SearchInput from './search-input';
+import SearchInput from 'containers/header/search-input';
 
 const Header = () => (
     <header>
