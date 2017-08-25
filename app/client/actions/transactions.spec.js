@@ -1,7 +1,8 @@
 import {
     addLabel,
     load,
-    deleteLabel
+    deleteLabel,
+    setNewLabelValue
 } from './transactions';
 
 describe('transactions', () => {
@@ -31,6 +32,17 @@ describe('transactions', () => {
             type: 'DELETE_LABEL',
             transactionId,
             label
+        })
+    });
+
+    test('set new label value returns action object', () => {
+        const id = 'id';
+        const value = 'value';
+
+        expect(setNewLabelValue(id, value)).toEqual({
+            type: 'SET_NEW_LABEL_VALUE',
+            id,
+            value
         })
     });
 });

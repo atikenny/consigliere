@@ -80,7 +80,7 @@
       "!**/components/main.jsx",
       "!**/node_modules/**",
       "!**/public/**",
-      "!**/test-mocks/**",
+      "!**/test-helpers/**",
       "!**/server/**",
       "!**/containers/**"
     ],

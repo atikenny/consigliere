@@ -36,4 +36,74 @@ describe('transactions reducer', () => {
             { id: 'no action' }
         ]);
     });
+
+    test('does not add existing label', () => {
+        const initialState = [
+            { id: 'id', labels: ['existing label'], newLabelValue: 'existing label' }
+        ];
+        const action = {
+            type: 'ADD_LABEL',
+            id: 'id'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual([
+            { id: 'id', labels: ['existing label'], newLabelValue: 'existing label' }
+        ]);
+    });
+
+    test('does not add empty label', () => {
+        const initialState = [
+            { id: 'id', labels: ['label 1'], newLabelValue: '' }
+        ];
+        const action = {
+            type: 'ADD_LABEL',
+            id: 'id'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual([
+            { id: 'id', labels: ['label 1'], newLabelValue: '' }
+        ]);
+    });
+
+    test('handles transactions delete label action', () => {
+        const initialState = [
+            { id: 'id', labels: ['label 1', 'label to delete'] },
+            { id: 'not modified', labels: ['label 1', 'label 2'] }
+        ];
+        const action = {
+            type: 'DELETE_LABEL',
+            transactionId: 'id',
+            label: 'label to delete'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual([
+            { id: 'id', labels: ['label 1'] },
+            { id: 'not modified', labels: ['label 1', 'label 2'] }
+        ]);
+    });
+
+    test('handles set new label value action', () => {
+        const initialState = [
+            { id: 'id' },
+            { id: 'not modified', newLabelValue: 'not modified new label' }
+        ];
+        const action = {
+            type: 'SET_NEW_LABEL_VALUE',
+            id: 'id',
+            value: 'new label'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual([
+            { id: 'id', newLabelValue: 'new label' },
+            { id: 'not modified', newLabelValue: 'not modified new label' }
+        ]);
+    });
 });

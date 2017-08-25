@@ -12,11 +12,6 @@ const LabelItem = ({ name, onClick, transactionId }) => (
 
 export default LabelItem;
 
-LabelItem.defaultProps = {
-    onClick: () => {},
-    transactionId: undefined
-};
-
 LabelItem.propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func,
