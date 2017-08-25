@@ -1,0 +1,34 @@
+@import '../mixins/shadow';
+@import '../common/colors';
+@import '../common/variables';
+
+header {
+    @include bottom-shadow;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: $header-height;
+    background-color: $brand-color;
+    box-sizing: border-box;
+    align-items: center;
+
+    h1 {
+        padding: $gutter-size;
+        flex-grow: 1;
+    }
+
+    .controllers {
+        display: flex;
+    }
+
+    .icon {
+        font-size: 1.4em;
+    }
+}
+
+h1 {
+    font-size: 1.6em;
+}

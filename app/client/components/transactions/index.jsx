@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import 'styles/components/transactions';
 
-import TransactionItem from 'containers/transaction-item';
+import TransactionItem from 'containers/transactions/transaction-item';
 import TransactionFooter from './transaction-footer';
 import Labels from 'containers/labels';
 

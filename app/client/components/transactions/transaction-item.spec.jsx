@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import TransactionItem from './transaction-item';
-import * as dateService from 'services/date-service';
+import * as dateService from '../../services/date-service';
 
 describe('TransactionItem component', () => {
     const render = ({

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IconButton from './icon-button';
+import IconButton from 'components/icon-button';
 
 const TransactionFooter = () => (
     <div className="footer">

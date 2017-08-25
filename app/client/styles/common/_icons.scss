@@ -12,6 +12,7 @@
 [class^="icon"], [class*=" icon"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
+    color: inherit;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -94,4 +95,8 @@
 
 .icon.checkmark:before {
     content: "\ea10";
+}
+
+.icon.floppy-disk:before {
+    content: "\e962";
 }

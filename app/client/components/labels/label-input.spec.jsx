@@ -11,6 +11,13 @@ describe('LabelInput component', () => {
         expect(input.prop('type')).toBe('text');
     });
 
+    test('has an input with a placeholder text', () => {
+        const labelInput = shallow(<LabelInput />);
+        const input = labelInput.find('.input-container input');
+
+        expect(input.prop('placeholder')).toBe('enter label...');
+    });
+
     test('calls the provided onChange handler when input changes', () => {
         const onChange = jest.fn();
         const transactionId = 123;

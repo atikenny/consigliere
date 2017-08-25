@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Transactions from './transactions';
+import Transactions from './index';
 
 describe('Transactions component', () => {
     const getMockTransaction = (() => {

@@ -8,7 +8,10 @@ import 'styles/main';
 
 import appReducers from '../reducers';
 import Consigliere from 'components/consigliere';
-import { loadState } from 'services/storage-service';
+import {
+    loadState,
+    initAutoSave
+} from 'services/storage-service';
 
 const init = () => {
     const savedState = loadState();
@@ -17,6 +20,8 @@ const init = () => {
         appReducers,
         savedState
     );
+
+    initAutoSave(store);
 
     ReactDOM.render(
         <Provider store={store}>

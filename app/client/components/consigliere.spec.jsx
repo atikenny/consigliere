@@ -2,8 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Consigliere from './consigliere';
-import Transactions from './transactions';
-import * as TransactionsContainer from '../containers/transactions';
 
 describe('Consigliere component', () => {
     test('has a container with an id', () => {
@@ -21,9 +19,6 @@ describe('Consigliere component', () => {
     });
 
     test('has transactions component', () => {
-        // overwrite container with component
-        TransactionsContainer.default = Transactions;
-
         const consigliere = shallow(<Consigliere />);
         const transactions = consigliere.find('Transactions');
 

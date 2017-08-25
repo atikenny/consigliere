@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TransactionItem from 'components/transaction-item';
+import TransactionItem from 'components/transactions/transaction-item';
 
 const mapState = ({ currency }) => {
     return {

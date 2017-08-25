@@ -23,3 +23,11 @@ export const loadState = () => {
         transactions
     };
 };
+
+export const initAutoSave = (store) => {
+    store.subscribe(() => {
+        const { transactions } = store.getState();
+
+        storeTransactions(transactions);
+    });
+};
