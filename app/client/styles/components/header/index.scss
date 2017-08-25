@@ -16,6 +16,7 @@ header {
     align-items: center;
 
     h1 {
+        font-size: 1.4em;
         padding: $gutter-size;
         margin: 0;
     }
@@ -27,8 +28,4 @@ header {
     .icon {
         font-size: 1.4em;
     }
-}
-
-h1 {
-    font-size: 1.6em;
 }
