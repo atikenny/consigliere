@@ -25,6 +25,10 @@ module.exports = require('babel-jest').createTransformer({
                     "expose": "actions"
                 },
                 {
+                    "src": "./app/client/selectors",
+                    "expose": "selectors"
+                },
+                {
                     'src': './app/client/services',
                     'expose': 'services'
                 }
