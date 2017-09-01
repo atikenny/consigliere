@@ -2,26 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import 'styles/components/header/search-input';
-import Icon from 'components/icon';
+import IconButton from 'components/icon-button';
 import SearchSuggestions from 'containers/header/search-suggestions';
 import { onSpecificKey } from 'services/keyboard-service';
 
-const SearchInput = ({ onBlur, onChange, onEnter, onFocus, filter }) => (
+const SearchInput = ({ onBlur, onChange, onFocus, filter, search }) => (
     <div className="search-container">
         <div className="input-icon-container">
-            <Icon type="search" />
             <input
                 className="search-input"
                 type="text"
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onKeyDown={onSpecificKey('Enter', () => {
-                    onEnter(filter);
+                    search(filter);
                 })}
                 onChange={(event) => {
                     onChange(event.target.value);
                 }}
                 value={filter} />
+            <IconButton type="search" onClick={() => {
+                search(filter);
+            }} />
         </div>
         <SearchSuggestions />
     </div>
@@ -32,7 +34,7 @@ export default SearchInput;
 SearchInput.propTypes = {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    onEnter: PropTypes.func,
     onFocus: PropTypes.func,
-    filter: PropTypes.string
+    filter: PropTypes.string,
+    search: PropTypes.func
 };

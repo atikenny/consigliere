@@ -15,14 +15,14 @@ const mapDispatch = (dispatch) => {
             dispatch(open());
             dispatch(edit(value));
         },
-        onEnter: (filter) => {
-            dispatch(setFilter(filter));
-            dispatch(close());
-        },
         onFocus: () => {
             dispatch(open());
         },
         onBlur: () => {
+            dispatch(close());
+        },
+        search: (filter) => {
+            dispatch(setFilter(filter));
             dispatch(close());
         }
     };

@@ -10,9 +10,18 @@
         align-items: center;
     }
 
-    .icon {
+    .button {
         position: absolute;
-        left: $gutter-size;
+        right: 0;
+        font-size: 1em;
+        height: 100%;
+        background-color: rgba(255, 255, 255, .5);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .6);
+        }
     }
 
     .search-input {
@@ -21,7 +30,7 @@
         background-color: rgba(255, 255, 255, .2);
         flex-grow: 1;
         padding: $gutter-size;
-        padding-left: $gutter-size * 4;
+        padding-right: $gutter-size * 4;
         outline: none;
         border: 0 none;
         font-size: 1.4em;
