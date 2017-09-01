@@ -1,21 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-    edit
-} from 'actions/filter';
+import { edit } from 'actions/filter';
+import { setFilter } from 'actions/transactions';
 import {
     open,
-    close,
-    clearSelected
+    close
 } from 'actions/suggestions';
 import SearchInput from 'components/header/search-input';
 
 const mapDispatch = (dispatch) => {
     return {
         onChange: (value) => {
+            dispatch(open());
             dispatch(edit(value));
-            dispatch(clearSelected());
+        },
+        onEnter: (filter) => {
+            dispatch(setFilter(filter));
+            dispatch(close());
         },
         onFocus: () => {
             dispatch(open());
@@ -26,10 +28,9 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-const mapState = ({ filter, suggestions }) => {
+const mapState = ({ filter }) => {
     return {
-        filter,
-        selectedSuggestion: suggestions.selectedSuggestion
+        filter
     };
 };
 

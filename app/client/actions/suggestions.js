@@ -9,16 +9,3 @@ export const close = () => {
         type: 'CLOSE_SUGGESTIONS'
     };
 };
-
-export const select = (selectedSuggestion) => {
-    return {
-        type: 'SELECT_SUGGESTION',
-        selectedSuggestion
-    };
-};
-
-export const clearSelected = () => {
-    return {
-        type: 'CLEAR_SELECTED_SUGGESTION'
-    };
-};
