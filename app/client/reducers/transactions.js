@@ -41,16 +41,27 @@ const item = (state, action) => {
     }
 };
 
-const transactions = (state = [], action) => {
+const initialState = {
+    items: [],
+    filter: ''
+};
+
+const transactions = (state = initialState, action) => {
     switch (action.type) {
         case 'LOAD_TRANSACTIONS':
-            return action.transactions.slice();
+            return Object.assign({}, state, {
+                items: action.transactions.slice()
+            });
         case 'ADD_LABEL':
-            return state.map(transaction => item(transaction, action));
         case 'SET_NEW_LABEL_VALUE':
-            return state.map(transaction => item(transaction, action));
         case 'DELETE_LABEL':
-            return state.map(transaction => item(transaction, action));
+            return Object.assign({}, state, {
+                items: state.items.map(transaction => item(transaction, action))
+            });
+        case 'SET_FILTER':
+            return Object.assign({}, state, {
+                filter: action.filter
+            });
         default:
             return state;
     }

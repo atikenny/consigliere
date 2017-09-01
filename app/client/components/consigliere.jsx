@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from 'components/header';
-import FileInput from './file-input';
+import FileInput from 'containers/file-input';
 import Transactions from 'containers/transactions';
 
 const Consigliere = () => (

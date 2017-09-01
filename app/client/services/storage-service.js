@@ -10,7 +10,7 @@ const loadTransactions = () => {
     try {
         const savedTransactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.TRANSACTIONS));
 
-        return savedTransactions;
+        return savedTransactions || undefined;
     } catch (error) {
         return undefined;
     }

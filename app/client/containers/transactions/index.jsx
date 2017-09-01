@@ -9,14 +9,15 @@ const hasLabel = (filter, transaction) => {
     });
 };
 
-const mapState = ({ transactions, filter }) => {
+const mapState = ({ transactions }) => {
+    const { items, filter } = transactions;
     const hasLabelFilter = hasLabel.bind(null, filter);
     let filteredTransactions;
 
     if (filter) {
-        filteredTransactions = transactions.filter(hasLabelFilter);
+        filteredTransactions = items.filter(hasLabelFilter);
     } else {
-        filteredTransactions = transactions;
+        filteredTransactions = items;
     }
 
     return {
