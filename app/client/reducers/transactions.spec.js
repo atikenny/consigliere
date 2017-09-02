@@ -135,4 +135,20 @@ describe('transactions reducer', () => {
             ]
         });
     });
+
+    test('handles set filter action', () => {
+        const initialState = {
+            filter: ''
+        };
+        const action = {
+            type: 'SET_FILTER',
+            filter: 'new filter'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual({
+            filter: 'new filter'
+        });
+    });
 });
