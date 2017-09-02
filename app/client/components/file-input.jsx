@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
     parseCSV,
-    mapEntries,
     mapTransactions,
     formats
 } from 'services/parser-service';

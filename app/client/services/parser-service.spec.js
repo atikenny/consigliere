@@ -1,7 +1,7 @@
 import { parseCSV, formats, mapTransactions } from './parser-service';
 
 describe('parser-service', () => {
-    describe('parseCSV method', () => {
+    describe('parseCSV()', () => {
         test('handles regular case', () => {
             const CSV = 'head1,head2\nrow1-value1,row1-value2\nrow2-value1,row2-value2';
             expect(parseCSV(CSV)).toEqual([
@@ -33,7 +33,7 @@ describe('parser-service', () => {
         });
     });
 
-    describe('mapTransactions method', () => {
+    describe('mapTransactions()', () => {
         test('maps LLOYDS transactions', () => {
             const lloydsFormat = formats.LLOYDS;
             let debitTransaction = {};

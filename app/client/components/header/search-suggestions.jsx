@@ -11,18 +11,18 @@ const SearchSuggestions = ({ onItemClick, suggestions, isOpen }) => {
     return (
         suggestions && (
             <div className={containerClassName}>
-                    <ul className="suggestions">
-                        {suggestions.map(suggestion => (
-                            <li
-                                key={suggestion}
-                                className="item"
-                                onClick={() => {
-                                    onItemClick(suggestion);
-                                }}>
-                                {suggestion}
-                            </li>
-                        ))}
-                    </ul>
+                <ul className="suggestions">
+                    {suggestions.map(suggestion => (
+                        <li
+                            key={suggestion}
+                            className="item"
+                            onClick={() => {
+                                onItemClick(suggestion);
+                            }}>
+                            {suggestion}
+                        </li>
+                    ))}
+                </ul>
             </div>
         ) || null
     );

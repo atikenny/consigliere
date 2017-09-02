@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import 'styles/components/text-input';
 import { onSpecificKey } from 'services/keyboard-service';
 
-const LabelInput = ({ onChange, onEnter, transactionId }) => (
+const LabelInput = ({ onChange, onEnter }) => (
     <div className="input-container">
         <input
             type="text"
@@ -20,6 +20,5 @@ export default LabelInput;
 
 LabelInput.propTypes = {
     onChange: PropTypes.func,
-    onEnter: PropTypes.func,
-    transactionId: PropTypes.number
+    onEnter: PropTypes.func
 };

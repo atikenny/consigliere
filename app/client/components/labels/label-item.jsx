@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import IconButton from 'components/icon-button';
 
-const LabelItem = ({ name, onClick, transactionId }) => (
+const LabelItem = ({ name, onClick }) => (
     <div className="label">
         <span className="name">{name}</span>
         <IconButton type="cross" onClick={onClick} />
@@ -14,6 +14,5 @@ export default LabelItem;
 
 LabelItem.propTypes = {
     name: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    transactionId: PropTypes.number
+    onClick: PropTypes.func
 };
