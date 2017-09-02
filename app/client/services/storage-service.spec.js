@@ -19,6 +19,19 @@ describe('storage-service', () => {
         expect(loadedState).toEqual(state);
     });
 
+    test('loadState returns undefined when saved state is not truthy', () => {
+        // GIVEN
+        global.localStorage = {
+            getItem: () => false
+        };
+
+        // WHEN
+        const loadedState = loadState();
+
+        // THEN
+        expect(loadedState).toEqual(undefined);
+    });
+
     test('loadState method does not throw when state is not parseable', () => {
         // GIVEN
         global.localStorage = {
