@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import FileInput from 'components/file-input';
