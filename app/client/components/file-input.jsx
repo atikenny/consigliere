@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
     parseCSV,
@@ -6,26 +7,39 @@ import {
     mapTransactions,
     formats
 } from 'services/parser-service';
-import { storeTransactions } from 'services/storage-service';
 
-const readFile = (event) => {
-    const input = event.target;
+class FileInput extends Component {
+    constructor(props) {
+        super(props);
 
-    const fileReader = new FileReader();
+        this.readFile = this.readFile.bind(this);
+    }
 
-    fileReader.onload = () => {
-        const text = fileReader.result;
-        const parsedCSV = parseCSV(text);
-        const mappedTransactions = mapTransactions(formats.LLOYDS, parsedCSV);
+    readFile(event) {
+        const input = event.target;
 
-        storeTransactions(mappedTransactions);
-    };
+        const fileReader = new FileReader();
 
-    fileReader.readAsText(input.files[0]);
-};
+        fileReader.onload = () => {
+            const text = fileReader.result;
+            const parsedCSV = parseCSV(text);
+            const mappedTransactions = mapTransactions(formats.LLOYDS, parsedCSV);
 
-const FileInput = () => (
-    <input type="file" onChange={readFile} />
-);
+            this.props.onLoad(mappedTransactions);
+        };
+
+        fileReader.readAsText(input.files[0]);
+    }
+
+    render() {
+        return (
+            <input type="file" onChange={this.readFile} />
+        );
+    }
+}
 
 export default FileInput;
+
+FileInput.propTypes = {
+    onLoad: PropTypes.func
+};

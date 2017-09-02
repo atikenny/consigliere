@@ -1,33 +1,29 @@
-const STORAGE_KEYS = {
-    TRANSACTIONS: 'CONSIGLIERE.TRANSACTIONS'
+const STORAGE_KEY = 'CONSIGLIERE';
+
+const storeState = (state) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 };
 
-export const storeTransactions = (transactions) => {
-    localStorage.setItem(STORAGE_KEYS.TRANSACTIONS, JSON.stringify(transactions));
-};
-
-const loadTransactions = () => {
+const readState = () => {
     try {
-        const savedTransactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.TRANSACTIONS));
+        const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-        return savedTransactions;
+        return savedState || undefined;
     } catch (error) {
         return undefined;
     }
 };
 
 export const loadState = () => {
-    const transactions = loadTransactions();
+    const state = readState();
 
-    return {
-        transactions
-    };
+    return state;
 };
 
 export const initAutoSave = (store) => {
     store.subscribe(() => {
-        const { transactions } = store.getState();
+        const state = store.getState();
 
-        storeTransactions(transactions);
+        storeState(state);
     });
 };

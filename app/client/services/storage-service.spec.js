@@ -5,37 +5,31 @@ import {
 } from './storage-service';
 
 describe('storage-service', () => {
-    test('storeTransactions method stores data as stringified JSON', () => {
-        // GIVEN
-        const mockSetItem = jest.fn();
-        global.localStorage = {
-            setItem: mockSetItem
-        };
-
-        const transactions = [{ transaction: 'mock transaction' }];
-
-        // WHEN
-        storeTransactions(transactions);
-
-        // THEN
-        expect(mockSetItem.mock.calls[0]).toEqual([
-            'CONSIGLIERE.TRANSACTIONS',
-            JSON.stringify(transactions)
-        ]);
-    });
-
     test('loadState method retreives state from storage', () => {
         // GIVEN
-        const transactions = [{ transaction: 'mock transaction' }];
+        const state = { transaction: 'mock transaction' };
         global.localStorage = {
-            getItem: () => JSON.stringify(transactions)
+            getItem: () => JSON.stringify(state)
         };
 
         // WHEN
-        const state = loadState();
+        const loadedState = loadState();
 
         // THEN
-        expect(state).toEqual({ transactions });
+        expect(loadedState).toEqual(state);
+    });
+
+    test('loadState returns undefined when saved state is not truthy', () => {
+        // GIVEN
+        global.localStorage = {
+            getItem: () => false
+        };
+
+        // WHEN
+        const loadedState = loadState();
+
+        // THEN
+        expect(loadedState).toEqual(undefined);
     });
 
     test('loadState method does not throw when state is not parseable', () => {
@@ -48,7 +42,7 @@ describe('storage-service', () => {
         const state = loadState();
 
         // THEN
-        expect(state).toEqual({});
+        expect(state).toEqual(undefined);
     });
 
     test('initAutoSave', () => {
@@ -77,8 +71,8 @@ describe('storage-service', () => {
 
         // THEN
         expect(mockSetItem.mock.calls[0]).toEqual([
-            'CONSIGLIERE.TRANSACTIONS',
-            JSON.stringify(mockState.transactions)
+            'CONSIGLIERE',
+            JSON.stringify(mockState)
         ]);
     });
 });

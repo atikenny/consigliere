@@ -1,0 +1,30 @@
+@import '../../common/variables';
+@import '../../common/colors';
+@import '../../mixins/shadow';
+
+.search-suggestions-container {
+    transition: all .4s ease;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 44px;
+    background-color: lighten($brand-color, 20%);
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
+
+    &.open {
+        transition: all .4s ease;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .item {
+        padding: $gutter-size;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .4);
+            cursor: pointer;
+        }
+    }
+}

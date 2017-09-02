@@ -1,6 +1,6 @@
-@import '../mixins/shadow';
-@import '../common/colors';
-@import '../common/variables';
+@import '../../mixins/shadow';
+@import '../../common/colors';
+@import '../../common/variables';
 
 header {
     @include bottom-shadow;
@@ -16,8 +16,9 @@ header {
     align-items: center;
 
     h1 {
+        font-size: 1.3em;
         padding: $gutter-size;
-        flex-grow: 1;
+        margin: 0;
     }
 
     .controllers {
@@ -27,8 +28,4 @@ header {
     .icon {
         font-size: 1.4em;
     }
-}
-
-h1 {
-    font-size: 1.6em;
 }

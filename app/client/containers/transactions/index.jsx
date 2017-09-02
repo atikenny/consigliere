@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Transactions from 'components/transactions';
+import { getFilteredTransactions } from 'selectors/transactions';
 
-const mapState = ({ transactions }) => {
+const mapState = (state) => {
     return {
-        transactions
+        transactions: getFilteredTransactions(state)
     };
 };
 

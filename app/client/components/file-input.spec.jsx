@@ -27,11 +27,11 @@ describe('FileInput component', () => {
         parserService.formats = {
             LLOYDS: 'lloyds format'
         };
-        storageService.storeTransactions = jest.fn();
+        const mockOnLoad = jest.fn();
 
         // GIVEN
         const file = 'file';
-        const fileInput = shallow(<FileInput />);
+        const fileInput = shallow(<FileInput onLoad={mockOnLoad} />);
         const input = fileInput.find('input');
 
         // WHEN
@@ -48,6 +48,6 @@ describe('FileInput component', () => {
         // THEN
         expect(parserService.parseCSV.mock.calls[0]).toEqual([mockFileReader.result]);
         expect(parserService.mapTransactions.mock.calls[0]).toEqual([parserService.formats.LLOYDS, 'parsed text']);
-        expect(storageService.storeTransactions.mock.calls[0]).toEqual(['mapped transactions']);
+        expect(mockOnLoad.mock.calls[0]).toEqual(['mapped transactions']);
     });
 });

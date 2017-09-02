@@ -2,10 +2,11 @@ import {
     addLabel,
     load,
     deleteLabel,
-    setNewLabelValue
+    setNewLabelValue,
+    setFilter
 } from './transactions';
 
-describe('transactions', () => {
+describe('transactions actions', () => {
     test('load returns action object', () => {
         const transactions = 'transactions';
 
@@ -43,6 +44,15 @@ describe('transactions', () => {
             type: 'SET_NEW_LABEL_VALUE',
             id,
             value
+        })
+    });
+
+    test('set filter returns action object', () => {
+        const filter = 'filter';
+
+        expect(setFilter(filter)).toEqual({
+            type: 'SET_FILTER',
+            filter
         })
     });
 });

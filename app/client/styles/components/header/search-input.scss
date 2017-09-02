@@ -1,0 +1,42 @@
+@import '../../common/variables';
+
+.search-container {
+    flex-grow: 1;
+    align-items: center;
+    position: relative;
+
+    .input-icon-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .button {
+        position: absolute;
+        right: 0;
+        font-size: 1em;
+        height: 100%;
+        background-color: rgba(255, 255, 255, .5);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .6);
+        }
+    }
+
+    .search-input {
+        border-radius: 4px;
+        transition: background-color .4s ease;
+        background-color: rgba(255, 255, 255, .2);
+        flex-grow: 1;
+        padding: $gutter-size;
+        padding-right: $gutter-size * 4;
+        outline: none;
+        border: 0 none;
+        font-size: 1.4em;
+
+        &:focus {
+            background-color: rgba(255, 255, 255, .4);
+        }
+    }
+}
