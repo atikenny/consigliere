@@ -17,4 +17,14 @@ describe('TransactionFooter component', () => {
 
         expect(iconButton.prop('type')).toBe('price-tags');
     });
+
+    test('calls the provided toggle labels on click', () => {
+        const toggleLabels = jest.fn();
+        const transactionFooter = shallow(<TransactionFooter toggleLabels={toggleLabels} />);
+        const iconButton = transactionFooter.find('IconButton');
+
+        iconButton.simulate('click');
+
+        expect(toggleLabels.mock.calls.length).toBe(1);
+    });
 });

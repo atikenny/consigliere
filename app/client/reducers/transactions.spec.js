@@ -24,7 +24,8 @@ describe('transactions reducer', () => {
 
         expect(transactions(initialState, action)).toEqual({
             items: ['transactions'],
-            filter: ''
+            filter: '',
+            isLabelsOpen: false
         });
     });
 

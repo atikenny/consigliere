@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import 'styles/components/transactions';
 
 import TransactionItem from 'containers/transactions/transaction-item';
-import TransactionFooter from './transaction-footer';
+import TransactionFooter from 'containers/transactions/transaction-footer';
 import Labels from 'containers/labels';
 
 const Transactions = ({ transactions }) => (
@@ -14,11 +14,13 @@ const Transactions = ({ transactions }) => (
                 {transactions.map((transaction, index) => (
                     <li key={index}>
                         <TransactionItem {...transaction} />
-                        <TransactionFooter />
-                        <Labels
-                            labels={transaction.labels}
-                            newLabelValue={transaction.newLabelValue}
-                            transactionId={transaction.id} />
+                        <TransactionFooter transactionId={transaction.id} />
+                        {transaction.isLabelsOpen && (
+                            <Labels
+                                labels={transaction.labels}
+                                newLabelValue={transaction.newLabelValue}
+                                transactionId={transaction.id} />
+                        )}
                     </li>
                 ))}
             </ul>

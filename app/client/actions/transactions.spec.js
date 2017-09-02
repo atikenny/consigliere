@@ -1,5 +1,6 @@
 import {
     addLabel,
+    toggleLabels,
     load,
     deleteLabel,
     setNewLabelValue,
@@ -21,6 +22,15 @@ describe('transactions actions', () => {
 
         expect(addLabel(id)).toEqual({
             type: 'ADD_LABEL',
+            id
+        })
+    });
+
+    test('toggle labels returns action object', () => {
+        const id = 'id';
+
+        expect(toggleLabels(id)).toEqual({
+            type: 'TOGGLE_LABELS',
             id
         })
     });

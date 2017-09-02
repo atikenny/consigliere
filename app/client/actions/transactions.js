@@ -12,6 +12,13 @@ export const addLabel = (id) => {
     };
 };
 
+export const toggleLabels = (id) => {
+    return {
+        type: 'TOGGLE_LABELS',
+        id
+    };
+};
+
 export const deleteLabel = (transactionId, label) => {
     return {
         type: 'DELETE_LABEL',

@@ -38,6 +38,14 @@ const item = (state, action) => {
             return Object.assign({}, state, {
                 newLabelValue: action.value
             });
+        case 'TOGGLE_LABELS':
+            if (state.id !== action.id) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                isLabelsOpen: !state.isLabelsOpen
+            });
     }
 };
 
@@ -50,11 +58,13 @@ const transactions = (state = initialState, action) => {
     switch (action.type) {
         case 'LOAD_TRANSACTIONS':
             return Object.assign({}, state, {
-                items: action.transactions.slice()
+                items: action.transactions.slice(),
+                isLabelsOpen: false
             });
         case 'ADD_LABEL':
         case 'SET_NEW_LABEL_VALUE':
         case 'DELETE_LABEL':
+        case 'TOGGLE_LABELS':
             return Object.assign({}, state, {
                 items: state.items.map(transaction => item(transaction, action))
             });
