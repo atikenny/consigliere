@@ -29,7 +29,7 @@ describe('transactions reducer', () => {
         });
     });
 
-    test('handles transactions add label action', () => {
+    test('handles add label action', () => {
         const initialState = {
             items: [
                 { id: 'id', newLabelValue: 'new label' },
@@ -91,7 +91,7 @@ describe('transactions reducer', () => {
         });
     });
 
-    test('handles transactions delete label action', () => {
+    test('handles delete label action', () => {
         const initialState = {
             items: [
                 { id: 'id', labels: ['label 1', 'label to delete'] },
@@ -150,6 +150,28 @@ describe('transactions reducer', () => {
 
         expect(transactions(initialState, action)).toEqual({
             filter: 'new filter'
+        });
+    });
+
+    test('handles delete label action', () => {
+        const initialState = {
+            items: [
+                { id: 'id', isLabelsOpen: false },
+                { id: 'not modified', isLabelsOpen: true }
+            ]
+        };
+        const action = {
+            type: 'TOGGLE_LABELS',
+            id: 'id'
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual({
+            items: [
+                { id: 'id', isLabelsOpen: true },
+                { id: 'not modified', isLabelsOpen: true }
+            ]
         });
     });
 });
