@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import 'styles/components/header/search-input';
-import IconButton from 'components/icon-button';
+import IconButton from 'components/common/icon-button';
 import SearchSuggestions from 'containers/header/search-suggestions';
 import { onSpecificKey } from 'services/keyboard-service';
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import 'styles/components/labels';
 
 import LabelItem from 'containers/labels/label-item';
-import IconButton from 'components/icon-button';
+import IconButton from 'components/common/icon-button';
 import LabelInput from 'containers/labels/label-input';
 
 const Labels = ({ labels, transactionId, onClick }) => (

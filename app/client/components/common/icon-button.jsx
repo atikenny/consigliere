@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles/components/icon-button';
+import 'styles/components/common/icon-button';
 
 const IconButton = ({ isActive, onClick, text, type }) => {
     let buttonClassName = 'button';

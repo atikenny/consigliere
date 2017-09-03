@@ -18,10 +18,10 @@ describe('Header component', () => {
         expect(heading.text()).toBe('Consigliere');
     });
 
-    test('has settings cog icon', () => {
+    test('has labels icon', () => {
         const SUT = shallow(<Header />);
         const cogIcon = SUT.find('.controllers IconButton');
 
-        expect(cogIcon.prop('type')).toBe('cog');
+        expect(cogIcon.prop('type')).toBe('price-tags');
     });
 });
