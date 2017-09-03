@@ -24,4 +24,11 @@ describe('Consigliere component', () => {
 
         expect(transactions.length).toBe(1);
     });
+
+    test('has notification component', () => {
+        const consigliere = shallow(<Consigliere />);
+        const notification = consigliere.find('Notification');
+
+        expect(notification.length).toBe(1);
+    });
 });

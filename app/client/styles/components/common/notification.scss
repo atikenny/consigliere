@@ -1,0 +1,12 @@
+@import '../../common/colors';
+@import '../../common/variables';
+
+.notification {
+    position: fixed;
+    bottom: $gutter-size;
+    left: $gutter-size;
+    padding: $gutter-size;
+    background-color: $notification-color;
+    border-radius: 4px;
+    color: $light-text-color;
+}
