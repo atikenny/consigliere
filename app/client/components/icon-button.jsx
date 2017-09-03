@@ -3,26 +3,30 @@ import PropTypes from 'prop-types';
 
 import '../styles/components/icon-button';
 
-const IconButton = ({ onClick, text, type }) => (
-    <button className="button" onClick={onClick}>
-        <span className={`icon ${type}`} />
-        {text && (
-            <span className="text">
-                {text}
-            </span>
-        )}
-    </button>
-);
+const IconButton = ({ isActive, onClick, text, type }) => {
+    let buttonClassName = 'button';
+
+    if (isActive) {
+        buttonClassName += ` active`;
+    }
+
+    return (
+        <button className={buttonClassName} onClick={onClick}>
+            <span className={`icon ${type}`} />
+            {text && (
+                <span className="text">
+                    {text}
+                </span>
+            )}
+        </button>
+    )
+};
 
 export default IconButton;
 
-IconButton.defaultProps = {
-    onClick: undefined,
-    text: ''
-};
-
 IconButton.propTypes = {
+    isActive: PropTypes.bool,
     onClick: PropTypes.func,
     text: PropTypes.string,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string
 };

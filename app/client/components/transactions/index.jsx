@@ -14,7 +14,9 @@ const Transactions = ({ transactions }) => (
                 {transactions.map((transaction, index) => (
                     <li key={index}>
                         <TransactionItem {...transaction} />
-                        <TransactionFooter transactionId={transaction.id} />
+                        <TransactionFooter
+                            transactionId={transaction.id}
+                            isLabelsOpen={transaction.isLabelsOpen} />
                         {transaction.isLabelsOpen && (
                             <Labels
                                 labels={transaction.labels}
