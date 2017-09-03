@@ -11,13 +11,13 @@ const Labels = ({ labels, transactionId, onClick }) => (
     <div className="labels-container">
         {labels && (
             <ul className="labels">
-                {labels.map((label, index) => 
+                {labels.map((label, index) => (
                     <li key={index}>
                         <LabelItem
                             name={label}
                             transactionId={transactionId} />
                     </li>
-                )}
+                ))}
             </ul>
         )}
         <div className="add-label-container">
