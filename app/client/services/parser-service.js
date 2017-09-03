@@ -57,7 +57,7 @@ export const formats = {
 };
 
 export const mapTransactions = (format, transactions) => {
-    return transactions.map((transaction, index) => {
+    const mappedTransactions = transactions.map((transaction, index) => {
         const dateString = transaction[format.dateKey];
         const date = format.getDate(dateString);
         const debitAmount = transaction[format.debitAmountKey];
@@ -75,4 +75,29 @@ export const mapTransactions = (format, transactions) => {
             description
         };
     });
+
+    return extendWithSimilarCount(mappedTransactions);
+};
+
+const extendWithSimilarCount = (transactions) => {
+    return transactions.map(transaction => {
+        return Object.assign({}, transaction, {
+            similarCount: getSimilarCount(transaction, transactions)
+        });
+    });
+};
+
+const getSimilarCount = (transaction, transactions) => {
+    const upperCaseDescription = transaction.description.toUpperCase();
+
+    return transactions.reduce((similarCount, item) => {
+        const isDescriptionMatching = item.description.toUpperCase() === upperCaseDescription;
+        const isSame = item.id === transaction.id;
+
+        if (!isSame && isDescriptionMatching) {
+            similarCount++;
+        }
+
+        return similarCount;
+    }, 0);
 };

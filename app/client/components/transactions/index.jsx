@@ -16,7 +16,8 @@ const Transactions = ({ transactions }) => (
                         <TransactionItem {...transaction} />
                         <TransactionFooter
                             transactionId={transaction.id}
-                            isLabelsOpen={transaction.isLabelsOpen} />
+                            isLabelsOpen={transaction.isLabelsOpen}
+                            similarCount={transaction.similarCount} />
                         {transaction.isLabelsOpen && (
                             <Labels
                                 labels={transaction.labels}
