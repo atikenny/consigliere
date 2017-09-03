@@ -11,4 +11,12 @@ describe('Button component', () => {
 
         expect(button.text()).toEqual(text);
     });
+
+    test('has the provided click handler', () => {
+        const onClick = () => {};
+        const SUT = shallow(<Button onClick={onClick} />);
+        const button = SUT.find('.button');
+
+        expect(button.prop('onClick')).toBe(onClick);
+    });
 });

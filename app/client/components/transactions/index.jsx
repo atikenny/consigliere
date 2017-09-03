@@ -16,6 +16,7 @@ const Transactions = ({ transactions }) => (
                         <TransactionItem {...transaction} />
                         <TransactionFooter
                             transactionId={transaction.id}
+                            description={transaction.description}
                             isLabelsOpen={transaction.isLabelsOpen}
                             similarCount={transaction.similarCount} />
                         {transaction.isLabelsOpen && (

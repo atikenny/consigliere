@@ -57,5 +57,19 @@ describe('transactions selector', () => {
             // THEN
             expect(result).toEqual([matching]);
         });
+
+        test('filters transactions by the description provided (case insensitive)', () => {
+            // GIVEN
+            const nonMatching = { description: 'not matching' };
+            const matching = { description: 'mAtchEd' };
+            const transactions = [nonMatching, matching];
+            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+
+            // WHEN
+            const result = triggerResultFunc('matched', transactions);
+
+            // THEN
+            expect(result).toEqual([matching]);
+        });
     });
 });

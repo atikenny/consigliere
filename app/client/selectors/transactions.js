@@ -6,8 +6,8 @@ const hasLabel = (filter, transaction) => {
     });
 };
 
-const hasDescription = (filter, transaction) => {
-    return transaction.description === filter;
+const hasDescription = (filter, { description }) => {
+    return description && description.toUpperCase() === filter.toUpperCase();
 };
 
 const isFiltered = (filter, transaction) => {
