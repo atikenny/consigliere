@@ -3,24 +3,26 @@ import PropTypes from 'prop-types';
 
 import 'styles/components/common/icon-button';
 
-const IconButton = ({ isActive, onClick, text, type }) => {
+const getContainerClassName = (isActive) => {
     let buttonClassName = 'button';
 
     if (isActive) {
         buttonClassName += ` active`;
     }
 
-    return (
-        <button className={buttonClassName} onClick={onClick}>
-            <span className={`icon ${type}`} />
-            {text && (
-                <span className="text">
-                    {text}
-                </span>
-            )}
-        </button>
-    )
+    return buttonClassName;
 };
+
+const IconButton = ({ isActive, onClick, text, type }) => (
+    <button className={getContainerClassName(isActive)} onClick={onClick}>
+        <span className={`icon ${type}`} />
+        {text && (
+            <span className="text">
+                {text}
+            </span>
+        )}
+    </button>
+);
 
 export default IconButton;
 
