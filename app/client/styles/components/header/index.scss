@@ -18,10 +18,18 @@ header {
     align-items: center;
     padding: $gutter-size / 2 0;
 
+    > * {
+        margin-left: $gutter-size;
+
+        &:last-child {
+            margin-right: $gutter-size;
+        }
+    }
+
     h1 {
         font-size: 1.3em;
-        padding: 0 $gutter-size;
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .controllers {

@@ -7,8 +7,18 @@ import TransactionItem from 'containers/transactions/transaction-item';
 import TransactionFooter from 'containers/transactions/transaction-footer';
 import Labels from 'containers/labels';
 
-const Transactions = ({ transactions }) => (
-    <div className="transactions-container">
+const getContainerClassName = (isModalActive) => {
+    let containerClassName = 'transactions-container';
+
+    if (isModalActive) {
+        containerClassName += ` hide`;
+    }
+
+    return containerClassName;
+};
+
+const Transactions = ({ isModalActive, transactions }) => (
+    <div className={getContainerClassName(isModalActive)}>
         {transactions && (
             <ul>
                 {transactions.map((transaction, index) => (
@@ -34,10 +44,7 @@ const Transactions = ({ transactions }) => (
 
 export default Transactions;
 
-Transactions.defaultProps = {
-    transactions: undefined
-};
-
 Transactions.propTypes = {
+    isModalActive: PropTypes.bool,
     transactions: PropTypes.array
 };

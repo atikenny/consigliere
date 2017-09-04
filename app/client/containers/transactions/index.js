@@ -4,8 +4,11 @@ import Transactions from 'components/transactions';
 import { getFilteredTransactions } from 'selectors/transactions';
 
 const mapState = (state) => {
+    const isModalActive = state.modal.show;
+
     return {
-        transactions: getFilteredTransactions(state)
+        transactions: getFilteredTransactions(state),
+        isModalActive
     };
 };
 
