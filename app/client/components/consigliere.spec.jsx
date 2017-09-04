@@ -31,4 +31,11 @@ describe('Consigliere component', () => {
 
         expect(notification.length).toBe(1);
     });
+
+    test('has notification component', () => {
+        const consigliere = shallow(<Consigliere />);
+        const modal = consigliere.find('Modal');
+
+        expect(modal.length).toBe(1);
+    });
 });

@@ -1,10 +1,12 @@
 @import '../../mixins/shadow';
 @import '../../common/colors';
 @import '../../common/variables';
+@import '../../common/z-indexes';
 
 header {
     @include bottom-shadow;
 
+    z-index: $z-index--highest;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,15 +16,17 @@ header {
     background-color: $brand-color;
     box-sizing: border-box;
     align-items: center;
+    padding: $gutter-size / 2 0;
 
     h1 {
         font-size: 1.3em;
-        padding: $gutter-size;
+        padding: 0 $gutter-size;
         margin: 0;
     }
 
     .controllers {
         display: flex;
+        align-self: stretch;
     }
 
     .icon {

@@ -1,11 +1,11 @@
-import { show } from './modal';
+import { toggle } from './modal';
 
 describe('modal actions', () => {
-    test('show returns action object', () => {
+    test('toggle returns action object', () => {
         const page = 'page';
 
-        expect(show(page)).toEqual({
-            type: 'SHOW_MODAL',
+        expect(toggle(page)).toEqual({
+            type: 'TOGGLE_MODAL',
             page
         });
     });

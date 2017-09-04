@@ -1,10 +1,14 @@
+@import '../../common/variables';
 @import '../../common/colors';
+@import '../../common/z-indexes';
 
-.modal {
+.modal-container {
+    z-index: $z-index--higher;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-color: $light-bg-color;
+    padding: $body-top-padding $gutter-size $gutter-size $gutter-size;
 }

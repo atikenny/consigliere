@@ -20,8 +20,16 @@ describe('Header component', () => {
 
     test('has labels icon', () => {
         const SUT = shallow(<Header />);
-        const cogIcon = SUT.find('.controllers IconButton');
+        const labelsIcon = SUT.find('.controllers IconButton');
 
-        expect(cogIcon.prop('type')).toBe('price-tags');
+        expect(labelsIcon.prop('type')).toBe('price-tags');
+    });
+
+    test('calls toggle labels when labels icon is clicked', () => {
+        const toggleLabels = () => {};
+        const SUT = shallow(<Header toggleLabels={toggleLabels} />);
+        const labelsIcon = SUT.find('.controllers IconButton');
+
+        expect(labelsIcon.prop('onClick')).toBe(toggleLabels);
     });
 });

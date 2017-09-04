@@ -1,4 +1,10 @@
 .button {
     cursor: pointer;
     color: inherit;
+    outline: none;
+
+    &:active {
+        opacity: .6;
+        background-color: rgba(255, 255, 255, .6);
+    }
 }

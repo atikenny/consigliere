@@ -5,6 +5,7 @@ import * as currency from './currency';
 import * as filter from './filter';
 import * as suggestions from './suggestions';
 import * as notification from './notification';
+import * as modal from './modal';
 
 describe('reducers', () => {
     test('combining reducers', () => {
@@ -15,6 +16,7 @@ describe('reducers', () => {
         filter.default = 'filter';
         suggestions.default = 'suggestions';
         notification.default = 'notification';
+        modal.default = 'modal';
 
         // WHEN
         const appReducers = require('./index').default;
@@ -27,7 +29,8 @@ describe('reducers', () => {
             currency: 'currency',
             filter: 'filter',
             suggestions: 'suggestions',
-            notification: 'notification'
+            notification: 'notification',
+            modal: 'modal'
         }]);
     });
 });

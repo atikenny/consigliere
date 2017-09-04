@@ -1,6 +1,6 @@
-export const show = (page) => {
+export const toggle = (page) => {
     return {
-        type: 'SHOW_MODAL',
+        type: 'TOGGLE_MODAL',
         page
     };
 };
