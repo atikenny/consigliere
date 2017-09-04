@@ -5,11 +5,10 @@ import Modal from './modal';
 
 describe('Modal component', () => {
     test('shows the provided children', () => {
-        const renderChildren = () => (
-            <div className="show-me" />
-        );
         const SUT = shallow(
-            <Modal children={renderChildren} />
+            <Modal>
+                <div className="show-me" />
+            </Modal>
         );
         const showMe = SUT.find('.show-me');
 

@@ -1,11 +1,9 @@
 import * as reselect from 'reselect';
 
 describe('transactions selector', () => {
-    let triggerResultFunc;
-
     beforeEach(() => {
         reselect.createSelector = jest.fn((inputSelectors, resultFunc) => {
-            triggerResultFunc = resultFunc;
+            return resultFunc;
         });
     });
 
@@ -24,7 +22,7 @@ describe('transactions selector', () => {
             const getFilteredTransactions = require('./transactions').getFilteredTransactions;
 
             // WHEN
-            const result = triggerResultFunc(undefined, transactions);
+            const result = getFilteredTransactions(undefined, transactions);
 
             // THEN
             expect(result).toBe(transactions);
@@ -38,7 +36,7 @@ describe('transactions selector', () => {
             const getFilteredTransactions = require('./transactions').getFilteredTransactions;
 
             // WHEN
-            const result = triggerResultFunc('matched', transactions);
+            const result = getFilteredTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -52,7 +50,7 @@ describe('transactions selector', () => {
             const getFilteredTransactions = require('./transactions').getFilteredTransactions;
 
             // WHEN
-            const result = triggerResultFunc('matched', transactions);
+            const result = getFilteredTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -66,7 +64,7 @@ describe('transactions selector', () => {
             const getFilteredTransactions = require('./transactions').getFilteredTransactions;
 
             // WHEN
-            const result = triggerResultFunc('matched', transactions);
+            const result = getFilteredTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);

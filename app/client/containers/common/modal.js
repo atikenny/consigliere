@@ -2,13 +2,19 @@ import { connect } from 'react-redux';
 
 import Labels from 'components/modals/labels';
 import Modal from 'components/common/modal';
+import { getLabels } from 'selectors/transactions';
 
-const modals = {
-    labels: Labels
-};
+const mapState = (state) => {
+    const { modal } = state;
+    let children = null;
 
-const mapState = ({ modal }) => {
-    const children = modal.show ? modals[modal.page] : null;
+    if (modal.show) {
+        if (modal.page === 'labels') {
+            const labels = getLabels(state);
+
+            children = Labels({ labels });
+        }
+    }
 
     return {
         children

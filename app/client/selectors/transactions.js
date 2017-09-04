@@ -30,3 +30,15 @@ export const getFilteredTransactions = createSelector(
         }
     }
 );
+
+export const getLabels = createSelector(
+    [getTransactions],
+    (transactions) => {
+        return transactions.reduce((labels, transaction) => {
+            const concatLabels = labels.concat(transaction.labels || []);
+            const uniqueLabels = new Set(concatLabels);
+
+            return Array.from(uniqueLabels);
+        }, []);
+    }
+);
