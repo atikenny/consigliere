@@ -4,30 +4,40 @@ import { shallow } from 'enzyme';
 import LabelInput from './label-input';
 
 describe('LabelInput component', () => {
-    test('has an input container with an input', () => {
-        const labelInput = shallow(<LabelInput />);
-        const input = labelInput.find('.input-container input');
+    describe('has an input icon button', () => {
+        test('with plus button type', () => {
+            const labelInput = shallow(<LabelInput />);
+            const inputIconButton = labelInput.find('InputIconButton');
 
-        expect(input.prop('type')).toBe('text');
-    });
+            expect(inputIconButton.prop('buttonType')).toBe('plus');
+        });
 
-    test('has an input with a placeholder text', () => {
-        const labelInput = shallow(<LabelInput />);
-        const input = labelInput.find('.input-container input');
+        test('with a placeholder text', () => {
+            const labelInput = shallow(<LabelInput />);
+            const inputIconButton = labelInput.find('InputIconButton');
 
-        expect(input.prop('placeholder')).toBe('enter label...');
-    });
+            expect(inputIconButton.prop('placeholder')).toBe('enter label...');
+        });
 
-    test('calls the provided onChange handler when input changes', () => {
-        const onChange = jest.fn();
-        const transactionId = 123;
-        const labelInput = shallow(
-            <LabelInput onChange={onChange} transactionId={transactionId} />
-        );
-        const input = labelInput.find('.input-container input');
+        test('with the provided on click handler', () => {
+            const onClick = () => {};
+            const labelInput = shallow(<LabelInput onClick={onClick} />);
+            const inputIconButton = labelInput.find('InputIconButton');
 
-        input.simulate('change', { target: { value: 'value' } });
+            expect(inputIconButton.prop('onClick')).toBe(onClick);
+        });
 
-        expect(onChange.mock.calls[0]).toEqual(['value']);
+        test('calls the provided onChange handler when input changes', () => {
+            const onChange = jest.fn();
+            const transactionId = 123;
+            const labelInput = shallow(
+                <LabelInput onChange={onChange} transactionId={transactionId} />
+            );
+            const inputIconButton = labelInput.find('InputIconButton');
+
+            inputIconButton.simulate('change', { target: { value: 'value' } });
+
+            expect(onChange.mock.calls[0]).toEqual(['value']);
+        });
     });
 });

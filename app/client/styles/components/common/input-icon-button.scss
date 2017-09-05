@@ -1,0 +1,14 @@
+.input-icon-button {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .button {
+        position: absolute;
+        height: 100%;
+
+        right: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

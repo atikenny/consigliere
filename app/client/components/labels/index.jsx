@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import 'styles/components/labels';
 
 import LabelItem from 'containers/labels/label-item';
-import IconButton from 'components/common/icon-button';
 import LabelInput from 'containers/labels/label-input';
 
 const Labels = ({ labels, transactionId, onClick }) => (
@@ -21,11 +20,9 @@ const Labels = ({ labels, transactionId, onClick }) => (
             </ul>
         )}
         <div className="add-label-container">
-            <LabelInput transactionId={transactionId} />
-            <IconButton
-                type="plus"
-                onClick={onClick}
-                text="ADD" />
+            <LabelInput
+                transactionId={transactionId}
+                onClick={onClick} />
         </div>
     </div>
 );

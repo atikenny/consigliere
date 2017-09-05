@@ -43,20 +43,13 @@ describe('Labels component', () => {
         expect(labelItems.at(1).prop('name')).toEqual(label2);
     });
 
-    test('has a plus icon button for adding labels', () => {
-        const onClick = () => {};
-        const labels = render({ onClick });
-        const iconButton = labels.find('IconButton');
-
-        expect(iconButton.prop('type')).toBe('plus');
-        expect(iconButton.prop('onClick')).toBe(onClick);
-    });
-
     test('has a label input', () => {
+        const onClick = () => {};
         const transactionId = 123;
-        const labels = render({ transactionId });
+        const labels = render({ transactionId, onClick });
         const labelInput = labels.find('LabelInput');
 
         expect(labelInput.prop('transactionId')).toBe(transactionId);
+        expect(labelInput.prop('onClick')).toBe(onClick);
     });
 });
