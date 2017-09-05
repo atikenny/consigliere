@@ -7,10 +7,7 @@ header {
     @include bottom-shadow;
 
     z-index: $z-index--highest;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     display: flex;
     height: $header-height;
     background-color: $brand-color;

@@ -5,10 +5,10 @@
 .modal-container {
     z-index: $z-index--higher;
     position: fixed;
-    top: 0;
+    top: $body-top-padding;
     right: 0;
     bottom: 0;
     left: 0;
     background-color: $light-bg-color;
-    padding: $body-top-padding $gutter-size $gutter-size $gutter-size;
+    padding: $gutter-size;
 }
