@@ -4,23 +4,24 @@ import { shallow } from 'enzyme';
 import Modal from './modal';
 
 describe('Modal component', () => {
-    test('shows the provided children', () => {
-        const SUT = shallow(
-            <Modal>
-                <div className="show-me" />
-            </Modal>
-        );
-        const showMe = SUT.find('.show-me');
+    test('renders container when show is true', () => {
+        const SUT = shallow(<Modal show />);
+        const modal = SUT.find('.modal-container');
 
-        expect(showMe.length).toBe(1);
+        expect(modal.length).toBe(1);
     });
 
-    test('does NOT render anything when no children are provided', () => {
-        const SUT = shallow(
-            <Modal />
-        );
-        const children = SUT.find('*');
+    test('does NOT render anything when show is false', () => {
+        const SUT = shallow(<Modal />);
+        const modal = SUT.find('.modal-container');
 
-        expect(children.length).toBe(0);
+        expect(modal.length).toBe(0);
+    });
+
+    test('renders labels component when page is selected', () => {
+        const SUT = shallow(<Modal show page="labels" />);
+        const labels = SUT.find('Labels');
+
+        expect(labels.length).toBe(1);
     });
 });

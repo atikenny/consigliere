@@ -41,3 +41,10 @@ export const setFilter = (filter) => {
         filter
     };
 };
+
+export const addLabelMultiple = (label) => {
+    return {
+        type: 'ADD_LABEL_MULTIPLE',
+        label
+    };
+};

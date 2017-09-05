@@ -1,12 +1,14 @@
+import { filterTransactions } from 'selectors/transactions';
+
 const hasLabel = (label, labels) => {
     return labels.some(_label => _label === label);
 };
 
 const item = (state, action) => {
+    const labels = state.labels || [];
+
     switch (action.type) {
         case 'ADD_LABEL':
-            const labels = state.labels || [];
-
             if (state.id !== action.id) {
                 return state;
             }
@@ -46,6 +48,16 @@ const item = (state, action) => {
             return Object.assign({}, state, {
                 isLabelsOpen: !state.isLabelsOpen
             });
+        case 'ADD_LABEL_MULTIPLE':
+            if (!action.ids.includes(state.id)) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                labels: labels.concat(action.label)
+            });
+        default:
+            return state;
     }
 };
 
@@ -71,6 +83,15 @@ const transactions = (state = initialState, action) => {
         case 'SET_FILTER':
             return Object.assign({}, state, {
                 filter: action.filter
+            });
+        case 'ADD_LABEL_MULTIPLE':
+            const filteredItems = filterTransactions(state.filter, state.items);
+            const filteredItemIds = filteredItems.map(transaction => transaction.id);
+
+            action.ids = filteredItemIds;
+
+            return Object.assign({}, state, {
+                items: state.items.map(transaction => item(transaction, action))
             });
         default:
             return state;

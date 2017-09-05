@@ -1,5 +1,23 @@
 import { createSelector } from 'reselect';
 
+const getFilter = (state) => state.transactions.filter;
+
+export const getTransactions = (state) => state.transactions.items;
+
+export const filterTransactions = (filter, transactions) => {
+    if (filter) {
+        const filterFunction = isFiltered.bind(null, filter);
+
+        return transactions.filter(filterFunction);
+    } else {
+        return transactions;
+    }
+};
+
+const isFiltered = (filter, transaction) => {
+    return hasLabel(filter, transaction) || hasDescription(filter, transaction);
+};
+
 const hasLabel = (filter, transaction) => {
     return transaction.labels && transaction.labels.some(label => {
         return label.indexOf(filter) !== -1;
@@ -10,25 +28,9 @@ const hasDescription = (filter, { description }) => {
     return description && description.toUpperCase() === filter.toUpperCase();
 };
 
-const isFiltered = (filter, transaction) => {
-    return hasLabel(filter, transaction) || hasDescription(filter, transaction);
-};
-
-const getFilter = (state) => state.transactions.filter;
-
-export const getTransactions = (state) => state.transactions.items;
-
 export const getFilteredTransactions = createSelector(
     [getFilter, getTransactions],
-    (filter, transactions) => {
-        if (filter) {
-            const filterFunction = isFiltered.bind(null, filter);
-
-            return transactions.filter(filterFunction);
-        } else {
-            return transactions;
-        }
-    }
+    filterTransactions
 );
 
 export const getLabels = createSelector(
@@ -40,5 +42,12 @@ export const getLabels = createSelector(
 
             return Array.from(uniqueLabels);
         }, []);
+    }
+);
+
+export const getFilteredTransactionsCount = createSelector(
+    [getFilter, getTransactions],
+    (filter, transactions) => {
+        return filterTransactions(filter, transactions).length;
     }
 );
