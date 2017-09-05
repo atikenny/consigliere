@@ -2,11 +2,22 @@
 @import '../../common/variables';
 
 .notification {
+    transition: all .4s ease;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY($gutter-size * 2);
+
     position: fixed;
     bottom: $gutter-size;
     left: $gutter-size;
-    padding: $gutter-size;
+    padding: $gutter-size $gutter-size * 2;
     background-color: $notification-color;
     border-radius: 4px;
     color: $light-text-color;
+
+    &.show {
+        visibility: visible;
+        opacity: .8;
+        transform: translateY(0);
+    }
 }

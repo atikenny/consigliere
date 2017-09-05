@@ -3,14 +3,25 @@ import PropTypes from 'prop-types';
 
 import 'styles/components/common/notification';
 
-const Notification = ({ notification }) => (
-    notification ? (
-        <div className="notification">{notification}</div>
-    ) : null
+const getContainerClassName = (show) => {
+    let className = 'notification';
+
+    if (show) {
+        className += ` show`;
+    }
+
+    return className;
+};
+
+const Notification = ({ show, text }) => (
+    <div className={getContainerClassName(show)}>
+        {text}
+    </div>
 );
 
 export default Notification;
 
 Notification.propTypes = {
-    notification: PropTypes.string
+    show: PropTypes.bool,
+    text: PropTypes.string
 };

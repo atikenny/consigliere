@@ -6,11 +6,11 @@ const hide = () => {
     };
 };
 
-export const show = (notification) => {
+export const show = (text) => {
     return dispatch => {
         dispatch({
             type: 'SHOW_NOTIFICATION',
-            notification
+            text
         });
 
         setTimeout(() => {

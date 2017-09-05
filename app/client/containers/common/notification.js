@@ -4,7 +4,8 @@ import Notification from 'components/common/notification';
 
 const mapState = ({ notification }) => {
     return {
-        text: notification
+        show: notification.show,
+        text: notification.text
     };
 };
 

@@ -1,9 +1,20 @@
-const notification = (state = '', action) => {
+const initialState = {
+    show: false,
+    text: ''
+};
+
+const notification = (state = initialState, action) => {
     switch (action.type) {
         case 'SHOW_NOTIFICATION':
-            return action.notification;
+            return {
+                show: true,
+                text: action.text
+            };
         case 'HIDE_NOTIFICATION':
-            return '';
+            return {
+                show: false,
+                text: state.text
+            };
         default:
             return state;
     }
