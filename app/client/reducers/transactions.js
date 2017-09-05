@@ -49,7 +49,9 @@ const item = (state, action) => {
                 isLabelsOpen: !state.isLabelsOpen
             });
         case 'ADD_LABEL_MULTIPLE':
-            if (!action.ids.includes(state.id)) {
+            const hasLabelAlready = labels.includes(action.label);
+
+            if (!action.ids.includes(state.id) || hasLabelAlready) {
                 return state;
             }
 

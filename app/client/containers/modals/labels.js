@@ -6,6 +6,7 @@ import {
     getFilteredTransactionsCount
 } from 'selectors/transactions';
 import { addLabelMultiple } from 'actions/transactions';
+import { toggle } from 'actions/modal';
 
 const mapState = (state) => {
     const itemCount = getFilteredTransactionsCount(state);
@@ -21,6 +22,7 @@ const mapDispatch = (dispatch) => {
     return {
         addLabel: (label) => {
             dispatch(addLabelMultiple(label));
+            dispatch(toggle('labels'));
         }
     }
 };
