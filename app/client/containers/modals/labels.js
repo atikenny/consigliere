@@ -11,7 +11,7 @@ import { show } from 'actions/notification';
 
 const mapState = (state) => {
     const itemCount = getFilteredTransactionsCount(state);
-    const labels = getLabels(state);
+    const labels = getLabels(state).sort();
 
     return {
         itemCount,
