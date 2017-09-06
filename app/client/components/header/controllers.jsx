@@ -12,8 +12,14 @@ const Controllers = ({
     showStats
 }) => (
     <div className="controllers">
-        <IconButton type="price-tags" onClick={isLabelsActive ? hideLabels : showLabels} />
-        <IconButton type="stats-dots" onClick={isStatsActive ? hideStats : showStats} />
+        <IconButton
+            isActive={isLabelsActive}
+            type="price-tags"
+            onClick={isLabelsActive ? hideLabels : showLabels} />
+        <IconButton
+            isActive={isStatsActive}
+            type="stats-dots"
+            onClick={isStatsActive ? hideStats : showStats} />
     </div>
 );
 

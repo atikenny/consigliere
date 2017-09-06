@@ -30,6 +30,13 @@ describe('Controllers component', () => {
         expect(labelsIcon.prop('onClick')).toBe(hideLabels);
     });
 
+    test('passes active to labels icon when labels is active', () => {
+        const SUT = shallow(<Controllers isLabelsActive />);
+        const labelsIcon = SUT.find('.controllers IconButton[type="price-tags"]');
+
+        expect(labelsIcon.prop('isActive')).toBe(true);
+    });
+
     test('calls show stats when stats icon is clicked and stats is inactive', () => {
         const showStats = () => {};
         const SUT = shallow(<Controllers showStats={showStats} />);
@@ -44,5 +51,12 @@ describe('Controllers component', () => {
         const statsIcon = SUT.find('.controllers IconButton[type="stats-dots"]');
 
         expect(statsIcon.prop('onClick')).toBe(hideStats);
+    });    
+
+    test('passes active to labels icon when labels is active', () => {
+        const SUT = shallow(<Controllers isStatsActive />);
+        const statsIcon = SUT.find('.controllers IconButton[type="stats-dots"]');
+
+        expect(statsIcon.prop('isActive')).toBe(true);
     });
 });
