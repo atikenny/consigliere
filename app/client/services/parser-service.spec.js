@@ -58,14 +58,16 @@ describe('parser-service', () => {
                     amount: 12.34,
                     date: new Date('2017-02-01'),
                     transactionType: 'debit',
-                    description: 'debit transaction description'
+                    description: 'debit transaction description',
+                    similarCount: 0
                 },
                 {
                     id: 1,
                     amount: 1234,
                     date: new Date('2018-12-31'),
                     transactionType: 'credit',
-                    description: 'credit transaction description'
+                    description: 'credit transaction description',
+                    similarCount: 0
                 }
             ]);
         });

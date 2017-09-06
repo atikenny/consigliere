@@ -1,5 +1,14 @@
 $brand-color: #fb0;
 $brand-text: #444;
-$brand-text--light: #ccc;
+$brand-text-color--light: #ccc;
+$light-text-color: white;
+
+// BACKGROUND
+$light-bg-color: white;
+$bg-color-brand--lightest: lighten($brand-color, 40%);
+
+// BORDERS
+$border-color--lightest: #ccc;
 
 $inactive-color--lighter: #ccc;
+$notification-color: #3c3c3c;

@@ -1,4 +1,9 @@
-$gutter-size: 12px;
+$gutter-size:               12px;
 
-$header-height: 60px;
-$body-top-padding: $header-height + $gutter-size;
+$header-height:             60px;
+$body-top-padding:          $header-height + $gutter-size;
+
+$labels-modal-max-width:    420px;
+
+// FONT SIZES
+$font-size--large:          1.4em;

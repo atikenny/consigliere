@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IconButton from 'components/icon-button';
+import IconButton from 'components/common/icon-button';
 
 const LabelItem = ({ name, onClick }) => (
     <div className="label">

@@ -32,6 +32,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
   },
   "devDependencies": {
@@ -115,8 +116,20 @@
       "plugin:react/recommended"
     ],
     "rules": {
-      "indent": ["error", 4, { "SwitchCase": 1 }],
-      "no-case-declarations": ["off"]
+      "indent": [
+        "error",
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "no-case-declarations": [
+        "off"
+      ],
+      "max-len": [
+        "error",
+        100
+      ]
     }
   }
 }

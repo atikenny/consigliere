@@ -1,5 +1,5 @@
-@import '../common/colors';
-@import '../common/variables';
+@import '../../common/colors';
+@import '../../common/variables';
 
 .button {
     padding: $gutter-size / 2 $gutter-size;
@@ -13,5 +13,9 @@
 
     .bordered {
         border: 1px solid $brand-text;
+    }
+
+    &.active {
+        background-color: $brand-color;
     }
 }

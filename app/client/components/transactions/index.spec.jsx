@@ -13,7 +13,8 @@ describe('Transactions component', () => {
                 id: newIndex,
                 amount: newIndex,
                 currency: `currency${newIndex}`,
-                date: `date${newIndex}`
+                date: `date${newIndex}`,
+                isLabelsOpen: withLabels
             };
 
             if (withLabels) {
@@ -65,8 +66,8 @@ describe('Transactions component', () => {
         const container = transactions.find('.transactions-container');
         const labelsContainers = transactions.find('ul > li > Labels');
 
-        expect(labelsContainers.length).toBe(transactionsProp.length);
-        expect(labelsContainers.at(1).prop('labels')).toBe(transactionMock2.labels);
-        expect(labelsContainers.at(1).prop('transactionId')).toBe(transactionMock2.id);
+        expect(labelsContainers.length).toBe(1);
+        expect(labelsContainers.at(0).prop('labels')).toBe(transactionMock2.labels);
+        expect(labelsContainers.at(0).prop('transactionId')).toBe(transactionMock2.id);
     });
 });

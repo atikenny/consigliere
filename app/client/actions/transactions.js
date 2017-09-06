@@ -12,6 +12,13 @@ export const addLabel = (id) => {
     };
 };
 
+export const toggleLabels = (id) => {
+    return {
+        type: 'TOGGLE_LABELS',
+        id
+    };
+};
+
 export const deleteLabel = (transactionId, label) => {
     return {
         type: 'DELETE_LABEL',
@@ -32,5 +39,12 @@ export const setFilter = (filter) => {
     return {
         type: 'SET_FILTER',
         filter
+    };
+};
+
+export const addLabelMultiple = (label) => {
+    return {
+        type: 'ADD_LABEL_MULTIPLE',
+        label
     };
 };

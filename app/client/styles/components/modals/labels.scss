@@ -1,0 +1,29 @@
+@import '../../common/variables';
+@import '../../common/colors';
+
+.labels-modal-container {
+    max-width: $labels-modal-max-width;
+    margin: 0 auto;
+
+    .labels {
+        margin-bottom: $gutter-size * 2;
+    }
+
+    .item {
+        border-bottom: 1px solid $border-color--lightest;
+
+        .button {
+            padding: $gutter-size;
+            font-size: $font-size--large;
+            text-align: left;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &:hover {
+            background-color: $bg-color-brand--lightest;
+        }
+    }
+}

@@ -1,9 +1,11 @@
 import {
     addLabel,
+    toggleLabels,
     load,
     deleteLabel,
     setNewLabelValue,
-    setFilter
+    setFilter,
+    addLabelMultiple
 } from './transactions';
 
 describe('transactions actions', () => {
@@ -22,7 +24,16 @@ describe('transactions actions', () => {
         expect(addLabel(id)).toEqual({
             type: 'ADD_LABEL',
             id
-        })
+        });
+    });
+
+    test('toggle labels returns action object', () => {
+        const id = 'id';
+
+        expect(toggleLabels(id)).toEqual({
+            type: 'TOGGLE_LABELS',
+            id
+        });
     });
 
     test('delete label returns action object', () => {
@@ -33,7 +44,7 @@ describe('transactions actions', () => {
             type: 'DELETE_LABEL',
             transactionId,
             label
-        })
+        });
     });
 
     test('set new label value returns action object', () => {
@@ -44,7 +55,7 @@ describe('transactions actions', () => {
             type: 'SET_NEW_LABEL_VALUE',
             id,
             value
-        })
+        });
     });
 
     test('set filter returns action object', () => {
@@ -53,6 +64,15 @@ describe('transactions actions', () => {
         expect(setFilter(filter)).toEqual({
             type: 'SET_FILTER',
             filter
-        })
+        });
+    });
+
+    test('add multiple label returns action object', () => {
+        const label = 'label';
+
+        expect(addLabelMultiple(label)).toEqual({
+            type: 'ADD_LABEL_MULTIPLE',
+            label
+        });
     });
 });

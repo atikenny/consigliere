@@ -24,8 +24,14 @@
         }
 
         .date {
-            color: $brand-text--light;
+            color: $brand-text-color--light;
             text-align: right;
+        }
+
+        .amount {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: $gutter-size;
         }
     }
 }

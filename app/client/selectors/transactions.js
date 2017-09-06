@@ -1,21 +1,53 @@
 import { createSelector } from 'reselect';
 
+const getFilter = (state) => state.transactions.filter;
+
+export const getTransactions = (state) => state.transactions.items;
+
+export const filterTransactions = (filter, transactions) => {
+    if (filter) {
+        const filterFunction = isFiltered.bind(null, filter);
+
+        return transactions.filter(filterFunction);
+    } else {
+        return transactions;
+    }
+};
+
+const isFiltered = (filter, transaction) => {
+    return hasLabel(filter, transaction) || hasDescription(filter, transaction);
+};
+
 const hasLabel = (filter, transaction) => {
     return transaction.labels && transaction.labels.some(label => {
         return label.indexOf(filter) !== -1;
     });
 };
 
-const getFilter = (state) => state.transactions.filter;
+const hasDescription = (filter, { description }) => {
+    return description && description.toUpperCase() === filter.toUpperCase();
+};
 
-export const getTransactions = (state) => state.transactions.items;
+export const getFilteredTransactions = createSelector(
+    [getFilter, getTransactions],
+    filterTransactions
+);
 
-export const getFilteredTransactions = createSelector([getFilter, getTransactions], (filter, transactions) => {
-    if (filter) {
-        const hasLabelFilter = hasLabel.bind(null, filter);
+export const getLabels = createSelector(
+    [getTransactions],
+    (transactions) => {
+        return transactions.reduce((labels, transaction) => {
+            const concatLabels = labels.concat(transaction.labels || []);
+            const uniqueLabels = new Set(concatLabels);
 
-        return transactions.filter(hasLabelFilter);
-    } else {
-        return transactions;
+            return Array.from(uniqueLabels);
+        }, []);
     }
-});
+);
+
+export const getFilteredTransactionsCount = createSelector(
+    [getFilter, getTransactions],
+    (filter, transactions) => {
+        return filterTransactions(filter, transactions).length;
+    }
+);

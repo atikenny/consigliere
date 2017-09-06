@@ -1,0 +1,18 @@
+@import '../../common/variables';
+@import '../../common/colors';
+@import '../../common/z-indexes';
+
+.modal-container {
+    z-index: $z-index--higher;
+    position: fixed;
+    top: $body-top-padding;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $light-bg-color;
+    padding: $gutter-size;
+
+    .title {
+        margin: $gutter-size * 2 0;
+    }
+}

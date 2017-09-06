@@ -4,6 +4,8 @@ import * as transactions from './transactions';
 import * as currency from './currency';
 import * as filter from './filter';
 import * as suggestions from './suggestions';
+import * as notification from './notification';
+import * as modal from './modal';
 
 describe('reducers', () => {
     test('combining reducers', () => {
@@ -13,6 +15,8 @@ describe('reducers', () => {
         currency.default = 'currency';
         filter.default = 'filter';
         suggestions.default = 'suggestions';
+        notification.default = 'notification';
+        modal.default = 'modal';
 
         // WHEN
         const appReducers = require('./index').default;
@@ -24,7 +28,9 @@ describe('reducers', () => {
             transactions: 'transactions',
             currency: 'currency',
             filter: 'filter',
-            suggestions: 'suggestions'
+            suggestions: 'suggestions',
+            notification: 'notification',
+            modal: 'modal'
         }]);
     });
 });

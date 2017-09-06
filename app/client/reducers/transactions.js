@@ -1,12 +1,14 @@
+import { filterTransactions } from 'selectors/transactions';
+
 const hasLabel = (label, labels) => {
     return labels.some(_label => _label === label);
 };
 
 const item = (state, action) => {
+    const labels = state.labels || [];
+
     switch (action.type) {
         case 'ADD_LABEL':
-            const labels = state.labels || [];
-
             if (state.id !== action.id) {
                 return state;
             }
@@ -38,6 +40,26 @@ const item = (state, action) => {
             return Object.assign({}, state, {
                 newLabelValue: action.value
             });
+        case 'TOGGLE_LABELS':
+            if (state.id !== action.id) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                isLabelsOpen: !state.isLabelsOpen
+            });
+        case 'ADD_LABEL_MULTIPLE':
+            const hasLabelAlready = labels.includes(action.label);
+
+            if (!action.ids.includes(state.id) || hasLabelAlready) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                labels: labels.concat(action.label)
+            });
+        default:
+            return state;
     }
 };
 
@@ -50,17 +72,28 @@ const transactions = (state = initialState, action) => {
     switch (action.type) {
         case 'LOAD_TRANSACTIONS':
             return Object.assign({}, state, {
-                items: action.transactions.slice()
+                items: action.transactions.slice(),
+                isLabelsOpen: false
             });
         case 'ADD_LABEL':
         case 'SET_NEW_LABEL_VALUE':
         case 'DELETE_LABEL':
+        case 'TOGGLE_LABELS':
             return Object.assign({}, state, {
                 items: state.items.map(transaction => item(transaction, action))
             });
         case 'SET_FILTER':
             return Object.assign({}, state, {
                 filter: action.filter
+            });
+        case 'ADD_LABEL_MULTIPLE':
+            const filteredItems = filterTransactions(state.filter, state.items);
+            const filteredItemIds = filteredItems.map(transaction => transaction.id);
+
+            action.ids = filteredItemIds;
+
+            return Object.assign({}, state, {
+                items: state.items.map(transaction => item(transaction, action))
             });
         default:
             return state;

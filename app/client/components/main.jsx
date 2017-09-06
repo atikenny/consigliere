@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import {
+    createStore,
+    applyMiddleware
+} from 'redux';
+import thunk from 'redux-thunk';
 
 import '../index.html';
 import 'styles/main';
@@ -18,7 +22,8 @@ const init = () => {
 
     const store = createStore(
         appReducers,
-        savedState
+        savedState,
+        applyMiddleware(thunk)
     );
 
     initAutoSave(store);

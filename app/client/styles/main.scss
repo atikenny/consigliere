@@ -2,14 +2,13 @@
 @import './common/variables';
 
 @import './common/icons';
-@import './common/buttons';
+@import './common/helpers';
 
 body {
     color: $brand-text;
     font-family: Arial, "sans serif";
     font-size: 14px;
     margin: 0;
-    padding: $body-top-padding 0 0 0;
 }
 
 ul {

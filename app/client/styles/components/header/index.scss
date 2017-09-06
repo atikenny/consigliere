@@ -1,28 +1,37 @@
 @import '../../mixins/shadow';
 @import '../../common/colors';
 @import '../../common/variables';
+@import '../../common/z-indexes';
 
 header {
     @include bottom-shadow;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    z-index: $z-index--highest;
+    position: relative;
     display: flex;
     height: $header-height;
     background-color: $brand-color;
     box-sizing: border-box;
     align-items: center;
+    padding: $gutter-size / 2 0;
+
+    > * {
+        margin-left: $gutter-size;
+
+        &:last-child {
+            margin-right: $gutter-size;
+        }
+    }
 
     h1 {
         font-size: 1.3em;
-        padding: $gutter-size;
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .controllers {
         display: flex;
+        align-self: stretch;
     }
 
     .icon {
