@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from 'containers/header';
+import Header from 'components/header';
 import Content from 'containers/content';
 import FileInput from 'containers/file-input';
 import Transactions from 'containers/transactions';
