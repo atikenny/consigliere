@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-[class^="icon"], [class*=" icon"] {
+.icon {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
     color: inherit;
@@ -23,84 +23,89 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
 
-.icon.price-tags:before {
-    content: "\e936";
-}
+    // ICON TYPES
+    &.price-tags:before {
+        content: "\e936";
+    }
 
-.icon.coin-dollar:before {
-    content: "\e93b";
-}
+    &.coin-dollar:before {
+        content: "\e93b";
+    }
 
-.icon.coin-euro:before {
-    content: "\e93c";
-}
+    &.coin-euro:before {
+        content: "\e93c";
+    }
 
-.icon.coin-pound:before {
-    content: "\e93d";
-}
+    &.coin-pound:before {
+        content: "\e93d";
+    }
 
-.icon.coin-yen:before {
-    content: "\e93e";
-}
+    &.coin-yen:before {
+        content: "\e93e";
+    }
 
-.icon.credit-card:before {
-    content: "\e93f";
-}
+    &.credit-card:before {
+        content: "\e93f";
+    }
 
-.icon.calendar:before {
-    content: "\e953";
-}
+    &.calendar:before {
+        content: "\e953";
+    }
 
-.icon.upload:before {
-    content: "\e961";
-}
+    &.upload:before {
+        content: "\e961";
+    }
 
-.icon.undo:before {
-    content: "\e965";
-}
+    &.undo:before {
+        content: "\e965";
+    }
 
-.icon.redo:before {
-    content: "\e966";
-}
+    &.redo:before {
+        content: "\e966";
+    }
 
-.icon.search:before {
-    content: "\e986";
-}
+    &.search:before {
+        content: "\e986";
+    }
 
-.icon.cog:before {
-    content: "\e994";
-}
+    &.cog:before {
+        content: "\e994";
+    }
 
-.icon.menu:before {
-    content: "\e9bd";
-}
+    &.menu:before {
+        content: "\e9bd";
+    }
 
-.icon.star-full:before {
-    content: "\e9d9";
-}
+    &.star-full:before {
+        content: "\e9d9";
+    }
 
-.icon.plus:before {
-    content: "\ea0a";
-}
+    &.plus:before {
+        content: "\ea0a";
+    }
 
-.icon.minus:before {
-    content: "\ea0b";
-}
+    &.minus:before {
+        content: "\ea0b";
+    }
 
-.icon.cross:before {
-    content: "\ea0f";
-}
+    &.cross:before {
+        content: "\ea0f";
+    }
 
-.icon.checkmark:before {
-    content: "\ea10";
-}
+    &.checkmark:before {
+        content: "\ea10";
+    }
 
-.icon.floppy-disk:before {
-    content: "\e962";
-}
+    &.floppy-disk:before {
+        content: "\e962";
+    }
 
-.icon.files-empty:before {
-    content: "\e925";
+    &.files-empty:before {
+        content: "\e925";
+    }
+
+    &.stats-dots:before {
+        content: "\e99b";
+    }
 }
