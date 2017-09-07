@@ -25,7 +25,7 @@ const hasLabel = (filter, transaction) => {
 };
 
 const hasDescription = (filter, { description }) => {
-    return description && description.toUpperCase() === filter.toUpperCase();
+    return description && description.toUpperCase().indexOf(filter.toUpperCase()) > -1;
 };
 
 export const getFilteredTransactions = createSelector(

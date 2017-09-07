@@ -92,7 +92,9 @@ const getSimilarCount = (transaction, transactions) => {
     const upperCaseDescription = transaction.description.toUpperCase();
 
     return transactions.reduce((similarCount, item) => {
-        const isDescriptionMatching = item.description.toUpperCase() === upperCaseDescription;
+        const containsMain = item.description.toUpperCase().indexOf(upperCaseDescription) > -1;
+        const containsItem = upperCaseDescription.indexOf(item.description.toUpperCase()) > -1;
+        const isDescriptionMatching = containsMain || containsItem;
         const isSame = item.id === transaction.id;
 
         if (!isSame && isDescriptionMatching) {
