@@ -1,6 +1,7 @@
 const endOfLineChar = '\n';
 
 const isNotEmptyLine = line => Boolean(line);
+
 export const parseCSV = (csv) => {
     let lines = csv.split(endOfLineChar).filter(isNotEmptyLine);
     const firstLine = lines.shift(1);
