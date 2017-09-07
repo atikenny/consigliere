@@ -6,7 +6,7 @@ import {
     getFilteredTransactionsCount
 } from 'selectors/transactions';
 import { addLabelMultiple } from 'actions/transactions';
-import { toggle } from 'actions/modal';
+import { hide } from 'actions/modal';
 import { show } from 'actions/notification';
 
 const mapState = (state) => {
@@ -23,7 +23,7 @@ const mapDispatch = (dispatch) => {
     return {
         addLabel: (label) => {
             dispatch(addLabelMultiple(label));
-            dispatch(toggle('labels'));
+            dispatch(hide('labels'));
             dispatch(show(`Label added: ${label}`));
         }
     }

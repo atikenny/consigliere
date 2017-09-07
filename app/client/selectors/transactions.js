@@ -56,6 +56,11 @@ export const getLabelsStats = createSelector(
     [getFilter, getTransactions],
     (filter, transactions) => {
         const filteredTransactions = filterTransactions(filter, transactions);
+        let withoutLabel = {
+            label: '--- unknown ---',
+            itemCount: 0,
+            amountSummary: 0
+        };
 
         const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
             if (transaction.labels) {
@@ -73,10 +78,17 @@ export const getLabelsStats = createSelector(
                         labelGroup.amountSummary += transaction.amount;
                     }
                 });
+            } else {
+                withoutLabel.itemCount++;
+                withoutLabel.amountSummary += transaction.amount;
             }
 
             return _labelsGroup;
         }, []);
+
+        if (withoutLabel.itemCount) {
+            labelsGroup.push(withoutLabel);
+        }
 
         const sorterFunction = sortByStringProperty('label');
 
