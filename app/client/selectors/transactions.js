@@ -51,3 +51,49 @@ export const getFilteredTransactionsCount = createSelector(
         return filterTransactions(filter, transactions).length;
     }
 );
+
+export const getLabelsStats = createSelector(
+    [getFilter, getTransactions],
+    (filter, transactions) => {
+        const filteredTransactions = filterTransactions(filter, transactions);
+
+        const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
+            if (transaction.labels) {
+                transaction.labels.forEach(label => {
+                    const labelGroup = _labelsGroup.find(group => group.label === label);
+
+                    if (!labelGroup) {
+                        _labelsGroup.push({
+                            label,
+                            itemCount: 1,
+                            amountSummary: transaction.amount
+                        });
+                    } else {
+                        labelGroup.itemCount++;
+                        labelGroup.amountSummary += transaction.amount;
+                    }
+                });
+            }
+
+            return _labelsGroup;
+        }, []);
+
+        const sorterFunction = sortByStringProperty('label');
+
+        return labelsGroup.sort(sorterFunction);
+    }
+);
+
+const sortByStringProperty = (propertyName) => {
+    return (a, b) => {
+        if (a[propertyName] < b[propertyName]) {
+            return -1;
+        }
+
+        if (a[propertyName] > b[propertyName]) {
+            return 1;
+        }
+
+        return 0;
+    };
+};
