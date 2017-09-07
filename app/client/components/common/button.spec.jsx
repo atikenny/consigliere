@@ -19,4 +19,11 @@ describe('Button component', () => {
 
         expect(button.prop('onClick')).toBe(onClick);
     });
+
+    test('has full size class', () => {
+        const SUT = shallow(<Button isFullSize />);
+        const button = SUT.find('.button');
+
+        expect(button.hasClass('full-size')).toBe(true);
+    });
 });
