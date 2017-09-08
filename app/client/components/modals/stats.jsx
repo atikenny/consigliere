@@ -5,7 +5,8 @@ import 'styles/components/modals/stats';
 
 const Stats = ({ labelsGroup, currency }) => (
     <div className="stats-container">
-        <h2 className="title">Stats</h2>
+        <h2>Stats</h2>
+        <h3>Labels</h3>
         <table className="labels-group">
             <tbody>
                 {labelsGroup.map(group => (
