@@ -15,7 +15,7 @@ describe('Labels component', () => {
         const SUT = shallow(<Labels labels={[]} />);
         const title = SUT.find('.labels-modal-container h2.title');
 
-        expect(title.text()).toBe('Choose a label to apply:');
+        expect(title.text()).toBe('Choose a label to view, remove or apply:');
     });
 
     describe('labels list', () => {
@@ -79,6 +79,6 @@ describe('Labels component', () => {
         const SUT = shallow(<Labels labels={[]} itemCount={itemCount} />);
         const itemCountHeading = SUT.find('.labels-modal-container h2.item-count');
 
-        expect(itemCountHeading.text()).toBe(`The label will be applied to: ${itemCount} items.`);
+        expect(itemCountHeading.text()).toBe(`The changes will affect ${itemCount} items.`);
     });
 });
