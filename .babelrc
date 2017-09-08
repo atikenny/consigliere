@@ -17,6 +17,10 @@
                     "expose": "components"
                 },
                 {
+                    "src": "./app/client/constants",
+                    "expose": "constants"
+                },
+                {
                     "src": "./app/client/containers",
                     "expose": "containers"
                 },

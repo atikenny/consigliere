@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { NO_LABEL_NAME } from 'constants/labels';
 
 const getFilter = (state) => state.transactions.filter;
 
@@ -19,6 +20,10 @@ const isFiltered = (filter, transaction) => {
 };
 
 const hasLabel = (filter, transaction) => {
+    if (filter === NO_LABEL_NAME) {
+        return !transaction.labels || !transaction.labels.length;
+    }
+
     return transaction.labels && transaction.labels.some(label => {
         return label.indexOf(filter) !== -1;
     });
@@ -36,12 +41,17 @@ export const getFilteredTransactions = createSelector(
 export const getLabels = createSelector(
     [getTransactions],
     (transactions) => {
-        return transactions.reduce((labels, transaction) => {
-            const concatLabels = labels.concat(transaction.labels || []);
-            const uniqueLabels = new Set(concatLabels);
+        const labels = transactions.reduce((_labels, transaction) => {
+            const concatLabels = _labels.concat(transaction.labels || []);
+            const uniqueLabels = Array.from(new Set(concatLabels));
 
-            return Array.from(uniqueLabels);
+
+            return uniqueLabels;
         }, []);
+        
+        labels.push(NO_LABEL_NAME);
+
+        return labels;
     }
 );
 
@@ -57,13 +67,13 @@ export const getLabelsStats = createSelector(
     (filter, transactions) => {
         const filteredTransactions = filterTransactions(filter, transactions);
         let withoutLabel = {
-            label: '--- unknown ---',
+            label: NO_LABEL_NAME,
             itemCount: 0,
             amountSummary: 0
         };
 
         const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
-            if (transaction.labels) {
+            if (transaction.labels.length) {
                 transaction.labels.forEach(label => {
                     const labelGroup = _labelsGroup.find(group => group.label === label);
 
