@@ -88,8 +88,12 @@ const transactions = (state = initialState, action) => {
 
     switch (action.type) {
         case 'LOAD_TRANSACTIONS':
+            const newItems = action.transactions.filter(transaction => {
+                return !state.items.some(item => item.id === transaction.id);
+            });
+
             return Object.assign({}, state, {
-                items: action.transactions.slice(),
+                items: state.items.concat(newItems),
                 isLabelsOpen: false
             });
         case 'ADD_LABEL':

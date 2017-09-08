@@ -35,6 +35,10 @@ describe('parser-service', () => {
 
     describe('mapTransactions()', () => {
         test('maps LLOYDS transactions', () => {
+            // ID hash mock
+            let transactionIndex = 0;
+            global.btoa = jest.fn(() => transactionIndex++);
+
             const lloydsFormat = formats.LLOYDS;
             let debitTransaction = {};
 
@@ -58,8 +62,7 @@ describe('parser-service', () => {
             creditTransaction[lloydsFormat.descriptionKey] = 'credit transaction description';
 
             const transactions = [debitTransaction, similarDebitTransaction, creditTransaction];
-
-            expect(mapTransactions(lloydsFormat, transactions)).toEqual([
+            const mappedTransactions = [
                 {
                     id: 0,
                     amount: 12.34,
@@ -84,6 +87,13 @@ describe('parser-service', () => {
                     description: 'credit transaction description',
                     similarCount: 0
                 }
+            ];
+
+            expect(mapTransactions(lloydsFormat, transactions)).toEqual(mappedTransactions);
+            expect(global.btoa.mock.calls).toEqual([
+                [`${debitTransaction[lloydsFormat.dateKey]} ${mappedTransactions[0].amount} ${mappedTransactions[0].description} ${mappedTransactions[0].transactionType}`],
+                [`${similarDebitTransaction[lloydsFormat.dateKey]} ${mappedTransactions[1].amount} ${mappedTransactions[1].description} ${mappedTransactions[1].transactionType}`],
+                [`${creditTransaction[lloydsFormat.dateKey]} ${mappedTransactions[2].amount} ${mappedTransactions[2].description} ${mappedTransactions[2].transactionType}`]
             ]);
         });
     });

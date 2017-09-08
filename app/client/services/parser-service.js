@@ -58,7 +58,7 @@ export const formats = {
 };
 
 export const mapTransactions = (format, transactions) => {
-    const mappedTransactions = transactions.map((transaction, index) => {
+    const mappedTransactions = transactions.map(transaction => {
         const dateString = transaction[format.dateKey];
         const date = format.getDate(dateString);
         const debitAmount = transaction[format.debitAmountKey];
@@ -66,7 +66,7 @@ export const mapTransactions = (format, transactions) => {
         const amount = parseFloat(debitAmount || creditAmount);
         const transactionType = format.transactionTypeMap[transaction[format.typeKey]];
         const description = transaction[format.descriptionKey];
-        const id = index;
+        const id = btoa(`${dateString} ${amount} ${description} ${transactionType}`);
 
         return {
             id,
