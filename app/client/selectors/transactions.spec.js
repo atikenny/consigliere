@@ -110,4 +110,39 @@ describe('transactions selector', () => {
         // THEN
         expect(result).toBe(transactions.length);
     });
+
+    test('getLabelsStats return labels stats for the transactions', () => {
+        // GIVEN
+        const transactions = [
+            { amount: 1, labels: ['label 1'] },
+            { amount: 1, labels: ['label 2'] },
+            { amount: 1, labels: ['label 1', 'label 2', 'label 3'] },
+            { amount: 1, labels: [] }
+        ];
+        const getLabelsStats = require('./transactions').getLabelsStats;
+
+        // WHEN
+        const result = getLabelsStats(undefined, transactions);
+    });
+
+    test('getLabelsStats return labels stats for the filtered transactions', () => {
+        // GIVEN
+        const transactions = [
+            { amount: 1, labels: ['label 1'] },
+            { amount: 1, labels: ['label 2'] },
+            { amount: 1, labels: ['label 1', 'label 2', 'label 3'] },
+            { amount: 1, labels: [] }
+        ];
+        const getLabelsStats = require('./transactions').getLabelsStats;
+
+        // WHEN
+        const result = getLabelsStats('label 1', transactions);
+
+        // THEN
+        expect(result).toEqual([
+            { label: 'label 1', amountSummary: 2, itemCount: 2 },
+            { label: 'label 2', amountSummary: 1, itemCount: 1 },
+            { label: 'label 3', amountSummary: 1, itemCount: 1 }
+        ]);
+    });
 });

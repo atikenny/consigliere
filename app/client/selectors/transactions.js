@@ -66,6 +66,7 @@ export const getLabelsStats = createSelector(
     [getFilter, getTransactions],
     (filter, transactions) => {
         const filteredTransactions = filterTransactions(filter, transactions);
+
         let withoutLabel = {
             label: NO_LABEL_NAME,
             itemCount: 0,
