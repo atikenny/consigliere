@@ -32,5 +32,5 @@ export default Labels;
 Labels.propTypes = {
     labels: PropTypes.array,
     onClick: PropTypes.func,
-    transactionId: PropTypes.number.isRequired
+    transactionId: PropTypes.string
 };

@@ -74,24 +74,26 @@ export const getLabelsStats = createSelector(
         };
 
         const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
-            if (transaction.labels.length) {
-                transaction.labels.forEach(label => {
+            const { labels, amount } = transaction;
+
+            if (labels && labels.length) {
+                labels.forEach(label => {
                     const labelGroup = _labelsGroup.find(group => group.label === label);
 
                     if (!labelGroup) {
                         _labelsGroup.push({
                             label,
                             itemCount: 1,
-                            amountSummary: transaction.amount
+                            amountSummary: amount
                         });
                     } else {
                         labelGroup.itemCount++;
-                        labelGroup.amountSummary += transaction.amount;
+                        labelGroup.amountSummary += amount;
                     }
                 });
             } else {
                 withoutLabel.itemCount++;
-                withoutLabel.amountSummary += transaction.amount;
+                withoutLabel.amountSummary += amount;
             }
 
             return _labelsGroup;
