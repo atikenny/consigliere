@@ -7,7 +7,7 @@ import IconButton from 'components/common/icon-button';
 
 const Labels = ({ addLabel, itemCount, labels, removeLabel, showLabel }) => (
     <div className="labels-modal-container">
-        <h2 className="title">Choose a label to view, remove or apply:</h2>
+        <h2>Choose a label to view, remove or apply:</h2>
         <ul className="labels">
             {labels.map(label => (
                 <li key={label} className="item">
@@ -30,7 +30,7 @@ const Labels = ({ addLabel, itemCount, labels, removeLabel, showLabel }) => (
                 </li>
             ))}
         </ul>
-        <h2 className="item-count">The changes will affect {itemCount} items.</h2>
+        <h2>The changes will affect {itemCount} items.</h2>
     </div>
 );
 

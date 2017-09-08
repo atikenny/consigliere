@@ -13,7 +13,7 @@ describe('Labels component', () => {
 
     test('has a title heading', () => {
         const SUT = shallow(<Labels labels={[]} />);
-        const title = SUT.find('.labels-modal-container h2.title');
+        const title = SUT.find('.labels-modal-container h2').at(0);
 
         expect(title.text()).toBe('Choose a label to view, remove or apply:');
     });
@@ -77,7 +77,7 @@ describe('Labels component', () => {
     test('has an item count heading', () => {
         const itemCount = 123;
         const SUT = shallow(<Labels labels={[]} itemCount={itemCount} />);
-        const itemCountHeading = SUT.find('.labels-modal-container h2.item-count');
+        const itemCountHeading = SUT.find('.labels-modal-container h2').at(1);
 
         expect(itemCountHeading.text()).toBe(`The changes will affect ${itemCount} items.`);
     });
