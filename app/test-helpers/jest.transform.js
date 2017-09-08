@@ -17,16 +17,20 @@ module.exports = require('babel-jest').createTransformer({
                     'expose': 'components'
                 },
                 {
+                    'src': './app/client/constants',
+                    'expose': 'constants'
+                },
+                {
                     'src': './app/client/components',
                     'expose': 'containers'
                 },
                 {
-                    "src": "./app/client/actions",
-                    "expose": "actions"
+                    'src': './app/client/actions',
+                    'expose': 'actions'
                 },
                 {
-                    "src": "./app/client/selectors",
-                    "expose": "selectors"
+                    'src': './app/client/selectors',
+                    'expose': 'selectors'
                 },
                 {
                     'src': './app/client/services',

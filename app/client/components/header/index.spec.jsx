@@ -18,18 +18,10 @@ describe('Header component', () => {
         expect(heading.text()).toBe('Consigliere');
     });
 
-    test('has labels icon', () => {
+    test('has the controllers', () => {
         const SUT = shallow(<Header />);
-        const labelsIcon = SUT.find('.controllers IconButton');
+        const controllers = SUT.find('Controllers');
 
-        expect(labelsIcon.prop('type')).toBe('price-tags');
-    });
-
-    test('calls toggle labels when labels icon is clicked', () => {
-        const toggleLabels = () => {};
-        const SUT = shallow(<Header toggleLabels={toggleLabels} />);
-        const labelsIcon = SUT.find('.controllers IconButton');
-
-        expect(labelsIcon.prop('onClick')).toBe(toggleLabels);
+        expect(controllers.length).toBe(1);
     });
 });

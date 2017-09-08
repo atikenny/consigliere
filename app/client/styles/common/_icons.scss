@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-[class^="icon"], [class*=" icon"] {
+.icon {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
     color: inherit;
@@ -23,84 +23,97 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
 
-.icon.price-tags:before {
-    content: "\e936";
-}
+    // ICON TYPES
+    &.calendar:before {
+        content: "\e953";
+    }
 
-.icon.coin-dollar:before {
-    content: "\e93b";
-}
+    &.eye:before {
+        content: "\e9ce";
+    }
 
-.icon.coin-euro:before {
-    content: "\e93c";
-}
+    &.price-tag:before {
+        content: "\e935";
+    }
 
-.icon.coin-pound:before {
-    content: "\e93d";
-}
+    &.price-tags:before {
+        content: "\e936";
+    }
 
-.icon.coin-yen:before {
-    content: "\e93e";
-}
+    &.coin-dollar:before {
+        content: "\e93b";
+    }
 
-.icon.credit-card:before {
-    content: "\e93f";
-}
+    &.coin-euro:before {
+        content: "\e93c";
+    }
 
-.icon.calendar:before {
-    content: "\e953";
-}
+    &.coin-pound:before {
+        content: "\e93d";
+    }
 
-.icon.upload:before {
-    content: "\e961";
-}
+    &.coin-yen:before {
+        content: "\e93e";
+    }
 
-.icon.undo:before {
-    content: "\e965";
-}
+    &.credit-card:before {
+        content: "\e93f";
+    }
 
-.icon.redo:before {
-    content: "\e966";
-}
+    &.upload:before {
+        content: "\e961";
+    }
 
-.icon.search:before {
-    content: "\e986";
-}
+    &.undo:before {
+        content: "\e965";
+    }
 
-.icon.cog:before {
-    content: "\e994";
-}
+    &.redo:before {
+        content: "\e966";
+    }
 
-.icon.menu:before {
-    content: "\e9bd";
-}
+    &.search:before {
+        content: "\e986";
+    }
 
-.icon.star-full:before {
-    content: "\e9d9";
-}
+    &.cog:before {
+        content: "\e994";
+    }
 
-.icon.plus:before {
-    content: "\ea0a";
-}
+    &.menu:before {
+        content: "\e9bd";
+    }
 
-.icon.minus:before {
-    content: "\ea0b";
-}
+    &.star-full:before {
+        content: "\e9d9";
+    }
 
-.icon.cross:before {
-    content: "\ea0f";
-}
+    &.plus:before {
+        content: "\ea0a";
+    }
 
-.icon.checkmark:before {
-    content: "\ea10";
-}
+    &.minus:before {
+        content: "\ea0b";
+    }
 
-.icon.floppy-disk:before {
-    content: "\e962";
-}
+    &.cross:before {
+        content: "\ea0f";
+    }
 
-.icon.files-empty:before {
-    content: "\e925";
+    &.checkmark:before {
+        content: "\ea10";
+    }
+
+    &.floppy-disk:before {
+        content: "\e962";
+    }
+
+    &.files-empty:before {
+        content: "\e925";
+    }
+
+    &.stats-dots:before {
+        content: "\e99b";
+    }
 }

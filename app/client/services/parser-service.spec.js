@@ -43,6 +43,13 @@ describe('parser-service', () => {
             debitTransaction[lloydsFormat.typeKey] = 'DEB';
             debitTransaction[lloydsFormat.descriptionKey] = 'debit transaction description';
 
+            let similarDebitTransaction = {};
+
+            similarDebitTransaction[lloydsFormat.dateKey] = '02/03/2017';
+            similarDebitTransaction[lloydsFormat.debitAmountKey] = '123.4';
+            similarDebitTransaction[lloydsFormat.typeKey] = 'DEB';
+            similarDebitTransaction[lloydsFormat.descriptionKey] = 'debit transaction description';
+
             let creditTransaction = {};
 
             creditTransaction[lloydsFormat.dateKey] = '31/12/2018';
@@ -50,7 +57,7 @@ describe('parser-service', () => {
             creditTransaction[lloydsFormat.typeKey] = 'DEP';
             creditTransaction[lloydsFormat.descriptionKey] = 'credit transaction description';
 
-            const transactions = [debitTransaction, creditTransaction];
+            const transactions = [debitTransaction, similarDebitTransaction, creditTransaction];
 
             expect(mapTransactions(lloydsFormat, transactions)).toEqual([
                 {
@@ -59,10 +66,18 @@ describe('parser-service', () => {
                     date: new Date('2017-02-01'),
                     transactionType: 'debit',
                     description: 'debit transaction description',
-                    similarCount: 0
+                    similarCount: 1
                 },
                 {
                     id: 1,
+                    amount: 123.4,
+                    date: new Date('2017-03-02'),
+                    transactionType: 'debit',
+                    description: 'debit transaction description',
+                    similarCount: 1
+                },
+                {
+                    id: 2,
                     amount: 1234,
                     date: new Date('2018-12-31'),
                     transactionType: 'credit',

@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { NO_LABEL_NAME } from 'constants/labels';
 
 const getFilter = (state) => state.transactions.filter;
 
@@ -19,13 +20,17 @@ const isFiltered = (filter, transaction) => {
 };
 
 const hasLabel = (filter, transaction) => {
+    if (filter === NO_LABEL_NAME) {
+        return !transaction.labels || !transaction.labels.length;
+    }
+
     return transaction.labels && transaction.labels.some(label => {
         return label.indexOf(filter) !== -1;
     });
 };
 
 const hasDescription = (filter, { description }) => {
-    return description && description.toUpperCase() === filter.toUpperCase();
+    return description && description.toUpperCase().indexOf(filter.toUpperCase()) > -1;
 };
 
 export const getFilteredTransactions = createSelector(
@@ -36,12 +41,17 @@ export const getFilteredTransactions = createSelector(
 export const getLabels = createSelector(
     [getTransactions],
     (transactions) => {
-        return transactions.reduce((labels, transaction) => {
-            const concatLabels = labels.concat(transaction.labels || []);
-            const uniqueLabels = new Set(concatLabels);
+        const labels = transactions.reduce((_labels, transaction) => {
+            const concatLabels = _labels.concat(transaction.labels || []);
+            const uniqueLabels = Array.from(new Set(concatLabels));
 
-            return Array.from(uniqueLabels);
+
+            return uniqueLabels;
         }, []);
+        
+        labels.push(NO_LABEL_NAME);
+
+        return labels;
     }
 );
 
@@ -51,3 +61,62 @@ export const getFilteredTransactionsCount = createSelector(
         return filterTransactions(filter, transactions).length;
     }
 );
+
+export const getLabelsStats = createSelector(
+    [getFilter, getTransactions],
+    (filter, transactions) => {
+        const filteredTransactions = filterTransactions(filter, transactions);
+
+        let withoutLabel = {
+            label: NO_LABEL_NAME,
+            itemCount: 0,
+            amountSummary: 0
+        };
+
+        const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
+            if (transaction.labels.length) {
+                transaction.labels.forEach(label => {
+                    const labelGroup = _labelsGroup.find(group => group.label === label);
+
+                    if (!labelGroup) {
+                        _labelsGroup.push({
+                            label,
+                            itemCount: 1,
+                            amountSummary: transaction.amount
+                        });
+                    } else {
+                        labelGroup.itemCount++;
+                        labelGroup.amountSummary += transaction.amount;
+                    }
+                });
+            } else {
+                withoutLabel.itemCount++;
+                withoutLabel.amountSummary += transaction.amount;
+            }
+
+            return _labelsGroup;
+        }, []);
+
+        if (withoutLabel.itemCount) {
+            labelsGroup.push(withoutLabel);
+        }
+
+        const sorterFunction = sortByStringProperty('label');
+
+        return labelsGroup.sort(sorterFunction);
+    }
+);
+
+const sortByStringProperty = (propertyName) => {
+    return (a, b) => {
+        if (a[propertyName] < b[propertyName]) {
+            return -1;
+        }
+
+        if (a[propertyName] > b[propertyName]) {
+            return 1;
+        }
+
+        return 0;
+    };
+};

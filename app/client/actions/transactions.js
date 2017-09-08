@@ -48,3 +48,10 @@ export const addLabelMultiple = (label) => {
         label
     };
 };
+
+export const removeLabelMultiple = (label) => {
+    return {
+        type: 'REMOVE_LABEL_MULTIPLE',
+        label
+    };
+};

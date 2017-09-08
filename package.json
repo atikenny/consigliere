@@ -69,7 +69,7 @@
       "^.+\\.scss$": "jest-css-modules"
     },
     "moduleNameMapper": {
-      "\\.(eot|otf|webp|svg|ttf|woff|woff2|scss|css|html)$": "<rootDir>/test-helpers/file-mock.js"
+      "\\.(eot|otf|webp|svg|ttf|woff|woff2|html)$": "<rootDir>/test-helpers/file-mock.js"
     },
     "moduleFileExtensions": [
       "js",
@@ -78,6 +78,9 @@
     ],
     "moduleDirectories": [
       "node_modules"
+    ],
+    "modulePathIgnorePatterns": [
+      "styles"
     ],
     "collectCoverage": true,
     "coverageDirectory": "public/coverage",

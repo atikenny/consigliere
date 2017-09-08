@@ -1,9 +1,19 @@
-const modal = (state = { show: false, page: null }, action) => {
+const initialState = {
+    show: false,
+    page: undefined
+};
+
+const modal = (state = initialState, action) => {
     switch (action.type) {
-        case 'TOGGLE_MODAL':
+        case 'SHOW_MODAL':
             return {
-                show: !state.show,
+                show: true,
                 page: action.page
+            };
+        case 'HIDE_MODAL':
+            return {
+                show: false,
+                page: undefined
             };
         default:
             return state;

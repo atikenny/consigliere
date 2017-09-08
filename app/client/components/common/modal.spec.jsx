@@ -24,4 +24,11 @@ describe('Modal component', () => {
 
         expect(labels.length).toBe(1);
     });
+
+    test('renders stats component when page is selected', () => {
+        const SUT = shallow(<Modal show page="stats" />);
+        const labels = SUT.find('Stats');
+
+        expect(labels.length).toBe(1);
+    });
 });

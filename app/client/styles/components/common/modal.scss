@@ -11,8 +11,5 @@
     left: 0;
     background-color: $light-bg-color;
     padding: $gutter-size;
-
-    .title {
-        margin: $gutter-size * 2 0;
-    }
+    overflow-y: auto;
 }

@@ -1,0 +1,24 @@
+@import '../../common/colors';
+@import '../../common/variables';
+
+.labels-group {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size--medium;
+
+    .item {
+        border-bottom: 1px solid $border-color--lightest;
+
+        &:nth-child(odd) {
+            background-color: $bg-color-brand--lightest;
+        }
+    }
+
+    td {
+        padding: $gutter-size;
+    }
+
+    .label {
+        font-weight: bold;
+    }
+}
