@@ -27,4 +27,14 @@ describe('TransactionFooter component', () => {
 
         expect(toggleLabels.mock.calls.length).toBe(1);
     });
+
+    test('shows similar count button when it is higher than zero', () => {
+        const similarCount = 123;
+        const onSimilarCountClick = () => {};
+        const transactionFooter = shallow(<TransactionFooter similarCount={similarCount} onSimilarCountClick={onSimilarCountClick} />);
+        const similarCountButton = transactionFooter.find('Button');
+
+        expect(similarCountButton.prop('text')).toBe(`${similarCount} similar`);
+        expect(similarCountButton.prop('onClick')).toBe(onSimilarCountClick);
+    });
 });

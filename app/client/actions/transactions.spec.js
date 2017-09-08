@@ -5,7 +5,8 @@ import {
     deleteLabel,
     setNewLabelValue,
     setFilter,
-    addLabelMultiple
+    addLabelMultiple,
+    removeLabelMultiple
 } from './transactions';
 
 describe('transactions actions', () => {
@@ -72,6 +73,15 @@ describe('transactions actions', () => {
 
         expect(addLabelMultiple(label)).toEqual({
             type: 'ADD_LABEL_MULTIPLE',
+            label
+        });
+    });
+
+    test('remove multiple label returns action object', () => {
+        const label = 'label';
+
+        expect(removeLabelMultiple(label)).toEqual({
+            type: 'REMOVE_LABEL_MULTIPLE',
             label
         });
     });

@@ -74,8 +74,6 @@ const item = (state, action) => {
                     ...labels.slice(labelIndex + 1)
                 ]
             });
-        default:
-            return state;
     }
 };
 
