@@ -10,7 +10,15 @@
     }
 
     .item {
+        display: flex;
+        align-items: center;
         border-bottom: 1px solid $border-color--lightest;
+
+        .text {
+            flex-grow: 1;
+            font-size: $font-size--medium;
+            padding: $gutter-size;
+        }
 
         .button {
             padding: $gutter-size;

@@ -18,25 +18,61 @@ describe('Labels component', () => {
         expect(title.text()).toBe('Choose a label to apply:');
     });
 
-    test('has a list of labels', () => {
-        const labels = ['label 1'];
-        const addLabel = jest.fn();
-        const SUT = shallow(<Labels labels={labels} addLabel={addLabel} />);
-        const labelsList = SUT.find('.labels-modal-container .labels');
-        const labelItems = labelsList.find('.item');
-        const firstLabel = labelItems.at(0);
-        const firstButton = firstLabel.find('Button');
+    describe('labels list', () => {
+        test('has a text span', () => {
+            const labels = ['label 1'];
+            const SUT = shallow(<Labels labels={labels} />);
+            const labelsList = SUT.find('.labels-modal-container .labels');
+            const labelItems = labelsList.find('.item');
+            const firstLabel = labelItems.at(0);
+            const firstText = firstLabel.find('.text');
 
-        expect(labelsList.length).toBe(1);
-        expect(firstButton.prop('isFullSize')).toBe(true);
-        expect(firstButton.prop('text')).toBe(labels[0]);
+            expect(firstText.text()).toBe(labels[0]);
+        });
 
-        // WHEN
-        firstButton.simulate('click');
+        test('has a show label button', () => {
+            const labels = ['label 1'];
+            const showLabel = jest.fn();
+            const SUT = shallow(<Labels labels={labels} showLabel={showLabel} />);
+            const labelsList = SUT.find('.labels-modal-container .labels');
+            const labelItems = labelsList.find('.item');
+            const firstLabel = labelItems.at(0);
+            const showLabelButton = firstLabel.find('IconButton[type="eye"]');
 
-        // THEN
-        expect(addLabel.mock.calls[0]).toEqual([labels[0]]);
+            showLabelButton.simulate('click');
+
+            expect(showLabel.mock.calls[0]).toEqual([labels[0]]);
+        });
+
+        test('has a remove label button', () => {
+            const labels = ['label 1'];
+            const removeLabel = jest.fn();
+            const SUT = shallow(<Labels labels={labels} removeLabel={removeLabel} />);
+            const labelsList = SUT.find('.labels-modal-container .labels');
+            const labelItems = labelsList.find('.item');
+            const firstLabel = labelItems.at(0);
+            const removeLabelButton = firstLabel.find('IconButton[type="minus"]');
+
+            removeLabelButton.simulate('click');
+
+            expect(removeLabel.mock.calls[0]).toEqual([labels[0]]);
+        });
+
+        test('has a add label button', () => {
+            const labels = ['label 1'];
+            const addLabel = jest.fn();
+            const SUT = shallow(<Labels labels={labels} addLabel={addLabel} />);
+            const labelsList = SUT.find('.labels-modal-container .labels');
+            const labelItems = labelsList.find('.item');
+            const firstLabel = labelItems.at(0);
+            const addLabelButton = firstLabel.find('IconButton[type="plus"]');
+
+            addLabelButton.simulate('click');
+
+            expect(addLabel.mock.calls[0]).toEqual([labels[0]]);
+        });
     });
+
 
     test('has an item count heading', () => {
         const itemCount = 123;

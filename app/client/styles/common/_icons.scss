@@ -25,6 +25,18 @@
     -moz-osx-font-smoothing: grayscale;
 
     // ICON TYPES
+    &.calendar:before {
+        content: "\e953";
+    }
+
+    &.eye:before {
+        content: "\e9ce";
+    }
+
+    &.price-tag:before {
+        content: "\e935";
+    }
+
     &.price-tags:before {
         content: "\e936";
     }
@@ -47,10 +59,6 @@
 
     &.credit-card:before {
         content: "\e93f";
-    }
-
-    &.calendar:before {
-        content: "\e953";
     }
 
     &.upload:before {
