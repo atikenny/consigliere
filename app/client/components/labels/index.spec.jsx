@@ -7,7 +7,7 @@ describe('Labels component', () => {
     const render = ({
         labels = undefined,
         onClick = () => {},
-        transactionId = 123
+        transactionId = '123'
     } = {}) => (
         shallow(
             <Labels
@@ -45,7 +45,7 @@ describe('Labels component', () => {
 
     test('has a label input', () => {
         const onClick = () => {};
-        const transactionId = 123;
+        const transactionId = '123';
         const labels = render({ transactionId, onClick });
         const labelInput = labels.find('LabelInput');
 
