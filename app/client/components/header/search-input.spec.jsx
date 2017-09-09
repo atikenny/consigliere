@@ -2,7 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import SearchInput from './search-input';
+
 import * as keyboardService from 'services/keyboard-service';
+import SearchSuggestions from 'containers/header/search-suggestions';
 
 describe('Seacrh Input component', () => {
     describe('input', () => {
@@ -95,7 +97,7 @@ describe('Seacrh Input component', () => {
 
     test('has search suggestions', () => {
         const SUT = shallow(<SearchInput />);
-        const suggestions = SUT.find('.search-container SearchSuggestions');
+        const suggestions = SUT.find(SearchSuggestions);
 
         expect(suggestions.length).toBe(1);
     });

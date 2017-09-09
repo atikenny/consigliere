@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 
 import Labels from './index';
 
+import LabelItem from 'containers/labels/label-item';
+import LabelInput from 'containers/labels/label-input';
+
 describe('Labels component', () => {
     const render = ({
         labels = undefined,
@@ -36,7 +39,7 @@ describe('Labels component', () => {
         const label2 = 'name2';
         const labelsProp = [label1, label2];
         const labels = render({ labels: labelsProp });
-        const labelItems = labels.find('li > LabelItem');
+        const labelItems = labels.find(LabelItem);
 
         expect(labelItems.length).toBe(labelsProp.length);
         expect(labelItems.at(0).prop('name')).toEqual(label1);
@@ -47,7 +50,7 @@ describe('Labels component', () => {
         const onClick = () => {};
         const transactionId = '123';
         const labels = render({ transactionId, onClick });
-        const labelInput = labels.find('LabelInput');
+        const labelInput = labels.find(LabelInput);
 
         expect(labelInput.prop('transactionId')).toBe(transactionId);
         expect(labelInput.prop('onClick')).toBe(onClick);

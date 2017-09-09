@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import 'styles/components/header/search-suggestions';
-import SearchSuggestions from 'components/header/search-suggestions';
+import Suggestions from 'components/common/suggestions';
 import { concatUnique } from 'services/array-service';
 import { edit } from 'actions/filter';
 import { setFilter } from 'actions/transactions';
@@ -37,4 +36,4 @@ const mapDispatch = (dispatch) => {
     }
 };
 
-export default connect(mapState, mapDispatch)(SearchSuggestions);
+export default connect(mapState, mapDispatch)(Suggestions);

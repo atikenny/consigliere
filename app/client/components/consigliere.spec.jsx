@@ -3,6 +3,12 @@ import { shallow } from 'enzyme';
 
 import Consigliere from './consigliere';
 
+import Content from 'containers/content';
+import FileInput from 'containers/file-input';
+import Transactions from 'containers/transactions';
+import Notification from 'containers/common/notification';
+import Modal from 'containers/common/modal';
+
 describe('Consigliere component', () => {
     test('has a container with an id', () => {
         const consigliere = shallow(<Consigliere />);
@@ -11,30 +17,37 @@ describe('Consigliere component', () => {
         expect(container.length).toBe(1);
     });
 
+    test('has a content component', () => {
+        const consigliere = shallow(<Consigliere />);
+        const content = consigliere.find(Content);
+
+        expect(content.length).toBe(1);
+    });
+
     test('has a file input', () => {
         const consigliere = shallow(<Consigliere />);
-        const fileInput = consigliere.find('FileInput');
+        const fileInput = consigliere.find(FileInput);
 
         expect(fileInput.length).toBe(1);
     });
 
     test('has transactions component', () => {
         const consigliere = shallow(<Consigliere />);
-        const transactions = consigliere.find('Transactions');
+        const transactions = consigliere.find(Transactions);
 
         expect(transactions.length).toBe(1);
     });
 
     test('has notification component', () => {
         const consigliere = shallow(<Consigliere />);
-        const notification = consigliere.find('Notification');
+        const notification = consigliere.find(Notification);
 
         expect(notification.length).toBe(1);
     });
 
-    test('has notification component', () => {
+    test('has modal component', () => {
         const consigliere = shallow(<Consigliere />);
-        const modal = consigliere.find('Modal');
+        const modal = consigliere.find(Modal);
 
         expect(modal.length).toBe(1);
     });

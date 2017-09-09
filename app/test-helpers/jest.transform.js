@@ -21,7 +21,7 @@ module.exports = require('babel-jest').createTransformer({
                     'expose': 'constants'
                 },
                 {
-                    'src': './app/client/components',
+                    'src': './app/client/containers',
                     'expose': 'containers'
                 },
                 {
