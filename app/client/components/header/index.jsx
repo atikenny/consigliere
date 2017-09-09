@@ -7,7 +7,7 @@ import Controllers from 'containers/header/controllers';
 const Header = () => (
     <header>
         <h1>Consigliere</h1>
-        <SearchInput />
+        <SearchInput suggestionId="header-search" />
         <Controllers />
     </header>
 );

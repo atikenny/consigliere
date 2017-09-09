@@ -1,11 +1,13 @@
-export const open = () => {
+export const open = (id) => {
     return {
-        type: 'OPEN_SUGGESTIONS'
+        type: 'OPEN_SUGGESTIONS',
+        id
     };
 };
 
-export const close = () => {
+export const close = (id) => {
     return {
-        type: 'CLOSE_SUGGESTIONS'
+        type: 'CLOSE_SUGGESTIONS',
+        id
     };
 };

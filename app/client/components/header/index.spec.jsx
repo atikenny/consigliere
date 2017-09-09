@@ -26,6 +26,7 @@ describe('Header component', () => {
         const searchInput = SUT.find(SearchInput);
 
         expect(searchInput.length).toBe(1);
+        expect(searchInput.prop('suggestionId')).toBe('header-search');
     });
 
     test('has the controllers', () => {

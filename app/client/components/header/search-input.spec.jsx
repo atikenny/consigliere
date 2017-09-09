@@ -99,6 +99,6 @@ describe('Seacrh Input component', () => {
         const SUT = shallow(<SearchInput />);
         const suggestions = SUT.find(SearchSuggestions);
 
-        expect(suggestions.length).toBe(1);
+        expect(suggestions.prop('suggestionId')).toBe('header-search');
     });
 });

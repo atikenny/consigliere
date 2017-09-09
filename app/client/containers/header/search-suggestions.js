@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 
-import Suggestions from 'components/common/suggestions';
+import Suggestions from 'containers/common/suggestions';
 import { concatUnique } from 'services/array-service';
 import { edit } from 'actions/filter';
 import { setFilter } from 'actions/transactions';
 
-const mapState = ({ transactions, filter, suggestions }) => {
+const mapState = ({ transactions, filter }) => {
     const { items } = transactions;
-    const { isOpen } = suggestions;
     let suggestionList;
 
     if (filter) {
@@ -22,8 +21,7 @@ const mapState = ({ transactions, filter, suggestions }) => {
     }
 
     return {
-        suggestions: suggestionList,
-        isOpen
+        suggestions: suggestionList
     };
 };
 

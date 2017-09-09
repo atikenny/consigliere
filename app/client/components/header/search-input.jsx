@@ -25,7 +25,7 @@ const SearchInput = ({ onBlur, onChange, onFocus, filter, search }) => (
                 search(filter);
             }} />
         </div>
-        <SearchSuggestions />
+        <SearchSuggestions suggestionId="header-search" />
     </div>
 );
 
