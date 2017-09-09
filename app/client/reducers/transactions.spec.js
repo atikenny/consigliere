@@ -13,6 +13,25 @@ describe('transactions reducer', () => {
 
     test('handles load transactions action', () => {
         const initialState = {
+            items: [{ id: 'existing item' }],
+            filter: ''
+        };
+        const action = {
+            type: 'LOAD_TRANSACTIONS',
+            transactions: [{ id: 'existing item' }, { id: 'new item' }]
+        };
+
+        deepFreeze(initialState);
+
+        expect(transactions(initialState, action)).toEqual({
+            items: [{ id: 'existing item' }, { id: 'new item' }],
+            filter: '',
+            isLabelsOpen: false
+        });
+    });    
+
+    test('handles load transactions action with existing items', () => {
+        const initialState = {
             items: [],
             filter: ''
         };

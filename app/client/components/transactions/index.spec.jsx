@@ -10,7 +10,7 @@ describe('Transactions component', () => {
         return ({ withLabels } = {}) => {
             const newIndex = index++;
             const mockTransaction = {
-                id: newIndex,
+                id: `${newIndex}`,
                 amount: newIndex,
                 currency: `currency${newIndex}`,
                 date: `date${newIndex}`,
