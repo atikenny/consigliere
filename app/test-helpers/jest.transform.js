@@ -35,6 +35,10 @@ module.exports = require('babel-jest').createTransformer({
                 {
                     'src': './app/client/services',
                     'expose': 'services'
+                },
+                {
+                    'src': './app/test-helpers',
+                    'expose': 'test-helpers'
                 }
             ]
         ]

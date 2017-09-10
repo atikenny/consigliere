@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 
 import Suggestions from 'components/common/suggestions';
+import { isSuggestionOpen } from 'selectors/suggestions';
 
-const mapState = ({ suggestions }, { suggestionId }) => {
-    const suggestion = suggestions.find(suggestion => suggestion.id === suggestionId);
-    const isOpen = suggestion.isOpen || false;
-
+const mapState = (state, { suggestionId }) => {
     return {
-        isOpen
+        isOpen: isSuggestionOpen(state, suggestionId)
     };
 };
 
