@@ -96,9 +96,10 @@ describe('Seacrh Input component', () => {
     });
 
     test('has search suggestions', () => {
-        const SUT = shallow(<SearchInput />);
+        const suggestionId = 'suggestionId';
+        const SUT = shallow(<SearchInput suggestionId={suggestionId} />);
         const suggestions = SUT.find(SearchSuggestions);
 
-        expect(suggestions.prop('suggestionId')).toBe('header-search');
+        expect(suggestions.prop('suggestionId')).toBe(suggestionId);
     });
 });
