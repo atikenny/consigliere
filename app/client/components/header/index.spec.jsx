@@ -14,11 +14,12 @@ describe('Header component', () => {
         expect(header.length).toBe(1);
     });
 
-    test('has an h1', () => {
+    test('has a menu icon button', () => {
         const SUT = shallow(<Header />);
-        const heading = SUT.find('header h1');
+        const iconButton = SUT.find('header IconButton');
 
-        expect(heading.text()).toBe('Consigliere');
+        expect(iconButton.prop('type')).toBe('menu');
+        expect(iconButton.hasClass('menu-button')).toBe(true);
     });
 
     test('has a search input', () => {

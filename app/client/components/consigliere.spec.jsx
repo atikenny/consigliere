@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import Consigliere from './consigliere';
 
+import Header from 'containers/header';
 import Content from 'containers/content';
 import FileInput from 'containers/file-input';
 import Transactions from 'containers/transactions';
@@ -15,6 +16,13 @@ describe('Consigliere component', () => {
         const container = consigliere.find('#consigliere');
 
         expect(container.length).toBe(1);
+    });
+
+    test('has a header component', () => {
+        const consigliere = shallow(<Consigliere />);
+        const header = consigliere.find(Header);
+
+        expect(header.length).toBe(1);
     });
 
     test('has a content component', () => {
