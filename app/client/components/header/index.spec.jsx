@@ -15,11 +15,13 @@ describe('Header component', () => {
     });
 
     test('has a menu icon button', () => {
-        const SUT = shallow(<Header />);
+        const toggleMenu = () => {};
+        const SUT = shallow(<Header toggleMenu={toggleMenu} />);
         const iconButton = SUT.find('header IconButton');
 
         expect(iconButton.prop('type')).toBe('menu');
         expect(iconButton.hasClass('menu-button')).toBe(true);
+        expect(iconButton.prop('onClick')).toBe(toggleMenu);
     });
 
     test('has a search input', () => {

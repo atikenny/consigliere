@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from 'containers/header';
+import SubMenu from 'containers/sub-menu';
 import Content from 'containers/content';
 import FileInput from 'containers/file-input';
 import Transactions from 'containers/transactions';
@@ -10,6 +11,7 @@ import Modal from 'containers/common/modal';
 const Consigliere = () => (
     <div id="consigliere">
         <Header />
+        <SubMenu />
         <Content>
             <FileInput />
             <Transactions />
