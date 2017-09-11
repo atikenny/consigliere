@@ -1,0 +1,21 @@
+@import '../../mixins/shadow';
+@import '../../common/z-indexes';
+@import '../../common/colors';
+@import '../../common/variables';
+
+.sub-menu-container {
+    @include bottom-shadow;
+
+    transform: translateY(-100%);
+    transition: all ease .8s;
+    position: absolute;
+    z-index: $z-index--higher;
+    background-color: lighten($brand-color, 20%);
+    width: 100%;
+    box-sizing: border-box;
+    padding: $gutter-size / 2 $gutter-size;
+
+    &.show {
+        transform: translateY(0);
+    }
+}

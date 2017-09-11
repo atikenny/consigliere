@@ -6,7 +6,7 @@ import IconButton from 'components/common/icon-button';
 import SearchSuggestions from 'containers/header/search-suggestions';
 import { onSpecificKey } from 'services/keyboard-service';
 
-const SearchInput = ({ onBlur, onChange, onFocus, filter, search }) => (
+const SearchInput = ({ onBlur, onChange, onFocus, filter, search, suggestionId }) => (
     <div className="search-container">
         <div className="input-icon-container">
             <input
@@ -25,7 +25,7 @@ const SearchInput = ({ onBlur, onChange, onFocus, filter, search }) => (
                 search(filter);
             }} />
         </div>
-        <SearchSuggestions />
+        <SearchSuggestions suggestionId={suggestionId} />
     </div>
 );
 
@@ -36,5 +36,6 @@ SearchInput.propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     filter: PropTypes.string,
-    search: PropTypes.func
+    search: PropTypes.func,
+    suggestionId: PropTypes.string
 };

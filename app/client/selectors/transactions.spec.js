@@ -1,11 +1,11 @@
+import { mockCreateSelector } from 'test-helpers/redux/reselect';
+
 import * as reselect from 'reselect';
 import { NO_LABEL_NAME } from 'constants/labels';
 
 describe('transactions selector', () => {
     beforeEach(() => {
-        reselect.createSelector = jest.fn((inputSelectors, resultFunc) => {
-            return resultFunc;
-        });
+        reselect.createSelector = mockCreateSelector();
     });
 
     test('getTransactions returns transaction items', () => {

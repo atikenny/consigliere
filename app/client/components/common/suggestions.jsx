@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import 'styles/components/common/suggestions';
+
 const getContainerClassName = (isOpen) => {
-    let containerClassName = 'search-suggestions-container';
+    let containerClassName = 'suggestions-container';
 
     if (isOpen) {
         containerClassName += ' open';
@@ -11,7 +13,7 @@ const getContainerClassName = (isOpen) => {
     return containerClassName;
 };
 
-const SearchSuggestions = ({ isOpen, onItemClick, suggestions }) => (
+const Suggestions = ({ isOpen, onItemClick, suggestions }) => (
     suggestions ? (
         <div className={getContainerClassName(isOpen)}>
             <ul className="suggestions">
@@ -30,9 +32,9 @@ const SearchSuggestions = ({ isOpen, onItemClick, suggestions }) => (
     ) : null
 );
 
-export default SearchSuggestions;
+export default Suggestions;
 
-SearchSuggestions.propTypes = {
+Suggestions.propTypes = {
     isOpen: PropTypes.bool,
     onItemClick: PropTypes.func,
     suggestions: PropTypes.array

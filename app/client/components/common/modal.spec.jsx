@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 
 import Modal from './modal';
 
+import Labels from 'containers/modals/labels';
+import Stats from 'containers/modals/stats';
+
 describe('Modal component', () => {
     test('renders container when show is true', () => {
         const SUT = shallow(<Modal show />);
@@ -20,14 +23,14 @@ describe('Modal component', () => {
 
     test('renders labels component when page is selected', () => {
         const SUT = shallow(<Modal show page="labels" />);
-        const labels = SUT.find('Labels');
+        const labels = SUT.find(Labels);
 
         expect(labels.length).toBe(1);
     });
 
     test('renders stats component when page is selected', () => {
         const SUT = shallow(<Modal show page="stats" />);
-        const labels = SUT.find('Stats');
+        const labels = SUT.find(Stats);
 
         expect(labels.length).toBe(1);
     });

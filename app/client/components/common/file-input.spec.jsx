@@ -8,10 +8,10 @@ import * as storageService from 'services/storage-service';
 
 describe('FileInput component', () => {
     test('has a file input', () => {
-        const fileInput = shallow(<FileInput />);
-        const input = fileInput.find('input');
+        const SUT = shallow(<FileInput />);
+        const fileInput = SUT.find('.file-input-container input');
 
-        expect(input.prop('type')).toBe('file');
+        expect(fileInput.prop('type')).toBe('file');
     });
 
     test('handles file upload', () => {

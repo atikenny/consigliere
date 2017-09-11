@@ -34,4 +34,12 @@ describe('IconButton compoennt', () => {
 
         expect(button.hasClass('active')).toBe(true);
     });
+
+    test('button has provided class', () => {
+        const classNameProp = 'classNameProp';
+        const iconButton = shallow(<IconButton className={classNameProp} />);
+        const button = iconButton.find('.button');
+
+        expect(button.hasClass(classNameProp)).toBe(true);
+    });
 });

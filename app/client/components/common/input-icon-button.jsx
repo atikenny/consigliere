@@ -15,6 +15,7 @@ const InputIconButton = ({
 }) => (
     <div className="input-icon-button">
         <input
+            autoComplete="on"
             type="text"
             className={inputClassName}
             onChange={onChange}

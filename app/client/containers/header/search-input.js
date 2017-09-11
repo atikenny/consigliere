@@ -8,21 +8,21 @@ import {
 } from 'actions/suggestions';
 import SearchInput from 'components/header/search-input';
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
     return {
         onChange: (value) => {
-            dispatch(open());
+            dispatch(open(ownProps.suggestionId));
             dispatch(edit(value));
         },
         onFocus: () => {
-            dispatch(open());
+            dispatch(open(ownProps.suggestionId));
         },
         onBlur: () => {
-            dispatch(close());
+            dispatch(close(ownProps.suggestionId));
         },
         search: (filter) => {
             dispatch(setFilter(filter));
-            dispatch(close());
+            dispatch(close(ownProps.suggestionId));
         }
     };
 };

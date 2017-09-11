@@ -6,6 +6,7 @@ import * as filter from './filter';
 import * as suggestions from './suggestions';
 import * as notification from './notification';
 import * as modal from './modal';
+import * as menu from './menu';
 
 describe('reducers', () => {
     test('combining reducers', () => {
@@ -17,6 +18,7 @@ describe('reducers', () => {
         suggestions.default = 'suggestions';
         notification.default = 'notification';
         modal.default = 'modal';
+        menu.default = 'menu';
 
         // WHEN
         const appReducers = require('./index').default;
@@ -30,7 +32,8 @@ describe('reducers', () => {
             filter: 'filter',
             suggestions: 'suggestions',
             notification: 'notification',
-            modal: 'modal'
+            modal: 'modal',
+            menu: 'menu'
         }]);
     });
 });

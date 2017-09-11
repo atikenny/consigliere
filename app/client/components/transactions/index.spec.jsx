@@ -3,6 +3,10 @@ import { shallow } from 'enzyme';
 
 import Transactions from './index';
 
+import TransactionItem from 'containers/transactions/transaction-item';
+import TransactionFooter from 'containers/transactions/transaction-footer';
+import Labels from 'containers/labels';
+
 describe('Transactions component', () => {
     const getMockTransaction = (() => {
         let index = 0;
@@ -40,7 +44,7 @@ describe('Transactions component', () => {
         ];
         const transactions = shallow(<Transactions transactions={transactionsProp} />);
         const container = transactions.find('.transactions-container');
-        const transactionItems = transactions.find('ul > li > TransactionItem');
+        const transactionItems = transactions.find(TransactionItem);
 
         expect(transactionItems.length).toBe(transactionsProp.length);
     });
@@ -51,7 +55,7 @@ describe('Transactions component', () => {
         ];
         const transactions = shallow(<Transactions transactions={transactionsProp} />);
         const container = transactions.find('.transactions-container');
-        const transactionFooters = transactions.find('ul > li > TransactionFooter');
+        const transactionFooters = transactions.find(TransactionFooter);
 
         expect(transactionFooters.length).toBe(transactionsProp.length);
     });
@@ -64,7 +68,7 @@ describe('Transactions component', () => {
         ];
         const transactions = shallow(<Transactions transactions={transactionsProp} />);
         const container = transactions.find('.transactions-container');
-        const labelsContainers = transactions.find('ul > li > Labels');
+        const labelsContainers = transactions.find(Labels);
 
         expect(labelsContainers.length).toBe(1);
         expect(labelsContainers.at(0).prop('labels')).toBe(transactionMock2.labels);
