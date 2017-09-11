@@ -4,9 +4,9 @@
 @import '../../common/z-indexes';
 
 header {
-    @include bottom-shadow;
-
     .main {
+        @include bottom-shadow;
+
         z-index: $z-index--highest;
         position: relative;
         background-color: $brand-color;

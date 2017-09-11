@@ -10,7 +10,7 @@
     transition: all ease .8s;
     position: absolute;
     z-index: $z-index--higher;
-    background-color: $brand-color;
+    background-color: lighten($brand-color, 20%);
     width: 100%;
     box-sizing: border-box;
     padding: $gutter-size / 2 $gutter-size;
