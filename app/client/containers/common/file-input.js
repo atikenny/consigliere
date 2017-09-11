@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FileInput from 'components/file-input';
+import FileInput from 'components/common/file-input';
 import { load } from 'actions/transactions';
 
 const mapDispatch = (dispatch) => {

@@ -5,6 +5,7 @@ import Header from './index';
 
 import SearchInput from 'containers/header/search-input';
 import Controllers from 'containers/header/controllers';
+import SubMenu from 'containers/header/sub-menu';
 
 describe('Header component', () => {
     test('has a header', () => {
@@ -37,5 +38,12 @@ describe('Header component', () => {
         const controllers = SUT.find(Controllers);
 
         expect(controllers.length).toBe(1);
+    });
+
+    test('has the controllers', () => {
+        const SUT = shallow(<Header />);
+        const subMenu = SUT.find(SubMenu);
+
+        expect(subMenu.length).toBe(1);
     });
 });

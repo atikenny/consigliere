@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import 'styles/components/common/file-input';
 import {
     parseCSV,
     mapTransactions,
     formats
 } from 'services/parser-service';
+import IconButton from 'components/common/icon-button';
 
 class FileInput extends Component {
     constructor(props) {
@@ -32,7 +34,10 @@ class FileInput extends Component {
 
     render() {
         return (
-            <input type="file" onChange={this.readFile} />
+            <div className="file-input-container">
+                <input type="file" ref={(node) => this.input = node} onChange={this.readFile} />
+                <IconButton type="upload" onClick={() => this.input.click()} />
+            </div>
         );
     }
 }
@@ -40,5 +45,6 @@ class FileInput extends Component {
 export default FileInput;
 
 FileInput.propTypes = {
-    onLoad: PropTypes.func
+    onLoad: PropTypes.func,
+    refProp: PropTypes.object
 };

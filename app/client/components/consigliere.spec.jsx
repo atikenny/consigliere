@@ -5,7 +5,6 @@ import Consigliere from './consigliere';
 
 import Header from 'containers/header';
 import Content from 'containers/content';
-import FileInput from 'containers/file-input';
 import Transactions from 'containers/transactions';
 import Notification from 'containers/common/notification';
 import Modal from 'containers/common/modal';
@@ -30,13 +29,6 @@ describe('Consigliere component', () => {
         const content = consigliere.find(Content);
 
         expect(content.length).toBe(1);
-    });
-
-    test('has a file input', () => {
-        const consigliere = shallow(<Consigliere />);
-        const fileInput = consigliere.find(FileInput);
-
-        expect(fileInput.length).toBe(1);
     });
 
     test('has transactions component', () => {

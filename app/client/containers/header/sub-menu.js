@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SubMenu from 'components/sub-menu';
+import SubMenu from 'components/header/sub-menu';
 
 const mapState = ({ menu }) => {
     return {

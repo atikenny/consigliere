@@ -6,16 +6,18 @@
 header {
     @include bottom-shadow;
 
-    z-index: $z-index--highest;
-    position: relative;
-    display: flex;
-    height: $header-height;
-    background-color: $brand-color;
-    box-sizing: border-box;
-    align-items: center;
-    padding: $gutter-size / 2 0;
+    .main {
+        z-index: $z-index--highest;
+        position: relative;
+        background-color: $brand-color;
+        padding: $gutter-size / 2 0;
+        height: $header-height;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
 
-    > * {
+    .main > * {
         margin-left: $gutter-size;
 
         &:last-child {
