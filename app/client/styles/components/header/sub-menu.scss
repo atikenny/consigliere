@@ -7,7 +7,7 @@
     @include bottom-shadow;
 
     transform: translateY(-100%);
-    transition: all ease .8s;
+    transition: all ease .4s;
     position: absolute;
     z-index: $z-index--higher;
     background-color: lighten($brand-color, 20%);

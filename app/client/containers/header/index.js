@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { toggle } from 'actions/menu';
 import Header from 'components/header';
 
+const mapState = ({ menu }) => {
+    return {
+        isMenuOpen: menu
+    };
+};
+
 const mapDispatch = (dispatch) => {
     return {
         toggleMenu: () => {
@@ -11,4 +17,4 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatch)(Header);
+export default connect(mapState, mapDispatch)(Header);

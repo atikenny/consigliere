@@ -21,7 +21,7 @@ export const parseCSV = (csv) => {
     return parsedCSV;
 };
 
-const transactionTypes = {
+export const transactionTypes = {
     credit: 'credit',
     debit: 'debit',
     income: 'income',

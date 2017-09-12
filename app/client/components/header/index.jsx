@@ -7,10 +7,11 @@ import SearchInput from 'containers/header/search-input';
 import Controllers from 'containers/header/controllers';
 import SubMenu from 'containers/header/sub-menu';
 
-const Header = ({ toggleMenu }) => (
+const Header = ({ toggleMenu, isMenuOpen }) => (
     <header>
         <div className="main">
             <IconButton
+                isActive={isMenuOpen}
                 className="menu-button"
                 type="menu"
                 onClick={toggleMenu} />
@@ -24,5 +25,6 @@ const Header = ({ toggleMenu }) => (
 export default Header;
 
 Header.propTypes = {
+    isMenuOpen: PropTypes.bool,
     toggleMenu: PropTypes.func
 };

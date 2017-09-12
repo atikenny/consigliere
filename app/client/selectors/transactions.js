@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+
+import { transactionTypes } from 'services/parser-service';
 import { NO_LABEL_NAME } from 'constants/labels';
 
 const getFilter = (state) => state.transactions.filter;
@@ -74,7 +76,8 @@ export const getLabelsStats = createSelector(
         };
 
         const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
-            const { labels, amount } = transaction;
+            const { labels, amount, transactionType } = transaction;
+            const signedAmount = getSignedAmount(transactionType, amount);
 
             if (labels && labels.length) {
                 labels.forEach(label => {
@@ -84,16 +87,16 @@ export const getLabelsStats = createSelector(
                         _labelsGroup.push({
                             label,
                             itemCount: 1,
-                            amountSummary: amount
+                            amountSummary: signedAmount
                         });
                     } else {
                         labelGroup.itemCount++;
-                        labelGroup.amountSummary += amount;
+                        labelGroup.amountSummary += signedAmount;
                     }
                 });
             } else {
                 withoutLabel.itemCount++;
-                withoutLabel.amountSummary += amount;
+                withoutLabel.amountSummary += signedAmount;
             }
 
             return _labelsGroup;
@@ -108,6 +111,16 @@ export const getLabelsStats = createSelector(
         return labelsGroup.sort(sorterFunction);
     }
 );
+
+const getSignedAmount = (transactionType, amount) => {
+    switch (transactionType) {
+        case transactionTypes.credit:
+        case transactionTypes.income:
+            return -1 * amount;
+        default:
+            return amount;
+    }
+};
 
 const sortByStringProperty = (propertyName) => {
     return (a, b) => {
