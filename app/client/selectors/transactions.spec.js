@@ -1,7 +1,8 @@
+import * as reselect from 'reselect';
 import { mockCreateSelector } from 'test-helpers/redux/reselect';
 
-import * as reselect from 'reselect';
 import { NO_LABEL_NAME } from 'constants/labels';
+import { transactionTypes } from 'services/parser-service';
 
 describe('transactions selector', () => {
     beforeEach(() => {
@@ -123,6 +124,32 @@ describe('transactions selector', () => {
 
         // WHEN
         const result = getLabelsStats(undefined, transactions);
+
+        // THEN
+        expect(result).toEqual([
+            { label: NO_LABEL_NAME, amountSummary: 1, itemCount: 1 },
+            { label: 'label 1', amountSummary: 2, itemCount: 2 },
+            { label: 'label 2', amountSummary: 2, itemCount: 2 },
+            { label: 'label 3', amountSummary: 1, itemCount: 1 }
+        ]);
+    });
+
+    test('getLabelsStats return handles credit and income', () => {
+        // GIVEN
+        const transactions = [
+            { amount: 2, labels: ['label 1'] },
+            { amount: 1, labels: ['label 1'], transactionType: transactionTypes.credit },
+            { amount: 1, labels: ['label 1'], transactionType: transactionTypes.income }
+        ];
+        const getLabelsStats = require('./transactions').getLabelsStats;
+
+        // WHEN
+        const result = getLabelsStats(undefined, transactions);
+
+        // THEN
+        expect(result).toEqual([
+            { label: 'label 1', amountSummary: 0, itemCount: 3 }
+        ]);
     });
 
     test('getLabelsStats return labels stats for the filtered transactions', () => {
