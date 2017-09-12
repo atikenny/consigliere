@@ -2,20 +2,23 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import TransactionItem from './transaction-item';
-import * as dateService from '../../services/date-service';
+import * as dateService from 'services/date-service';
+import { transactionTypes } from 'services/parser-service';
 
 describe('TransactionItem component', () => {
     const render = ({
         amount = 0,
         currency = '',
         date = '',
-        description
+        description,
+        transactionType
     } = {}) => shallow(
         <TransactionItem
             amount={amount}
             currency={currency}
             date={date}
-            description={description} />
+            description={description}
+            transactionType={transactionType} />
     );
 
     test('has a container with two rows', () => {
@@ -25,6 +28,20 @@ describe('TransactionItem component', () => {
 
         expect(container.length).toBe(1);
         expect(rows.length).toBe(2);
+    });
+
+    test('has a credit class when transaction type is income', () => {
+        const transactionItem = render({ transactionType: transactionTypes.income });
+        const container = transactionItem.find('.transaction-item');
+
+        expect(container.hasClass('credit')).toBe(true);
+    });
+
+    test('has a credit class when transaction type is credit', () => {
+        const transactionItem = render({ transactionType: transactionTypes.credit });
+        const container = transactionItem.find('.transaction-item');
+
+        expect(container.hasClass('credit')).toBe(true);
     });
 
     test('first row has the desc and formatted date', () => {

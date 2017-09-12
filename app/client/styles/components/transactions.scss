@@ -32,6 +32,12 @@
             font-size: 1.4em;
             font-weight: bold;
             margin-top: $gutter-size;
+        }        
+
+        &.credit {
+            .amount {
+                color: $credit-text-color;
+            }
         }
     }
 }
