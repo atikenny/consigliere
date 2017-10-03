@@ -27,7 +27,8 @@ export const transactionTypes = {
     income: 'income',
     standingOrder: 'standing order',
     directDebit: 'direct debit',
-    bankingFee: 'banking fee'
+    bankingFee: 'banking fee',
+    cashDeposit: 'cash deposit'
 };
 
 export const formats = {
@@ -52,7 +53,8 @@ export const formats = {
             'PAY': transactionTypes.bankingFee,
             'BGC': transactionTypes.income,
             'TFR': transactionTypes.income,
-            'DEP': transactionTypes.credit
+            'DEP': transactionTypes.credit,
+            'CSH': transactionTypes.cashDeposit
         }
     }
 };

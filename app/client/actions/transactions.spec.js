@@ -1,4 +1,5 @@
 import {
+    deleteItem,
     addLabel,
     toggleLabels,
     load,
@@ -33,6 +34,15 @@ describe('transactions actions', () => {
 
         expect(toggleLabels(id)).toEqual({
             type: 'TOGGLE_LABELS',
+            id
+        });
+    });
+
+    test('delete item returns action object', () => {
+        const id = 'id';
+
+        expect(deleteItem(id)).toEqual({
+            type: 'DELETE_TRANSACTION',
             id
         });
     });

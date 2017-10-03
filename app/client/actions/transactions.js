@@ -5,6 +5,13 @@ export const load = (transactions) => {
     };
 };
 
+export const deleteItem = (id) => {
+    return {
+        type: 'DELETE_TRANSACTION',
+        id
+    };
+};
+
 export const addLabel = (id) => {
     return {
         type: 'ADD_LABEL',

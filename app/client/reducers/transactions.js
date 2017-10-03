@@ -96,6 +96,15 @@ const transactions = (state = initialState, action) => {
                 items: state.items.concat(newItems),
                 isLabelsOpen: false
             });
+        case 'DELETE_TRANSACTION':
+            const transactionIndex = state.items.findIndex(transaction => transaction.id === action.id);
+
+            return Object.assign({}, state, {
+                items: [
+                    ...items.slice(0, transactionIndex),
+                    ...items.slice(transactionIndex + 1)
+                ]
+            });
         case 'ADD_LABEL':
         case 'SET_NEW_LABEL_VALUE':
         case 'DELETE_LABEL':
