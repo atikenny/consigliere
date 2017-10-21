@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import SubMenu from 'components/header/sub-menu';
+import { byDate } from 'actions/sort';
 
 const mapState = ({ menu }) => {
     return {
@@ -8,4 +9,12 @@ const mapState = ({ menu }) => {
     };
 };
 
-export default connect(mapState)(SubMenu);
+const mapDispatch = (dispatch) => {
+    return {
+        sortByDate: () => {
+            dispatch(byDate());
+        }
+    };
+};
+
+export default connect(mapState, mapDispatch)(SubMenu);

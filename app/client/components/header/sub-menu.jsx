@@ -15,14 +15,14 @@ const getClassName = (show) => {
     return className;
 }
 
-const SubMenu = ({ show }) => (
+const SubMenu = ({ show, sortByDate }) => (
     <div className={getClassName(show)}>
         <ul className="sub-menu">
             <li>
                 <FileInput />
             </li>
             <li>
-                <Button text="Sort by date" />
+                <Button text="Sort by date" onClick={sortByDate} />
             </li>
         </ul>
     </div>
@@ -31,5 +31,6 @@ const SubMenu = ({ show }) => (
 export default SubMenu;
 
 SubMenu.propTypes = {
-    show: PropTypes.bool
+    show: PropTypes.bool,
+    sortByDate: PropTypes.func
 };
