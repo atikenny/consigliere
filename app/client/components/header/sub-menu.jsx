@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import 'styles/components/header/sub-menu';
 import FileInput from 'containers/common/file-input';
+import Button from 'components/common/button';
 
 const getClassName = (show) => {
     let className = 'sub-menu-container';
@@ -16,9 +17,12 @@ const getClassName = (show) => {
 
 const SubMenu = ({ show }) => (
     <div className={getClassName(show)}>
-        <ul>
+        <ul className="sub-menu">
             <li>
                 <FileInput />
+            </li>
+            <li>
+                <Button text="Sort by date" />
             </li>
         </ul>
     </div>

@@ -17,4 +17,11 @@ describe('SubMenu component', () => {
 
         expect(subMenu.hasClass('show')).toBe(true);
     });
+
+    test('has a sort by date button', () => {
+        const SUT = shallow(<SubMenu />);
+        const button = SUT.find('Button');
+
+        expect(button.prop('text')).toBe('Sort by date');
+    });
 });

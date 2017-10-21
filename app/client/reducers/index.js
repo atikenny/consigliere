@@ -7,6 +7,7 @@ import suggestions from './suggestions';
 import notification from './notification';
 import modal from './modal';
 import menu from './menu';
+import sort from './sort';
 
 const appReducers = combineReducers({
     transactions,
@@ -15,7 +16,8 @@ const appReducers = combineReducers({
     suggestions,
     notification,
     modal,
-    menu
+    menu,
+    sort
 });
 
 export default appReducers;
