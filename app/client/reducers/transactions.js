@@ -97,12 +97,14 @@ const transactions = (state = initialState, action) => {
                 isLabelsOpen: false
             });
         case 'DELETE_TRANSACTION':
-            const transactionIndex = state.items.findIndex(transaction => transaction.id === action.id);
+            const transactionIndex = state.items.findIndex(
+                transaction => transaction.id === action.id
+            );
 
             return Object.assign({}, state, {
                 items: [
-                    ...items.slice(0, transactionIndex),
-                    ...items.slice(transactionIndex + 1)
+                    ...state.items.slice(0, transactionIndex),
+                    ...state.items.slice(transactionIndex + 1)
                 ]
             });
         case 'ADD_LABEL':
