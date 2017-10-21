@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Labels from 'components/modals/labels';
 import {
     getLabels,
-    getFilteredTransactionsCount
+    getTransactionsCount
 } from 'selectors/transactions';
 import {
     addLabelMultiple,
@@ -15,7 +15,7 @@ import { show } from 'actions/notification';
 import { edit } from 'actions/filter';
 
 const mapState = (state) => {
-    const itemCount = getFilteredTransactionsCount(state);
+    const itemCount = getTransactionsCount(state);
     const labels = getLabels(state).sort();
 
     return {

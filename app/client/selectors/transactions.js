@@ -2,10 +2,13 @@ import { createSelector } from 'reselect';
 
 import { transactionTypes } from 'services/parser-service';
 import { NO_LABEL_NAME } from 'constants/labels';
+import { SORT_TYPES } from '../reducers/sort';
 
 const getFilter = (state) => state.transactions.filter;
 
-export const getTransactions = (state) => state.transactions.items;
+const getTransactionItems = (state) => state.transactions.items;
+
+const getSort = (state) => state.sort;
 
 export const filterTransactions = (filter, transactions) => {
     if (filter) {
@@ -35,13 +38,31 @@ const hasDescription = (filter, { description }) => {
     return description && description.toUpperCase().indexOf(filter.toUpperCase()) > -1;
 };
 
-export const getFilteredTransactions = createSelector(
-    [getFilter, getTransactions],
-    filterTransactions
+export const getTransactions = createSelector(
+    [getFilter, getTransactionItems, getSort],
+    (filter, transactions, sort) => {
+        const filteredTransactions = filterTransactions(filter, transactions);
+
+        return sortTransactions(filteredTransactions, sort);
+    }
 );
 
+const sortTransactions = (transactions, sort) => {
+    switch (sort) {
+        case SORT_TYPES.BY_DATE:
+            return transactions.sort(sortByDate);
+        case SORT_TYPES.DEFAULT:
+        default:
+            return transactions;
+    }
+};
+
+const sortByDate = (a, b) => {
+    return new Date(a.date) - new Date(b.date);
+};
+
 export const getLabels = createSelector(
-    [getTransactions],
+    [getTransactionItems],
     (transactions) => {
         const labels = transactions.reduce((_labels, transaction) => {
             const concatLabels = _labels.concat(transaction.labels || []);
@@ -57,15 +78,15 @@ export const getLabels = createSelector(
     }
 );
 
-export const getFilteredTransactionsCount = createSelector(
-    [getFilter, getTransactions],
+export const getTransactionsCount = createSelector(
+    [getFilter, getTransactionItems],
     (filter, transactions) => {
         return filterTransactions(filter, transactions).length;
     }
 );
 
 export const getLabelsStats = createSelector(
-    [getFilter, getTransactions],
+    [getFilter, getTransactionItems],
     (filter, transactions) => {
         const filteredTransactions = filterTransactions(filter, transactions);
 

@@ -9,22 +9,14 @@ describe('transactions selector', () => {
         reselect.createSelector = mockCreateSelector();
     });
 
-    test('getTransactions returns transaction items', () => {
-        const getTransactions = require('./transactions').getTransactions;
-        const items = 'items';
-        const state = { transactions: { items } };
-
-        expect(getTransactions(state)).toBe(items);
-    });
-
-    describe('getFilteredTransactions()', () => {
+    describe('getTransactions()', () => {
         test('returns transactions when filter is not provided', () => {
             // GIVEN
             const transactions = 'transactions';
-            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+            const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getFilteredTransactions(undefined, transactions);
+            const result = getTransactions(undefined, transactions);
 
             // THEN
             expect(result).toBe(transactions);
@@ -35,10 +27,10 @@ describe('transactions selector', () => {
             const nonMatching = { labels: ['no matches'] };
             const matching = { labels: ['matched'] };
             const transactions = [nonMatching, matching];
-            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+            const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getFilteredTransactions('matched', transactions);
+            const result = getTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -50,10 +42,10 @@ describe('transactions selector', () => {
             const withEmptyLabels = { labels: [] };
             const withoutLabels = {};
             const transactions = [withLabels, withEmptyLabels, withoutLabels];
-            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+            const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getFilteredTransactions(NO_LABEL_NAME, transactions);
+            const result = getTransactions(NO_LABEL_NAME, transactions);
 
             // THEN
             expect(result).toEqual([withEmptyLabels, withoutLabels]);
@@ -64,10 +56,10 @@ describe('transactions selector', () => {
             const nonMatching = { description: 'not matching' };
             const matching = { description: 'matched' };
             const transactions = [nonMatching, matching];
-            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+            const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getFilteredTransactions('matched', transactions);
+            const result = getTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -78,10 +70,10 @@ describe('transactions selector', () => {
             const nonMatching = { description: 'not matching' };
             const matching = { description: 'mAtchEd' };
             const transactions = [nonMatching, matching];
-            const getFilteredTransactions = require('./transactions').getFilteredTransactions;
+            const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getFilteredTransactions('matched', transactions);
+            const result = getTransactions('matched', transactions);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -100,13 +92,13 @@ describe('transactions selector', () => {
         expect(getLabels(transactions)).toEqual(['label 1', 'label 2', NO_LABEL_NAME]);
     });
 
-    test('getFilteredTransactionsCount()', () => {
+    test('getTransactionsCount()', () => {
         // GIVEN
         const transactions = [1, 2, 3];
-        const getFilteredTransactionsCount = require('./transactions').getFilteredTransactionsCount;
+        const getTransactionsCount = require('./transactions').getTransactionsCount;
 
         // WHEN
-        const result = getFilteredTransactionsCount(undefined, transactions);
+        const result = getTransactionsCount(undefined, transactions);
 
         // THEN
         expect(result).toBe(transactions.length);
