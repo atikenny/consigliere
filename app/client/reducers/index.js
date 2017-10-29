@@ -8,6 +8,7 @@ import notification from './notification';
 import modal from './modal';
 import menu from './menu';
 import sort from './sort';
+import labels from './labels';
 
 const appReducers = combineReducers({
     transactions,
@@ -17,7 +18,8 @@ const appReducers = combineReducers({
     notification,
     modal,
     menu,
-    sort
+    sort,
+    labels
 });
 
 export default appReducers;

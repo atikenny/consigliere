@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { deleteLabel } from 'actions/transactions';
+import { deleteLabel } from 'actions/labels';
 import LabelItem from 'components/labels/label-item';
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch, { transactionId, name }) => {
     return {
         onClick: () => {
-            dispatch(deleteLabel(ownProps.transactionId, ownProps.name));
+            dispatch(deleteLabel(transactionId, name));
         }
     };
 };

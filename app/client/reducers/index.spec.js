@@ -8,6 +8,7 @@ import * as notification from './notification';
 import * as modal from './modal';
 import * as menu from './menu';
 import * as sort from './sort';
+import * as labels from './labels';
 
 describe('reducers', () => {
     test('combining reducers', () => {
@@ -21,6 +22,7 @@ describe('reducers', () => {
         modal.default = 'modal';
         menu.default = 'menu';
         sort.default = 'sort';
+        labels.default = 'labels';
 
         // WHEN
         const appReducers = require('./index').default;
@@ -36,7 +38,8 @@ describe('reducers', () => {
             notification: 'notification',
             modal: 'modal',
             menu: 'menu',
-            sort: 'sort'
+            sort: 'sort',
+            labels: 'labels'
         }]);
     });
 });

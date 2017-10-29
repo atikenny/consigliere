@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 
 import Labels from 'components/modals/labels';
-import {
-    getLabels,
-    getTransactionsCount
-} from 'selectors/transactions';
+import { getTransactionsCount } from 'selectors/transactions';
+import { getUniqueLabels } from 'selectors/labels';
 import {
     addLabelMultiple,
     removeLabelMultiple,
@@ -16,7 +14,7 @@ import { edit } from 'actions/filter';
 
 const mapState = (state) => {
     const itemCount = getTransactionsCount(state);
-    const labels = getLabels(state).sort();
+    const labels = getUniqueLabels(state).sort();
 
     return {
         itemCount,

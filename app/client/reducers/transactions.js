@@ -1,54 +1,10 @@
 import { filterTransactions } from 'selectors/transactions';
 
-const hasLabel = (label, labels) => {
-    return labels.some(_label => _label === label);
-};
-
 const item = (state, action) => {
     const labels = state.labels || [];
     let hasLabelAlready;
 
     switch (action.type) {
-        case 'ADD_LABEL':
-            if (state.id !== action.id) {
-                return state;
-            }
-
-            if (hasLabel(state.newLabelValue, labels)) {
-                return state;
-            }
-
-            if (!state.newLabelValue) {
-                return state;
-            }
-
-            return Object.assign({}, state, {
-                labels: labels.concat(state.newLabelValue)
-            });
-        case 'DELETE_LABEL':
-            if (state.id !== action.transactionId) {
-                return state;
-            }
-
-            return Object.assign({}, state, {
-                labels: state.labels.filter(label => label !== action.label)
-            });
-        case 'SET_NEW_LABEL_VALUE':
-            if (state.id !== action.id) {
-                return state;
-            }
-
-            return Object.assign({}, state, {
-                newLabelValue: action.value
-            });
-        case 'TOGGLE_LABELS':
-            if (state.id !== action.id) {
-                return state;
-            }
-
-            return Object.assign({}, state, {
-                isLabelsOpen: !state.isLabelsOpen
-            });
         case 'ADD_LABEL_MULTIPLE':
             hasLabelAlready = labels.includes(action.label);
 
@@ -106,13 +62,6 @@ const transactions = (state = initialState, action) => {
                     ...state.items.slice(0, transactionIndex),
                     ...state.items.slice(transactionIndex + 1)
                 ]
-            });
-        case 'ADD_LABEL':
-        case 'SET_NEW_LABEL_VALUE':
-        case 'DELETE_LABEL':
-        case 'TOGGLE_LABELS':
-            return Object.assign({}, state, {
-                items: state.items.map(transaction => item(transaction, action))
             });
         case 'SET_FILTER':
             return Object.assign({}, state, {

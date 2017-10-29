@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 
-import { transactionTypes } from 'services/parser-service';
 import { NO_LABEL_NAME } from 'constants/labels';
+import { transactionTypes } from 'services/parser-service';
 import { SORT_TYPES } from '../reducers/sort';
+import { getLabels } from './labels';
 
 const getFilter = (state) => state.transactions.filter;
 
@@ -10,9 +11,9 @@ const getTransactionItems = (state) => state.transactions.items;
 
 const getSort = (state) => state.sort;
 
-export const filterTransactions = (filter, transactions) => {
+export const filterTransactions = (filter, transactions, labels) => {
     if (filter) {
-        const filterFunction = isFiltered.bind(null, filter);
+        const filterFunction = isFiltered.bind(null, filter, labels);
 
         return transactions.filter(filterFunction);
     } else {
@@ -20,16 +21,18 @@ export const filterTransactions = (filter, transactions) => {
     }
 };
 
-const isFiltered = (filter, transaction) => {
-    return hasLabel(filter, transaction) || hasDescription(filter, transaction);
+const isFiltered = (filter, labels, transaction) => {
+    const transactionLabels = labels.find(label => label.id === transaction.id);
+
+    return hasLabel(filter, transactionLabels) || hasDescription(filter, transaction);
 };
 
-const hasLabel = (filter, transaction) => {
+const hasLabel = (filter, labels) => {
     if (filter === NO_LABEL_NAME) {
-        return !transaction.labels || !transaction.labels.length;
+        return !labels.items || !labels.items.length;
     }
 
-    return transaction.labels && transaction.labels.some(label => {
+    return labels.items && labels.items.some(label => {
         return label.indexOf(filter) !== -1;
     });
 };
@@ -39,9 +42,9 @@ const hasDescription = (filter, { description }) => {
 };
 
 export const getTransactions = createSelector(
-    [getFilter, getTransactionItems, getSort],
-    (filter, transactions, sort) => {
-        const filteredTransactions = filterTransactions(filter, transactions);
+    [getFilter, getTransactionItems, getLabels, getSort],
+    (filter, transactions, labels, sort) => {
+        const filteredTransactions = filterTransactions(filter, transactions, labels);
 
         return sortTransactions(filteredTransactions, sort);
     }
@@ -61,34 +64,17 @@ const sortByDate = (a, b) => {
     return new Date(a.date) - new Date(b.date);
 };
 
-export const getLabels = createSelector(
-    [getTransactionItems],
-    (transactions) => {
-        const labels = transactions.reduce((_labels, transaction) => {
-            const concatLabels = _labels.concat(transaction.labels || []);
-            const uniqueLabels = Array.from(new Set(concatLabels));
-
-
-            return uniqueLabels;
-        }, []);
-        
-        labels.push(NO_LABEL_NAME);
-
-        return labels;
-    }
-);
-
 export const getTransactionsCount = createSelector(
-    [getFilter, getTransactionItems],
-    (filter, transactions) => {
-        return filterTransactions(filter, transactions).length;
+    [getFilter, getTransactionItems, getLabels],
+    (filter, transactions, labels) => {
+        return filterTransactions(filter, transactions, labels).length;
     }
 );
 
 export const getLabelsStats = createSelector(
-    [getFilter, getTransactionItems],
-    (filter, transactions) => {
-        const filteredTransactions = filterTransactions(filter, transactions);
+    [getFilter, getTransactionItems, getLabels],
+    (filter, transactions, labels) => {
+        const filteredTransactions = filterTransactions(filter, transactions, labels);
 
         let withoutLabel = {
             label: NO_LABEL_NAME,

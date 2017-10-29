@@ -1,11 +1,18 @@
 import { connect } from 'react-redux';
 
 import TransactionFooter from 'components/transactions/transaction-footer';
-import {
-    setFilter,
-    toggleLabels
-} from 'actions/transactions';
+import { setFilter } from 'actions/transactions';
+import { toggleLabels } from 'actions/labels';
 import { edit } from 'actions/filter';
+
+const mapState = ({ labels }, { transactionId }) => {
+    const labelState = labels.find(label => label.id === transactionId);
+    const isLabelsOpen = labelState && labelState.isOpen;
+
+    return {
+        isLabelsOpen
+    };
+};
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
@@ -19,4 +26,4 @@ const mapDispatch = (dispatch, ownProps) => {
     };
 };
 
-export default connect(null, mapDispatch)(TransactionFooter);
+export default connect(mapState, mapDispatch)(TransactionFooter);

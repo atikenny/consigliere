@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
     addLabel,
     setNewLabelValue
-} from 'actions/transactions';
+} from 'actions/labels';
 import LabelInput from 'components/labels/label-input';
 
 const mapDispatch = (dispatch, ownProps) => {

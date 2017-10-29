@@ -4,11 +4,15 @@ const storeState = (state) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 };
 
+const patchState = (state) => {
+    return state;
+};
+
 const readState = () => {
     try {
         const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-        return savedState || undefined;
+        return patchState(savedState) || undefined;
     } catch (error) {
         return undefined;
     }

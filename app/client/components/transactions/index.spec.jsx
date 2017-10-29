@@ -11,19 +11,14 @@ describe('Transactions component', () => {
     const getMockTransaction = (() => {
         let index = 0;
 
-        return ({ withLabels } = {}) => {
+        return () => {
             const newIndex = index++;
             const mockTransaction = {
                 id: `${newIndex}`,
                 amount: newIndex,
                 currency: `currency${newIndex}`,
-                date: `date${newIndex}`,
-                isLabelsOpen: withLabels
+                date: `date${newIndex}`
             };
-
-            if (withLabels) {
-                mockTransaction.labels = ['label1', 'label2'];
-            }
 
             return mockTransaction;
         };
@@ -60,9 +55,9 @@ describe('Transactions component', () => {
         expect(transactionFooters.length).toBe(transactionsProp.length);
     });
 
-    test('has a list of labels', () => {
+    test('has a Labels component', () => {
         const transactionMock1 = getMockTransaction();
-        const transactionMock2 = getMockTransaction({ withLabels: true });
+        const transactionMock2 = getMockTransaction();
         const transactionsProp = [
             transactionMock1, transactionMock2
         ];
@@ -70,8 +65,8 @@ describe('Transactions component', () => {
         const container = transactions.find('.transactions-container');
         const labelsContainers = transactions.find(Labels);
 
-        expect(labelsContainers.length).toBe(1);
-        expect(labelsContainers.at(0).prop('labels')).toBe(transactionMock2.labels);
-        expect(labelsContainers.at(0).prop('transactionId')).toBe(transactionMock2.id);
+        expect(labelsContainers.length).toBe(2);
+        expect(labelsContainers.at(0).prop('transactionId')).toBe(transactionMock1.id);
+        expect(labelsContainers.at(1).prop('transactionId')).toBe(transactionMock2.id);
     });
 });

@@ -17,14 +17,8 @@ const Transactions = ({ transactions }) => (
                         <TransactionFooter
                             transactionId={transaction.id}
                             description={transaction.description}
-                            isLabelsOpen={transaction.isLabelsOpen}
                             similarCount={transaction.similarCount} />
-                        {transaction.isLabelsOpen && (
-                            <Labels
-                                labels={transaction.labels}
-                                newLabelValue={transaction.newLabelValue}
-                                transactionId={transaction.id} />
-                        )}
+                        <Labels transactionId={transaction.id} />
                     </li>
                 ))}
             </ul>
