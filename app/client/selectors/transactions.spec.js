@@ -24,13 +24,22 @@ describe('transactions selector', () => {
 
         test('filters transactions by the label provided', () => {
             // GIVEN
-            const nonMatching = { labels: ['no matches'] };
-            const matching = { labels: ['matched'] };
+            const nonMatching = { id: 'not matching' };
+            const nonMatchingLabels = {
+                id: 'not matching',
+                items: ['no matches']
+            };
+            const matching = { id: 'matching', };
+            const matchingLabels = {
+                id: 'matching',
+                items: ['matching']
+            };
             const transactions = [nonMatching, matching];
+            const labels = [nonMatchingLabels, matchingLabels];
             const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getTransactions('matched', transactions);
+            const result = getTransactions('matching', transactions, labels);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -38,17 +47,23 @@ describe('transactions selector', () => {
 
         test('filters transactions without label', () => {
             // GIVEN
-            const withLabels = { labels: ['label 1', 'label 2'] };
-            const withEmptyLabels = { labels: [] };
-            const withoutLabels = {};
-            const transactions = [withLabels, withEmptyLabels, withoutLabels];
+            const labeled = { id: 'with labels' };
+            const labeledLabels = { id: 'with labels', items: ['dont care'] };
+            const empty = { id: 'with empty labels' };
+            const emptyLabels = { id: 'with empty labels', items: [] };
+            const without = { id: 'without labels' };
+            const withoutLabels = { id: 'without labels' };
+            
+            const transactions = [labeled, empty, without];
+            const labels = [labeledLabels, emptyLabels, withoutLabels];
+            
             const getTransactions = require('./transactions').getTransactions;
 
             // WHEN
-            const result = getTransactions(NO_LABEL_NAME, transactions);
+            const result = getTransactions(NO_LABEL_NAME, transactions, labels);
 
             // THEN
-            expect(result).toEqual([withEmptyLabels, withoutLabels]);
+            expect(result).toEqual([empty, without]);
         });
 
         test('filters transactions by the description provided', () => {
@@ -57,9 +72,10 @@ describe('transactions selector', () => {
             const matching = { description: 'matched' };
             const transactions = [nonMatching, matching];
             const getTransactions = require('./transactions').getTransactions;
+            const labels = [];
 
             // WHEN
-            const result = getTransactions('matched', transactions);
+            const result = getTransactions('matched', transactions, labels);
 
             // THEN
             expect(result).toEqual([matching]);
@@ -71,25 +87,14 @@ describe('transactions selector', () => {
             const matching = { description: 'mAtchEd' };
             const transactions = [nonMatching, matching];
             const getTransactions = require('./transactions').getTransactions;
+            const labels = [];
 
             // WHEN
-            const result = getTransactions('matched', transactions);
+            const result = getTransactions('matched', transactions, labels);
 
             // THEN
             expect(result).toEqual([matching]);
         });
-    });
-
-    test('getLabels returns unique labels', () => {
-        const getLabels = require('./transactions').getLabels;
-        const transactions = [
-            {},
-            { labels: [] },
-            { labels: ['label 1', 'label 2'] },
-            { labels: ['label 2'] }
-        ];
-
-        expect(getLabels(transactions)).toEqual(['label 1', 'label 2', NO_LABEL_NAME]);
     });
 
     test('getTransactionsCount()', () => {
@@ -107,15 +112,21 @@ describe('transactions selector', () => {
     test('getLabelsStats return labels stats for the transactions', () => {
         // GIVEN
         const transactions = [
-            { amount: 1, labels: ['label 1'] },
-            { amount: 1, labels: ['label 2'] },
-            { amount: 1, labels: ['label 1', 'label 2', 'label 3'] },
-            { amount: 1, labels: [] }
+            { id: 'id 1', amount: 1, labels: ['label 1'] },
+            { id: 'id 2', amount: 1, labels: ['label 2'] },
+            { id: 'id 3', amount: 1, labels: ['label 1', 'label 2', 'label 3'] },
+            { id: 'id 4', amount: 1, labels: [] }
+        ];
+        const labels = [
+            { id: 'id 1', items: ['label 1'] },
+            { id: 'id 2', items: ['label 2'] },
+            { id: 'id 3', items: ['label 1', 'label 2', 'label 3'] },
+            { id: 'id 4', items: [] }
         ];
         const getLabelsStats = require('./transactions').getLabelsStats;
 
         // WHEN
-        const result = getLabelsStats(undefined, transactions);
+        const result = getLabelsStats(undefined, transactions, labels);
 
         // THEN
         expect(result).toEqual([
@@ -129,14 +140,19 @@ describe('transactions selector', () => {
     test('getLabelsStats return handles credit and income', () => {
         // GIVEN
         const transactions = [
-            { amount: 2, labels: ['label 1'] },
-            { amount: 1, labels: ['label 1'], transactionType: transactionTypes.credit },
-            { amount: 1, labels: ['label 1'], transactionType: transactionTypes.income }
+            { id: 'id 1', amount: 2 },
+            { id: 'id 2', amount: 1, transactionType: transactionTypes.credit },
+            { id: 'id 3', amount: 1, transactionType: transactionTypes.income }
+        ];
+        const labels = [
+            { id: 'id 1', items: ['label 1'] },
+            { id: 'id 2', items: ['label 1'] },
+            { id: 'id 3', items: ['label 1'] }
         ];
         const getLabelsStats = require('./transactions').getLabelsStats;
 
         // WHEN
-        const result = getLabelsStats(undefined, transactions);
+        const result = getLabelsStats(undefined, transactions, labels);
 
         // THEN
         expect(result).toEqual([
@@ -147,15 +163,21 @@ describe('transactions selector', () => {
     test('getLabelsStats return labels stats for the filtered transactions', () => {
         // GIVEN
         const transactions = [
-            { amount: 1, labels: ['label 1'] },
-            { amount: 1, labels: ['label 2'] },
-            { amount: 1, labels: ['label 1', 'label 2', 'label 3'] },
-            { amount: 1, labels: [] }
+            { id: 'id 1', amount: 1 },
+            { id: 'id 2', amount: 1 },
+            { id: 'id 3', amount: 1 },
+            { id: 'id 4', amount: 1 }
+        ];
+        const labels = [
+            { id: 'id 1', items: ['label 1'] },
+            { id: 'id 2', items: ['label 2'] },
+            { id: 'id 3', items: ['label 1', 'label 2', 'label 3'] },
+            { id: 'id 4', items: [] }
         ];
         const getLabelsStats = require('./transactions').getLabelsStats;
 
         // WHEN
-        const result = getLabelsStats('label 1', transactions);
+        const result = getLabelsStats('label 1', transactions, labels);
 
         // THEN
         expect(result).toEqual([

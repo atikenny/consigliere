@@ -32,7 +32,7 @@ const hasLabel = (filter, labels) => {
         return !labels.items || !labels.items.length;
     }
 
-    return labels.items && labels.items.some(label => {
+    return labels && labels.items && labels.items.some(label => {
         return label.indexOf(filter) !== -1;
     });
 };
@@ -83,11 +83,12 @@ export const getLabelsStats = createSelector(
         };
 
         const labelsGroup = filteredTransactions.reduce((_labelsGroup, transaction) => {
-            const { labels, amount, transactionType } = transaction;
+            const { amount, transactionType } = transaction;
+            const _labels = labels.find(label => label.id === transaction.id);
             const signedAmount = getSignedAmount(transactionType, amount);
 
-            if (labels && labels.length) {
-                labels.forEach(label => {
+            if (_labels && _labels.items && _labels.items.length) {
+                _labels.items.forEach(label => {
                     const labelGroup = _labelsGroup.find(group => group.label === label);
 
                     if (!labelGroup) {
