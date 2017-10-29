@@ -4,4 +4,5 @@
 input[type="text"] {
     border: 1px solid $inactive-color--lighter;
     padding: $gutter-size;
+    font-size: inherit;
 }

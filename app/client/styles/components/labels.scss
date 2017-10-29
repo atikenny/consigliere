@@ -3,16 +3,22 @@
 
 .labels-container {
     padding: $gutter-size;
+    display: flex;
+    align-items: center;
 
     .labels {
         display: flex;
         flex-wrap: wrap;
     }
 
+    .label,
+    .label-input {
+        border-radius: 4px;
+    }
+
     .label {
         border: 1px solid $brand-color;
-        border-radius: 4px;
-        margin: 0 $gutter-size $gutter-size 0;
+        margin-right: $gutter-size;
         display: flex;
 
         .name {

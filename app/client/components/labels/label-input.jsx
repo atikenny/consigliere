@@ -13,7 +13,8 @@ const LabelInput = ({ onChange, onClick, onEnter }) => (
         onChange={(event) => {
             onChange(event.target.value);
         }}
-        onClick={onClick} />
+        onClick={onClick}
+        inputClassName="label-input" />
 );
 
 export default LabelInput;
