@@ -12,10 +12,10 @@ describe('notification actions', () => {
         show(text)(dispatch);
 
         // THEN
-        expect(dispatch.mock.calls[0]).toEqual([{
+        expect(dispatch).toHaveBeenCalledWith({
             type: 'SHOW_NOTIFICATION',
             text
-        }]);
+        });
 
         const timeoutValue = setTimeout.mock.calls[0][1];
 
@@ -25,8 +25,8 @@ describe('notification actions', () => {
         jest.runOnlyPendingTimers();
 
         // THEN
-        expect(dispatch.mock.calls[1]).toEqual([{
+        expect(dispatch).toHaveBeenCalledWith({
             type: 'HIDE_NOTIFICATION'
-        }]);
+        });
     });
 });

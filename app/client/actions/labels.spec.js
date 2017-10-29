@@ -2,7 +2,9 @@ import {
     addLabel,
     deleteLabel,
     setNewLabelValue,
-    toggleLabels
+    toggleLabels,
+    addLabelMultiple,
+    removeLabelMultiple
 } from './labels';
 
 describe('labels actions', () => {
@@ -43,6 +45,28 @@ describe('labels actions', () => {
         expect(toggleLabels(id)).toEqual({
             type: 'TOGGLE_LABELS',
             id
+        });
+    });
+
+    test('add multiple label returns action object', () => {
+        const label = 'label';
+        const transactionIds = 'transactionIds';
+
+        expect(addLabelMultiple(label, transactionIds)).toEqual({
+            type: 'ADD_LABEL_MULTIPLE',
+            label,
+            transactionIds
+        });
+    });
+
+    test('remove multiple label returns action object', () => {
+        const label = 'label';
+        const transactionIds = 'transactionIds';
+
+        expect(removeLabelMultiple(label, transactionIds)).toEqual({
+            type: 'REMOVE_LABEL_MULTIPLE',
+            label,
+            transactionIds
         });
     });
 });

@@ -1,9 +1,7 @@
 import {
     deleteItem,
     load,
-    setFilter,
-    addLabelMultiple,
-    removeLabelMultiple
+    setFilter
 } from './transactions';
 
 describe('transactions actions', () => {
@@ -31,24 +29,6 @@ describe('transactions actions', () => {
         expect(setFilter(filter)).toEqual({
             type: 'SET_FILTER',
             filter
-        });
-    });
-
-    test('add multiple label returns action object', () => {
-        const label = 'label';
-
-        expect(addLabelMultiple(label)).toEqual({
-            type: 'ADD_LABEL_MULTIPLE',
-            label
-        });
-    });
-
-    test('remove multiple label returns action object', () => {
-        const label = 'label';
-
-        expect(removeLabelMultiple(label)).toEqual({
-            type: 'REMOVE_LABEL_MULTIPLE',
-            label
         });
     });
 });

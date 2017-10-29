@@ -25,7 +25,7 @@ describe('TransactionFooter component', () => {
 
         iconButton.simulate('click');
 
-        expect(toggleLabels.mock.calls.length).toBe(1);
+        expect(toggleLabels).toHaveBeenCalled();
     });
 
     test('shows similar count button when it is higher than zero', () => {

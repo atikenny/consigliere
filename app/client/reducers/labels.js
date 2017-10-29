@@ -1,15 +1,13 @@
-const hasLabel = (label, items) => {
-    return items.some(item => item === label);
-};
-
 const item = (state, action) => {
+    let hasLabelAlready;
+
     switch (action.type) {
         case 'ADD_LABEL':
             if (state.id !== action.id) {
                 return state;
             }
 
-            if (hasLabel(state.newLabelValue, state.items)) {
+            if (state.items.includes(state.newLabelValue)) {
                 return state;
             }
 
@@ -44,6 +42,31 @@ const item = (state, action) => {
             return Object.assign({}, state, {
                 isOpen: !state.isOpen
             });
+        case 'ADD_LABEL_MULTIPLE':
+            hasLabelAlready = state.items.includes(action.label);
+
+            if (!action.transactionIds.includes(state.id) || hasLabelAlready) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                items: state.items.concat(action.label)
+            });
+        case 'REMOVE_LABEL_MULTIPLE':
+            const labelIndex = state.items.indexOf(action.label);
+            
+            hasLabelAlready = labelIndex !== -1;
+
+            if (!action.transactionIds.includes(state.id) || !hasLabelAlready) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                items: [
+                    ...state.items.slice(0, labelIndex),
+                    ...state.items.slice(labelIndex + 1)
+                ]
+            });
         default:
             return state;
     }
@@ -71,6 +94,8 @@ const labels = (state = [], action) => {
         case 'SET_NEW_LABEL_VALUE':
         case 'DELETE_LABEL':
         case 'TOGGLE_LABELS':
+        case 'ADD_LABEL_MULTIPLE':
+        case 'REMOVE_LABEL_MULTIPLE':
             return state.map(label => item(label, action));
         default:
             return state;

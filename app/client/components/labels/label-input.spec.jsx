@@ -37,7 +37,7 @@ describe('LabelInput component', () => {
 
             inputIconButton.simulate('change', { target: { value: 'value' } });
 
-            expect(onChange.mock.calls[0]).toEqual(['value']);
+            expect(onChange).toHaveBeenCalledWith('value');
         });
     });
 });

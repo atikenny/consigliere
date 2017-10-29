@@ -29,8 +29,7 @@ describe('reducers', () => {
 
         // THEN
         expect(appReducers).toEqual('combined reducers');
-        expect(redux.combineReducers.mock.calls.length).toBe(1);
-        expect(redux.combineReducers.mock.calls[0]).toEqual([{
+        expect(redux.combineReducers).toHaveBeenCalledWith({
             transactions: 'transactions',
             currency: 'currency',
             filter: 'filter',
@@ -40,6 +39,6 @@ describe('reducers', () => {
             menu: 'menu',
             sort: 'sort',
             labels: 'labels'
-        }]);
+        });
     });
 });

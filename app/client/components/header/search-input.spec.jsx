@@ -58,7 +58,7 @@ describe('Seacrh Input component', () => {
             });
             triggerEnterHandler();
 
-            expect(search.mock.calls[0]).toEqual([filter]);
+            expect(search).toHaveBeenCalledWith(filter);
         });
 
         test('calls the provided onChange with the new input value', () => {
@@ -69,7 +69,7 @@ describe('Seacrh Input component', () => {
 
             input.simulate('change', { target: { value } });
 
-            expect(onChange.mock.calls[0]).toEqual([value]);
+            expect(onChange).toHaveBeenCalledWith(value);
         });
     });
 
@@ -92,7 +92,7 @@ describe('Seacrh Input component', () => {
 
         iconButton.simulate('click');
 
-        expect(search.mock.calls[0]).toEqual([filter]);
+        expect(search).toHaveBeenCalledWith(filter);
     });
 
     test('has search suggestions', () => {

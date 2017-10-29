@@ -142,4 +142,46 @@ describe('labels reducers', () => {
             }
         ]);
     });
+
+    test('handles add multiple labels action', () => {
+        const initialState = [
+            { id: 'id 1', items: ['new label'] },
+            { id: 'id 2', items: [] },
+            { id: 'not modified', items: ['label 1'] }
+        ];
+        const action = {
+            type: 'ADD_LABEL_MULTIPLE',
+            label: 'new label',
+            transactionIds: ['id 1', 'id 2']
+        };
+
+        deepFreeze(initialState);
+
+        expect(labels(initialState, action)).toEqual([
+            { id: 'id 1', items: ['new label'] },
+            { id: 'id 2', items: ['new label'] },
+            { id: 'not modified', items: ['label 1'] }
+        ]);
+    });
+
+    test('handles remove multiple labels action', () => {
+        const initialState = [
+            { id: 'id 1', items: ['keep label', 'remove label'] },
+            { id: 'id 2', items: ['remove label'] },
+            { id: 'not modified', items: ['label 1'] }
+        ];
+        const action = {
+            type: 'REMOVE_LABEL_MULTIPLE',
+            label: 'remove label',
+            transactionIds: ['id 1', 'id 2']
+        };
+
+        deepFreeze(initialState);
+
+        expect(labels(initialState, action)).toEqual([
+            { id: 'id 1', items: ['keep label'] },
+            { id: 'id 2', items: [] },
+            { id: 'not modified', items: ['label 1'] }
+        ]);
+    });
 });

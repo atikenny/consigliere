@@ -12,12 +12,12 @@ describe('keyboard-service module', () => {
             target: { value }
         });
 
-        expect(handlerSpy.mock.calls[0]).toEqual([value]);
+        expect(handlerSpy).toHaveBeenCalledWith(value);
 
         keyHandler({
             key: 'not the right key'
         });
 
-        expect(handlerSpy.mock.calls.length).toBe(1);
+        expect(handlerSpy).toHaveBeenCalled();
     });
 });

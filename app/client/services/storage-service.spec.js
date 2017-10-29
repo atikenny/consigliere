@@ -64,15 +64,15 @@ describe('storage-service', () => {
         initAutoSave(store);
 
         // THEN
-        expect(subscribeSpy.mock.calls.length).toBe(1);
+        expect(subscribeSpy).toHaveBeenCalled();
 
         // WHEN
         triggerPublish();
 
         // THEN
-        expect(mockSetItem.mock.calls[0]).toEqual([
+        expect(mockSetItem).toHaveBeenCalledWith(
             'CONSIGLIERE',
             JSON.stringify(mockState)
-        ]);
+        );
     });
 });

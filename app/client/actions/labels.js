@@ -27,3 +27,19 @@ export const toggleLabels = (id) => {
         id
     };
 };
+
+export const addLabelMultiple = (label, transactionIds) => {
+    return {
+        type: 'ADD_LABEL_MULTIPLE',
+        label,
+        transactionIds
+    };
+};
+
+export const removeLabelMultiple = (label, transactionIds) => {
+    return {
+        type: 'REMOVE_LABEL_MULTIPLE',
+        label,
+        transactionIds
+    };
+};

@@ -50,6 +50,14 @@ export const getTransactions = createSelector(
     }
 );
 
+export const getTransactionIds = createSelector(
+    [getFilter, getTransactionItems, getLabels],
+    (filter, transactions, labels) => {
+        return filterTransactions(filter, transactions, labels)
+            .map(({ id }) => id);
+    }
+);
+
 const sortTransactions = (transactions, sort) => {
     switch (sort) {
         case SORT_TYPES.BY_DATE:

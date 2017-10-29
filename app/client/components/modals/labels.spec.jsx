@@ -41,13 +41,19 @@ describe('Labels component', () => {
 
             showLabelButton.simulate('click');
 
-            expect(showLabel.mock.calls[0]).toEqual([labels[0]]);
+            expect(showLabel).toHaveBeenCalledWith(labels[0]);
         });
 
         test('has a remove label button', () => {
             const labels = ['label 1'];
+            const transactionIds = ['transactionIds'];
             const removeLabel = jest.fn();
-            const SUT = shallow(<Labels labels={labels} removeLabel={removeLabel} />);
+            const SUT = shallow(
+                <Labels
+                    labels={labels}
+                    removeLabel={removeLabel}
+                    transactionIds={transactionIds} />
+            );
             const labelsList = SUT.find('.labels-modal-container .labels');
             const labelItems = labelsList.find('.item');
             const firstLabel = labelItems.at(0);
@@ -55,13 +61,19 @@ describe('Labels component', () => {
 
             removeLabelButton.simulate('click');
 
-            expect(removeLabel.mock.calls[0]).toEqual([labels[0]]);
+            expect(removeLabel).toHaveBeenCalledWith(labels[0], transactionIds);
         });
 
         test('has a add label button', () => {
             const labels = ['label 1'];
+            const transactionIds = ['transactionIds'];
             const addLabel = jest.fn();
-            const SUT = shallow(<Labels labels={labels} addLabel={addLabel} />);
+            const SUT = shallow(
+                <Labels
+                    labels={labels}
+                    addLabel={addLabel}
+                    transactionIds={transactionIds} />
+            );
             const labelsList = SUT.find('.labels-modal-container .labels');
             const labelItems = labelsList.find('.item');
             const firstLabel = labelItems.at(0);
@@ -69,7 +81,7 @@ describe('Labels component', () => {
 
             addLabelButton.simulate('click');
 
-            expect(addLabel.mock.calls[0]).toEqual([labels[0]]);
+            expect(addLabel).toHaveBeenCalledWith(labels[0], transactionIds);
         });
     });
 

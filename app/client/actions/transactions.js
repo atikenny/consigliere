@@ -18,17 +18,3 @@ export const setFilter = (filter) => {
         filter
     };
 };
-
-export const addLabelMultiple = (label) => {
-    return {
-        type: 'ADD_LABEL_MULTIPLE',
-        label
-    };
-};
-
-export const removeLabelMultiple = (label) => {
-    return {
-        type: 'REMOVE_LABEL_MULTIPLE',
-        label
-    };
-};

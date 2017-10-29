@@ -44,6 +44,6 @@ describe('Suggestions component', () => {
 
         secondItem.simulate('click');
 
-        expect(onItemClick.mock.calls[0]).toEqual(['suggestion 2']);
+        expect(onItemClick).toHaveBeenCalledWith('suggestion 2');
     });
 });

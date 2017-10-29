@@ -40,14 +40,14 @@ describe('FileInput component', () => {
         });
 
         // THEN
-        expect(mockFileReader.readAsText.mock.calls[0]).toEqual([file]);
+        expect(mockFileReader.readAsText).toHaveBeenCalledWith(file);
 
         // WHEN
         mockFileReader.onload();
 
         // THEN
-        expect(parserService.parseCSV.mock.calls[0]).toEqual([mockFileReader.result]);
-        expect(parserService.mapTransactions.mock.calls[0]).toEqual([parserService.formats.LLOYDS, 'parsed text']);
-        expect(mockOnLoad.mock.calls[0]).toEqual(['mapped transactions']);
+        expect(parserService.parseCSV).toHaveBeenCalledWith(mockFileReader.result);
+        expect(parserService.mapTransactions).toHaveBeenCalledWith(parserService.formats.LLOYDS, 'parsed text');
+        expect(mockOnLoad).toHaveBeenCalledWith('mapped transactions');
     });
 });

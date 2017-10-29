@@ -1,36 +1,38 @@
 import { connect } from 'react-redux';
 
 import Labels from 'components/modals/labels';
-import { getTransactionsCount } from 'selectors/transactions';
+import { getTransactionsCount, getTransactionIds } from 'selectors/transactions';
 import { getUniqueLabels } from 'selectors/labels';
-import {
-    addLabelMultiple,
-    removeLabelMultiple,
-    setFilter
-} from 'actions/transactions';
+import { setFilter } from 'actions/transactions';
 import { hide } from 'actions/modal';
 import { show } from 'actions/notification';
 import { edit } from 'actions/filter';
+import {
+    addLabelMultiple,
+    removeLabelMultiple
+} from 'actions/labels';
 
 const mapState = (state) => {
     const itemCount = getTransactionsCount(state);
+    const transactionIds = getTransactionIds(state);
     const labels = getUniqueLabels(state).sort();
 
     return {
         itemCount,
-        labels
+        labels,
+        transactionIds
     };
 };
 
 const mapDispatch = (dispatch) => {
     return {
-        addLabel: (label) => {
-            dispatch(addLabelMultiple(label));
+        addLabel: (label, transactionIds) => {
+            dispatch(addLabelMultiple(label, transactionIds));
             dispatch(hide('labels'));
             dispatch(show(`Label added: ${label}`));
         },
-        removeLabel: (label) => {
-            dispatch(removeLabelMultiple(label));
+        removeLabel: (label, transactionIds) => {
+            dispatch(removeLabelMultiple(label, transactionIds));
             dispatch(hide('labels'));
             dispatch(show(`Label removed: ${label}`));
         },

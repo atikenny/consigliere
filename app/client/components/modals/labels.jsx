@@ -5,7 +5,7 @@ import 'styles/components/modals/labels';
 
 import IconButton from 'components/common/icon-button';
 
-const Labels = ({ addLabel, itemCount, labels, removeLabel, showLabel }) => (
+const Labels = ({ addLabel, itemCount, labels, removeLabel, showLabel, transactionIds }) => (
     <div className="labels-modal-container">
         <h2>Choose a label to view, remove or apply:</h2>
         <ul className="labels">
@@ -20,12 +20,12 @@ const Labels = ({ addLabel, itemCount, labels, removeLabel, showLabel }) => (
                     <IconButton
                         type="minus"
                         onClick={() => {
-                            removeLabel(label);
+                            removeLabel(label, transactionIds);
                         }} />
                     <IconButton
                         type="plus"
                         onClick={() => {
-                            addLabel(label);
+                            addLabel(label, transactionIds);
                         }} />
                 </li>
             ))}
@@ -41,5 +41,6 @@ Labels.propTypes = {
     itemCount: PropTypes.number,
     labels: PropTypes.array,
     removeLabel: PropTypes.func,
-    showLabel: PropTypes.func
+    showLabel: PropTypes.func,
+    transactionIds: PropTypes.arrayOf(PropTypes.string)
 };
