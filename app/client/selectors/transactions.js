@@ -29,7 +29,7 @@ const isFiltered = (filter, labels, transaction) => {
 
 const hasLabel = (filter, labels) => {
     if (filter === NO_LABEL_NAME) {
-        return !labels.items || !labels.items.length;
+        return !labels || !labels.items || !labels.items.length;
     }
 
     return labels && labels.items && labels.items.some(label => {
