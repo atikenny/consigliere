@@ -1,5 +1,7 @@
 # Consigliere
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/atikenny/consigliere.svg)](https://greenkeeper.io/)
+
 [![Build Status][travis-badge]][travis-badge-url]
 [![Dependencies Status][david-dev-badge]][david-dev-badge-url]
 [![Coverage Status][coveralls-badge]][coveralls-badge-url]
